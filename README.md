@@ -2,7 +2,7 @@
 
 CSCI 437: Introduction to Game Design and Development
 
-Team members:
+# Team members:
 
 Johnny Clapham
 
