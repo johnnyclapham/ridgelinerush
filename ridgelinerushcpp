@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 
-// Ridge Runner code-base
+// Ridge Line Rush code-base
 // basic window template in SFML
 // Team Members:
 //              Johnny Clapham
