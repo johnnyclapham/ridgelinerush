@@ -6,6 +6,7 @@
 #define CSCI437_TERRAIN_H
 
 #include "Column.h"
+#include "Obstacle.h"
 #include <vector>
 
 class Terrain {
@@ -16,9 +17,12 @@ public:
     // mutators //
     void spawnColumn();
     void despawnColumn();
+    void spawnObstacle();
+    void despawnObstacle();
     void move(float x_diff, float y_diff);
 
     std::vector<Column> columnList;
+    std::vector<Obstacle> obstacleList;
 
 private:
     void setBaseMap();

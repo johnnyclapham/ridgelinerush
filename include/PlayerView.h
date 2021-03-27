@@ -19,6 +19,7 @@ public:
 
 private:
     void drawTerrain();
+    void drawTile(Tile tile, sf::Color color);
 
     sf::RenderWindow *window;
     Logic *logic;

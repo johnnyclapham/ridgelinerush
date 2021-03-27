@@ -6,7 +6,6 @@
 #include "Column.h"
 #include "Constants.h"
 #include <vector>
-#include <iostream>
 
 Column::Column() {
     tileList.emplace_back(WINDOW_WIDTH + (TILE_SIDE), 0, LOWER_RIGHT);

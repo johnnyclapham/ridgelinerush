@@ -36,6 +36,7 @@ int main(int argc, char** argv)
         App.close();
     }
 
+    // TODO set up gameTimeFactor for adaptive frame rate
     deltaMS = clock.getElapsedTime().asMilliseconds();
     gameLogic->update(deltaMS);
 
