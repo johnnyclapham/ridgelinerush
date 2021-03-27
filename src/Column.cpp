@@ -6,11 +6,12 @@
 #include "Column.h"
 #include "Constants.h"
 #include <vector>
+#include <iostream>
 
 Column::Column() {
-    tileList.push_back(Tile(WINDOW_WIDTH + (TILE_SIDE), 0, LOWER_RIGHT));
+    tileList.emplace_back(WINDOW_WIDTH + (TILE_SIDE), 0, LOWER_RIGHT);
     for (int i = 1; i < 10; i++) { // initialize all squares in tileList
-        tileList.push_back(Tile(WINDOW_WIDTH + (TILE_SIDE), TILE_SIDE * i, SQUARE));
+        tileList.emplace_back(WINDOW_WIDTH + (TILE_SIDE), TILE_SIDE * i, SQUARE);
     }
 }
 

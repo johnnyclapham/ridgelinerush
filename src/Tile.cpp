@@ -3,7 +3,8 @@
 //
 
 #include "Tile.h"
-#include <stdlib.h>
+#include <cstdlib>
+#include <iostream>
 
 Tile::Tile() {
     setPosition(0, 0);

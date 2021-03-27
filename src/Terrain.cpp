@@ -12,7 +12,7 @@ Terrain::Terrain() {
 }
 
 void Terrain::spawnColumn() {
-    columnList.push_back(Column());
+    columnList.emplace_back();
 }
 
 void Terrain::despawnColumn() {
@@ -26,7 +26,10 @@ void Terrain::move(float x_diff, float y_diff) {
 }
 
 void Terrain::setBaseMap() {
-    for (int i = 9; i >= 0; i++) {
+//    Column column = Column();
+//    column.move(4 * TILE_SIDE, 4 * TILE_SIDE);
+//    columnList.push_back(column);
+    for (int i = 9; i >= 0; i--) {
         Column column = Column();
         column.move(i * TILE_SIDE, i * TILE_SIDE);
         columnList.push_back(column);

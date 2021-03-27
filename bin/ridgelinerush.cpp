@@ -35,7 +35,8 @@ int main(int argc, char** argv)
 
     // clear screen and fill with blue
     App.clear(sf::Color::Blue);
-//    playerView.updateView();
+
+    playerView.updateView();
 
     // display
     App.display();
