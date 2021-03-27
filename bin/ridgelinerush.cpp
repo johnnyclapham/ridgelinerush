@@ -1,4 +1,8 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Constants.h"
+#include "Logic.h"
+#include "PlayerView.h"
 
 // Ridge Line Rush code-base
 // basic window template in SFML
@@ -11,7 +15,11 @@
 int main(int argc, char** argv)
 {
   // create main window
-  sf::RenderWindow App(sf::VideoMode(800,600,32), "Ridge Rush");
+  sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Ridgeline Rush");
+
+  // initialize logic and views
+  Logic *gameLogic = new Logic();
+  PlayerView playerView = PlayerView(&App, gameLogic);
 
   // start main loop
   while(App.isOpen())
@@ -27,6 +35,7 @@ int main(int argc, char** argv)
 
     // clear screen and fill with blue
     App.clear(sf::Color::Blue);
+//    playerView.updateView();
 
     // display
     App.display();
