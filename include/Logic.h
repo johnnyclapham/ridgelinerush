@@ -19,10 +19,15 @@ public:
     // constructors //
     Logic();
 
+    void update(int ms); // main update method. will call all other updaters
+
     // inspectors //
     Terrain getTerrain();
 
 private:
+    // update methods //
+    void updateTerrain();
+
     // members //
     Terrain terrain;
 };

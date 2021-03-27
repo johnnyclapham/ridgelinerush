@@ -10,6 +10,10 @@ Logic::Logic() {
     terrain = Terrain();
 }
 
+void Logic::update(int ms) {
+    terrain.move(1, 1);
+}
+
 Terrain Logic::getTerrain() {
     return terrain;
 }

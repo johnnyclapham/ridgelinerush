@@ -21,6 +21,9 @@ int main(int argc, char** argv)
   Logic *gameLogic = new Logic();
   PlayerView playerView = PlayerView(&App, gameLogic);
 
+  sf::Clock clock;
+  int deltaMS;
+
   // start main loop
   while(App.isOpen())
   {
@@ -32,6 +35,9 @@ int main(int argc, char** argv)
       if(Event.type == sf::Event::Closed)
         App.close();
     }
+
+    deltaMS = clock.getElapsedTime().asMilliseconds();
+    gameLogic->update(deltaMS);
 
     // clear screen and fill with blue
     App.clear(sf::Color::Blue);
