@@ -4,7 +4,7 @@
 
 #ifndef RIDGELINERUSH_TILE_H
 #define RIDGELINERUSH_TILE_H
-
+#include <SFML/Window.hpp>
 #include "Constants.h"
 
 class Tile {
@@ -21,6 +21,9 @@ public:
     float getX();
     float getY();
     float getShape();
+
+    Collision intersectingPoint(sf::Vector2<float> prevPoint, sf::Vector2<float> newPoint);
+
 
 private:
     // members //

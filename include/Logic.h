@@ -2,11 +2,13 @@
 // Created by Evelyn on 3/25/2021.
 //
 
-#ifndef CSCI437_LOGIC_H
-#define CSCI437_LOGIC_H
+#ifndef RIDGELINERUSH_LOGIC_H
+#define RIDGELINERUSH_LOGIC_H
 
 #include "Constants.h"
 #include "Terrain.h"
+#include "Hero.h"
+#include "Controller.h"
 
 // This defines the main logic class, which serves as a container for all other logic components
 // and queries them as needed. The instance of this class will be a member of the respective views,
@@ -19,10 +21,11 @@ public:
     // constructors //
     Logic();
 
-    void update(int ms); // main update method. will call all other updaters
+    void update(float time); // main update method. will call all other updaters
 
     // inspectors //
     Terrain getTerrain();
+    Hero getHero();
 
 private:
     // update methods //
@@ -30,6 +33,8 @@ private:
 
     // members //
     Terrain terrain;
+    Hero hero;
+    Controller controller;
 };
 
-#endif //CSCI437_LOGIC_H
+#endif //RIDGELINERUSH_LOGIC_H

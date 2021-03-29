@@ -37,16 +37,19 @@ int main(int argc, char** argv)
     }
 
     // TODO set up gameTimeFactor for adaptive frame rate
-    deltaMS = clock.getElapsedTime().asMilliseconds();
-    gameLogic->update(deltaMS);
+    deltaMS = clock.getElapsedTime().asMicroseconds();
+    //std::cout << deltaMS*GAME_TIME_FACTOR << std::endl;
+    gameLogic->update(deltaMS*GAME_TIME_FACTOR);
+    clock.restart();
 
     // clear screen and fill with blue
     App.clear(sf::Color::Blue);
 
-    playerView.updateView();
+    playerView.updateView(deltaMS*GAME_TIME_FACTOR);
 
     // display
     App.display();
+    //sf::sleep(sf::milliseconds(50));
   }
 
   // Done.

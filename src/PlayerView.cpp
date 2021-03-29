@@ -8,16 +8,21 @@
 #include "PlayerView.h"
 #include "Terrain.h"
 #include "Tile.h"
+#include "Sprite.h"
 #include "Constants.h"
 
 PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     this->logic = logic;
     this->window = window;
-    updateView();
+    heroSprite = Sprite("assets/hero.png");
+    updateView(.2);
 }
 
-void PlayerView::updateView() {
+void PlayerView::updateView(float time) {
     drawTerrain();
+    drawHero();
+
+
 }
 
 void PlayerView::drawTerrain() {
@@ -73,4 +78,10 @@ void PlayerView::drawTile(Tile tile, sf::Color color) { // color to be removed -
         toDraw.setPosition(tile.getX(), tile.getY());
         window->draw(toDraw);
     }
+}
+
+void PlayerView::drawHero() {
+    Hero hero = this->logic->getHero();
+    sf::Vector2<float> position = hero.getPosition();
+    heroSprite.draw(position, window);
 }

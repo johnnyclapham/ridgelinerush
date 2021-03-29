@@ -21,6 +21,7 @@ public:
     int getWidth();
     float getY();
     float getX();
+    bool intersecting(std::vector<sf::Vector2<float>> prevDiamond, std::vector<sf::Vector2<float>> newDiamond);
 
     void storeTile(Tile tile);
 

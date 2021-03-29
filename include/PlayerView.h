@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Logic.h"
+#include "Sprite.h"
 
 class PlayerView {
 public:
@@ -15,14 +16,18 @@ public:
     PlayerView(sf::RenderWindow *window, Logic *logic);
 
     // mutator //
-    void updateView(); // this method will call all of the private methods in turn
+    void updateView(float time); // this method will call all of the private methods in turn
 
 private:
     void drawTerrain();
     void drawTile(Tile tile, sf::Color color);
+    void drawHero();
 
     sf::RenderWindow *window;
     Logic *logic;
+
+    //Members
+    Sprite heroSprite;
 };
 
 #endif //CSCI437_PLAYERVIEW_H

@@ -10,6 +10,8 @@
 // are intended for terrain use for defining walkable areas
 enum TileShape { UPPER_LEFT, LOWER_LEFT, UPPER_RIGHT, LOWER_RIGHT, SQUARE };
 
+enum Collision {NO_COLLISION, CEILING, WALL, FLOOR};
+
 // Window width and window height - may not stay constants with resizble window
 const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 750;
@@ -18,6 +20,9 @@ const int WINDOW_HEIGHT = 750;
 const float TILE_SIDE = WINDOW_WIDTH / 12;
 
 const int COLUMN_LENGTH = 10;
+
+// Affects the speed of the game
+const float GAME_TIME_FACTOR = .0002;
 
 
 #endif //RIDGELINERUSH_CONSTANTS_H
