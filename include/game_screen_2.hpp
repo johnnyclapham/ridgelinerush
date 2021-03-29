@@ -1,17 +1,17 @@
-#ifndef GAMESCREEN1_HPP_INCLUDED
-#define GAMESCREEN1_HPP_INCLUDED
+#ifndef GAMESCREEN2_HPP_INCLUDED
+#define GAMESCREEN2_HPP_INCLUDED
 
 #include <iostream>
 #include "cScreen.hpp"
 
-class game_screen_1 : public cScreen
+class game_screen_2 : public cScreen
 {
 public:
-    game_screen_1 (void);
+    game_screen_2 (void);
     virtual int Run (sf::RenderWindow &App);
 };
 
-game_screen_1::game_screen_1 (void){}
+game_screen_2::game_screen_2 (void){}
 
 
 
@@ -20,7 +20,7 @@ game_screen_1::game_screen_1 (void){}
 //here is our main section previously living in ridgerunner.cpp
 //filled with some dummy text for navigation demo
 
-int game_screen_1::Run (sf::RenderWindow &App)
+int game_screen_2::Run (sf::RenderWindow &App)
 {
 		//Initialize our font
 	  sf::Font font;
@@ -35,8 +35,8 @@ int game_screen_1::Run (sf::RenderWindow &App)
 	  menuText.setFillColor(sf::Color::Black);
 	  menuText.setStyle(sf::Text::Bold);
 	  menuText.setPosition(50,0);
-		std::string menuString = "game_screen_1\n"
-		"Press Escape to return to Title Screen";
+		std::string menuString = "example_screen_n\n"
+		"Press Escape to return to Game Screen";
 		menuText.setString(menuString);
 
 
@@ -61,26 +61,26 @@ int game_screen_1::Run (sf::RenderWindow &App)
 	              if (Event.type == sf::Event::KeyPressed)
 	              {
 
-									if (Event.key.code == sf::Keyboard::Key::Escape){
-										std::cout << "title_screen_0 <- game_screen_1\n";
+									if (Event.key.code == sf::Keyboard::Key::Enter){
+										std::cout << "title_screen_0 <- example_screen_n\n";
                     //return 0 calls the 0 position screen
                     //0 position screen is title_screen_0
 										return(0);
 
 									}
 
-                  else if (Event.key.code == sf::Keyboard::Key::Enter){
-										std::cout << "game_screen_1  -> example_screen_n\n";
+                  else if (Event.key.code == sf::Keyboard::Key::Escape){
+										std::cout << "game_screen_1  <- example_screen_n\n";
                     //return 0 calls the 0 position screen
                     //0 position screen is title_screen_0
-										return(2);
+										return(1);
 
 									}
 								}
 
 
 
-				App.clear(sf::Color::Green); //clear screen for drawing
+				App.clear(sf::Color::Yellow); //clear screen for drawing
 				App.draw(menuText);
 				App.display();
 
@@ -91,4 +91,4 @@ int game_screen_1::Run (sf::RenderWindow &App)
     return (-1);
 }
 
-#endif // GAMESCREEN1_HPP_INCLUDED
+#endif // GAMESCREEN2_HPP_INCLUDED
