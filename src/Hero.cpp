@@ -105,7 +105,7 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
         }
     }
     for(int i = 0; i < obstacleList.size(); i++){
-        collision = columnList[i].intersecting(originalPt, step3);
+        collision = obstacleList[i].intersecting(originalPt, step3);
         if(obstacleList[i].intersecting(originalPt, step3) != NO_COLLISION){
             noneIntersect = false;
             lastCollision = collision;
@@ -125,16 +125,17 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
         }
     }
     for(int i = 0; i < obstacleList.size(); i++){
-        collision = columnList[i].intersecting(originalPt, step2);
+        collision = obstacleList[i].intersecting(originalPt, step2);
         if(obstacleList[i].intersecting(originalPt, step2) != NO_COLLISION){
             noneIntersect = false;
             lastCollision = collision;
         }
     }
     if(noneIntersect){
-        if(collision == WALL){
+        if(lastCollision == WALL){
             velocity.x = 0;
-        } else if (collision == FLOOR){
+        } else if (lastCollision == FLOOR){
+            std::cout << "floor collision" << std::endl;
             playerState = ground;
             velocity.y = 0;
             velocity.x = 0;
@@ -152,16 +153,17 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
         }
     }
     for(int i = 0; i < obstacleList.size(); i++){
-        collision = columnList[i].intersecting(originalPt, step1);
+        collision = obstacleList[i].intersecting(originalPt, step1);
         if(obstacleList[i].intersecting(originalPt, step1) != NO_COLLISION){
             noneIntersect = false;
             lastCollision = collision;
         }
     }
     if(noneIntersect){
-        if(collision == WALL){
+        if(lastCollision == WALL){
             velocity.x = 0;
         } else if (collision == FLOOR){
+            std::cout << "floor collision" << std::endl;
             playerState = ground;
             velocity.y = 0;
             velocity.x = 0;
@@ -169,9 +171,10 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
         return position+0.33f*change;
     }
 
-    if(collision == WALL){
+    if(lastCollision == WALL){
         velocity.x = 0;
-    } else if (collision == FLOOR){
+    } else if (lastCollision == FLOOR){
+        std::cout << "floor collision" << std::endl;
         playerState = ground;
         velocity.y = 0;
         velocity.x = 0;

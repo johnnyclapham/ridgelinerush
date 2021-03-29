@@ -51,18 +51,20 @@ std::vector<Tile> Obstacle::getTiles() {
     return tileList;
 }
 
-bool Obstacle::intersecting(std::vector<sf::Vector2<float>> prevDiamond, std::vector<sf::Vector2<float>> newDiamond){
+Collision Obstacle::intersecting(std::vector<sf::Vector2<float>> prevDiamond, std::vector<sf::Vector2<float>> newDiamond){
     // First we get the largest y and smallest/largest x/y to see if it intersects the column at all
     //std::cout << "here" << std::endl;
     bool intersectsTile = false;
+    Collision collision;
     for(int i = 0; i < newDiamond.size(); i++){
         for(int j = 0; j < tileList.size(); j++){
-            if(tileList[j].intersectingPoint(prevDiamond[i], newDiamond[i])){
-                intersectsTile = true;
+            collision = tileList[0].intersectingPoint(prevDiamond[i], newDiamond[i]);
+            if(collision != NO_COLLISION){
+                return collision;
             }
         }
     }
-    return intersectsTile;
+    return NO_COLLISION;
 }
 
 
