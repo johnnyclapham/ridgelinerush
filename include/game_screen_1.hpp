@@ -39,6 +39,14 @@ int game_screen_1::Run (sf::RenderWindow &App)
       // Exit
       if(Event.type == sf::Event::Closed)
         App.close();
+
+      if (Event.key.code == sf::Keyboard::Key::Escape){
+        std::cout << "title_screen_0 <- game_screen_1\n";
+        //return 0 calls the 0 position screen
+        //0 position screen is title_screen_0
+        return(0);
+
+      }
     }
 
     // TODO set up gameTimeFactor for adaptive frame rate
