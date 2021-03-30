@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
+
 #include <iostream>
 #include "Constants.h"
 #include "Logic.h"
 #include "PlayerView.h"
+#include "screens.hpp"
 
 // Ridge Line Rush code-base
-// basic window template in SFML
 // Team Members:
 //              Johnny Clapham
 //              Evelyn Showalter
@@ -24,34 +25,42 @@ int main(int argc, char** argv)
   sf::Clock clock;
   int deltaMS;
 
-  // start main loop
-  while(App.isOpen())
-  {
-    // process events
-    sf::Event Event;
-    while(App.pollEvent(Event))
-    {
-      // Exit
-      if(Event.type == sf::Event::Closed)
-        App.close();
-    }
+	//Application variables
+	std::vector<cScreen*> Screens;
+	int screen = 0;
 
-    // TODO set up gameTimeFactor for adaptive frame rate
-    deltaMS = clock.getElapsedTime().asMicroseconds();
-    //std::cout << deltaMS*GAME_TIME_FACTOR << std::endl;
-    gameLogic->update(deltaMS*GAME_TIME_FACTOR);
-    clock.restart();
+	// create main window
+	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "Ridgeline Rush");
 
-    // clear screen and fill with blue
-    App.clear(sf::Color::Blue);
 
-    playerView.updateView(deltaMS*GAME_TIME_FACTOR);
+	//Screens preparations
+	title_screen_0 s0;
+	Screens.push_back(&s0);
+	game_screen_1 s1;
+	Screens.push_back(&s1);
 
-    // display
-    App.display();
-    //sf::sleep(sf::milliseconds(50));
-  }
+	//Main loop
+	while (screen >= 0)
+	{
+		screen = Screens[screen]->Run(App);
+	}
+  
+//   // TODO set up gameTimeFactor for adaptive frame rate
+//     deltaMS = clock.getElapsedTime().asMicroseconds();
+//     //std::cout << deltaMS*GAME_TIME_FACTOR << std::endl;
+//     gameLogic->update(deltaMS*GAME_TIME_FACTOR);
+//     clock.restart();
 
-  // Done.
-  return 0;
+//     // clear screen and fill with blue
+//     App.clear(sf::Color::Blue);
+
+//     playerView.updateView(deltaMS*GAME_TIME_FACTOR);
+
+//     // display
+//     App.display();
+//     //sf::sleep(sf::milliseconds(50));
+
+
+  //done
+	return 0;
 }
