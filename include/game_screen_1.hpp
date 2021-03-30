@@ -2,9 +2,6 @@
 #define GAMESCREEN1_HPP_INCLUDED
 
 #include <iostream>
-#include "Constants.h"
-#include "Logic.h"
-#include "PlayerView.h"
 #include "cScreen.hpp"
 
 class game_screen_1 : public cScreen
@@ -42,18 +39,11 @@ int game_screen_1::Run (sf::RenderWindow &App)
       // Exit
       if(Event.type == sf::Event::Closed)
         App.close();
-
-      if (Event.key.code == sf::Keyboard::Key::Escape){
-        std::cout << "title_screen_0 <- game_screen_1\n";
-        //return 0 calls the 0 position screen
-        //0 position screen is title_screen_0
-        return(0);
-
-      }
     }
 
     // TODO set up gameTimeFactor for adaptive frame rate
-    deltaMS = clock.getElapsedTime().asMilliseconds();
+    deltaMS = clock.getElapsedTime().asMicroseconds();
+    //std::cout << deltaMS*GAME_TIME_FACTOR << std::endl;
     gameLogic->update(deltaMS*GAME_TIME_FACTOR);
     clock.restart();
 
@@ -64,11 +54,11 @@ int game_screen_1::Run (sf::RenderWindow &App)
 
     // display
     App.display();
+    //sf::sleep(sf::milliseconds(50));
   }
-  //exit (should not be needed)
-  return (-1);
+
+    //exit (should not be needed)
+    return (-1);
 }
-
-
 
 #endif // GAMESCREEN1_HPP_INCLUDED
