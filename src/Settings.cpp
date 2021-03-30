@@ -59,7 +59,7 @@ void Settings::read() {
     }
 }
 
-void restoreToDefault() {
+void Settings::restoreToDefault() {
     this->volume = 100;
     this->difficulty = 1;
     this->screentype = ScreenSetting::Fullscreen;
