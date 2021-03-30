@@ -1,9 +1,11 @@
-//#pragma once; // NEEDED
 #ifndef GAMESCREEN1_HPP_INCLUDED
 #define GAMESCREEN1_HPP_INCLUDED
 
 #include <iostream>
 #include "cScreen.hpp"
+#include "Constants.h"
+#include "Logic.h"
+#include "PlayerView.h"
 
 class game_screen_1 : public cScreen
 {
@@ -23,62 +25,51 @@ game_screen_1::game_screen_1 (void){}
 
 int game_screen_1::Run (sf::RenderWindow &App)
 {
-		//Initialize our font
-	  sf::Font font;
-	  if (!font.loadFromFile("../assets/ACETONE.ttf")){
-    	printf("\ngame closed\n");}
+  // initialize logic and views
+  Logic *gameLogic = new Logic();
+  PlayerView playerView = PlayerView(&App, gameLogic);
 
+  sf::Clock clock;
+  int deltaMS;
 
-	  //create sfml text to display score to player
-	  sf::Text menuText; //updated during re-rendering
-	  menuText.setFont(font); // font is a sf::Font
-	  menuText.setCharacterSize(36);
-	  menuText.setFillColor(sf::Color::Black);
-	  menuText.setStyle(sf::Text::Bold);
-	  menuText.setPosition(50,0);
-		std::string menuString = "Game Screen\n"
-		"Press Escape to return to Title Screen";
-		menuText.setString(menuString);
+  // start main loop
+  while(App.isOpen())
+  {
+    // process events
+    sf::Event Event;
+    while(App.pollEvent(Event))
+    {
+      // Exit
+      if(Event.type == sf::Event::Closed){
+        App.close();
+      }
 
+        // key pressed event
+        if (Event.type == sf::Event::KeyPressed)
+        {
 
+					if (Event.key.code == sf::Keyboard::Key::Escape){
+						std::cout << "title_screen_0 <- game_screen_1\n";
+            //return 0 calls the 0 position screen
+            //0 position screen is title_screen_0
+						return(0);
 
+					}
+				}
+    }
 
+    // TODO set up gameTimeFactor for adaptive frame rate
+    deltaMS = clock.getElapsedTime().asMilliseconds();
+    gameLogic->update(deltaMS);
 
-	  while(App.isOpen())
-	  {
-	    App.setFramerateLimit(60);
+    // clear screen and fill with blue
+    App.clear(sf::Color::Blue);
 
-	    // process events
-	    sf::Event Event;
-	    while(App.pollEvent(Event)){
+    playerView.updateView();
 
-	              // Exit
-	              if(Event.type == sf::Event::Closed){
-	                App.close();
-	                printf("\ngame closed\n");
-	              }
-
-	              // key pressed event
-	              if (Event.type == sf::Event::KeyPressed)
-	              {
-
-									if (Event.key.code == sf::Keyboard::Key::Escape){
-										std::cout << "title_screen_0 <- game_screen_1\n";
-                    //return 0 calls the 0 position screen
-                    //0 position screen is title_screen_0
-										return(0);
-
-									}
-								}
-
-
-
-				App.clear(sf::Color::Green); //clear screen for drawing
-				App.draw(menuText);
-				App.display();
-
-			}
-		}
+    // display
+    App.display();
+  }
 
     //exit (should not be needed)
     return (-1);
