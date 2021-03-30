@@ -24,6 +24,7 @@ class Settings {
     Settings();
     void write();
     void read();
+    void restoreToDefault();
     int getVolume();
     void setVolume(int v);
     int getDifficulty();
