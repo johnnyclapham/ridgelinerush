@@ -85,13 +85,14 @@ string Settings::getScreentype() {
     switch (screentype) {
         case ScreenSetting::Fullscreen: return "Fullscreen";
         case ScreenSetting::Windowed: return "Windowed";
+        default: return "  "; // empty
     }
 }
 
 ScreenSetting::ScreenType Settings::strToScreentype(const std::string &s) {
-    if (s == "Fullscreen") {return ScreenSetting::Fullscreen; }
-    if (s == "Windowed") {return ScreenSetting::Windowed; }
-    return ScreenSetting::N; // empty screentype value for totality
+    if (s == "Fullscreen") { return ScreenSetting::Fullscreen; }
+    if (s == "Windowed") { return ScreenSetting::Windowed; }
+    else { return ScreenSetting::N; } // empty screentype value for totality
 }
 
 void Settings::setScreenType(ScreenSetting::ScreenType st) { this->screentype = st; write(); }
@@ -228,8 +229,8 @@ string Settings::keyToStr(sf::Keyboard::Key k) {
         case sf::Keyboard::F15: return "F15";
         case sf::Keyboard::Pause: return "Pause";
         case sf::Keyboard::KeyCount: return "KeyCount";
+        default: return "Unknown key";
     }
-    return "Unknown key";
 }
 
 sf::Keyboard::Key Settings::strToKey(const string &s) {
