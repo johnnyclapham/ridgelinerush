@@ -55,6 +55,7 @@ int game_screen_1::Run (sf::RenderWindow &App)
     // TODO set up gameTimeFactor for adaptive frame rate
     deltaMS = clock.getElapsedTime().asMilliseconds();
     gameLogic->update(deltaMS*GAME_TIME_FACTOR);
+    clock.restart();
 
     // clear screen and fill with blue
     App.clear(sf::Color::Blue);
