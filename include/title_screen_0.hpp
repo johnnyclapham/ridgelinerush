@@ -45,7 +45,7 @@ int title_screen_0::Run (sf::RenderWindow &App)
 		// our game loop
 	  while(App.isOpen())
 	  {
-	    App.setFramerateLimit(60);
+//	    App.setFramerateLimit(60);
 
 	    // process events
 	    sf::Event Event;
