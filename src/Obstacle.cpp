@@ -58,7 +58,7 @@ Collision Obstacle::intersecting(std::vector<sf::Vector2<float>> prevDiamond, st
     Collision collision;
     for(int i = 0; i < newDiamond.size(); i++){
         for(int j = 0; j < tileList.size(); j++){
-            collision = tileList[0].intersectingPoint(prevDiamond[i], newDiamond[i]);
+            collision = tileList[j].intersectingPoint(prevDiamond[i], newDiamond[i]);
             if(collision != NO_COLLISION){
                 return collision;
             }
