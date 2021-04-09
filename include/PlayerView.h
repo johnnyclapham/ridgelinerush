@@ -22,14 +22,12 @@ private:
     void drawTerrain();
     void drawTile(Tile tile, sf::Color color);
     void drawHero();
-    void drawDragon();
 
     sf::RenderWindow *window;
     Logic *logic;
 
     //Members
     Sprite heroSprite;
-    Sprite dragonSprite;
 };
 
 #endif //CSCI437_PLAYERVIEW_H
