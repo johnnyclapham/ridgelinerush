@@ -15,12 +15,14 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     this->logic = logic;
     this->window = window;
     heroSprite = Sprite("assets/hero.png");
+    dragonSprite = Sprite("assets/dragonArt.png");
     updateView(.2);
 }
 
 void PlayerView::updateView(float time) {
     drawTerrain();
     drawHero();
+    drawDragon();
 
 
 }
@@ -84,4 +86,11 @@ void PlayerView::drawHero() {
     Hero hero = this->logic->getHero();
     sf::Vector2<float> position = hero.getPosition();
     heroSprite.draw(position, window);
+}
+
+//same as for our hero
+void PlayerView::drawDragon() {
+    Dragon dragon = this->logic->getDragon();
+    sf::Vector2<float> position = dragon.getPosition();
+    dragonSprite.draw(position, window);
 }
