@@ -20,20 +20,20 @@ Dragon::Dragon(float x, float y) {
 }
 
 void Dragon::update(float time){
-    //50 cycles move up
-    if (movementIteration<=49){
+    //100 cycles move up
+    if (movementIteration<=99){
       //decrease y position of dragon
       setPosition(position.x, position.y-0.5*time);
       movementIteration+=1;
 
-    //50 cycles move down
-    } else if (movementIteration>=50 && movementIteration<=99) {
+    //100 cycles move down
+  } else if (movementIteration>=100 && movementIteration<=199) {
       //increase y position of dragon
       setPosition(position.x, position.y+0.5*time);
       movementIteration+=1;
     }
-    //after 100 cycles reset ticker
-    else if (movementIteration>=100){
+    //after 200 cycles reset ticker
+    else if (movementIteration>=200){
       movementIteration=0;
     }
     //std::cout << "movement iteration: "<<movementIteration<<"\n";
