@@ -8,7 +8,7 @@
 
 // constructor. All new obstacles should be inputted here. //
 ObstaclePicker::ObstaclePicker() {
-    obstacleList.reserve(3);
+    obstacleList.reserve(5);
 
     // basic triangle //
     Obstacle ob = Obstacle();
@@ -27,6 +27,30 @@ ObstaclePicker::ObstaclePicker() {
     ob.storeTile(Tile(ob.getX(), ob.getY() - (5 * TILE_SIDE), SQUARE));
     ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - (5 * TILE_SIDE), SQUARE));
     ob.storeTile(Tile(ob.getX() + (2 * TILE_SIDE), ob.getY() - (5 * TILE_SIDE), UPPER_LEFT));
+    obstacleList.push_back(ob);
+
+    // bumps and platform //
+    ob = Obstacle();
+    ob.storeTile(Tile(ob.getX(), ob.getY(), UPPER_LEFT));
+    ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - TILE_SIDE, UPPER_LEFT));
+    ob.storeTile(Tile(ob.getX(), ob.getY() - (5 * TILE_SIDE), SQUARE));
+    ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - (5 * TILE_SIDE), UPPER_LEFT));
+    obstacleList.push_back(ob);
+
+    // small triangular platform //
+    ob = Obstacle();
+    ob.storeTile(Tile(ob.getX(), ob.getY() - (4 * TILE_SIDE), UPPER_RIGHT));
+    ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - (4 * TILE_SIDE), UPPER_LEFT));
+    obstacleList.push_back(ob);
+
+    // pillars //
+    ob = Obstacle();
+    ob.storeTile(Tile(ob.getX(), ob.getY(), UPPER_LEFT));
+    ob.storeTile(Tile(ob.getX(), ob.getY() - TILE_SIDE, SQUARE));
+    ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - TILE_SIDE, UPPER_LEFT));
+    ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - (2 * TILE_SIDE), SQUARE));
+    ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - (3 * TILE_SIDE), SQUARE));
+    ob.storeTile(Tile(ob.getX() + (2 * TILE_SIDE), ob.getY() - (2 * TILE_SIDE), UPPER_LEFT));
     obstacleList.push_back(ob);
 }
 

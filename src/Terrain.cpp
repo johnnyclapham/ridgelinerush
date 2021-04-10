@@ -65,8 +65,8 @@ void Terrain::setBaseMap() {
         Column column = Column();
         column.move(i * TILE_SIDE, i * TILE_SIDE);
         columnList.push_back(column);
-        if (i % 3 == 0) {
-            obstacleList.push_back(picker.getRandomObstacle());
-        }
+//        if (i % 3 == 0 && i != 0) {
+//            obstacleList.push_back(picker.getRandomObstacle());
+//        }
     }
 }

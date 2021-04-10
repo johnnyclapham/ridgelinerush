@@ -63,11 +63,29 @@ void PlayerView::drawTile(Tile tile, sf::Color color) { // color to be removed -
         toDraw.setFillColor(color);
         window->draw(toDraw);
     }
+    else if (tile.getShape() == LOWER_LEFT) {
+        sf::ConvexShape toDraw;
+        toDraw.setPointCount(3);
+        toDraw.setPoint(0, sf::Vector2f(tile.getX(), tile.getY()));
+        toDraw.setPoint(1, sf::Vector2f(tile.getX(), tile.getY() + TILE_SIDE));
+        toDraw.setPoint(2, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY() + TILE_SIDE));
+        toDraw.setFillColor(color);
+        window->draw(toDraw);
+    }
     else if (tile.getShape() == UPPER_LEFT) {
         sf::ConvexShape toDraw;
         toDraw.setPointCount(3);
         toDraw.setPoint(0, sf::Vector2f(tile.getX(), tile.getY()));
         toDraw.setPoint(1, sf::Vector2f(tile.getX(), tile.getY() + TILE_SIDE));
+        toDraw.setPoint(2, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY()));
+        toDraw.setFillColor(color);
+        window->draw(toDraw);
+    }
+    else if (tile.getShape() == UPPER_RIGHT) {
+        sf::ConvexShape toDraw;
+        toDraw.setPointCount(3);
+        toDraw.setPoint(0, sf::Vector2f(tile.getX(), tile.getY()));
+        toDraw.setPoint(1, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY() + TILE_SIDE));
         toDraw.setPoint(2, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY()));
         toDraw.setFillColor(color);
         window->draw(toDraw);
