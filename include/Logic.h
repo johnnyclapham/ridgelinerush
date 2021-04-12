@@ -8,6 +8,7 @@
 #include "Constants.h"
 #include "Terrain.h"
 #include "Hero.h"
+#include "Dragon.h"
 #include "Controller.h"
 
 // This defines the main logic class, which serves as a container for all other logic components
@@ -26,6 +27,7 @@ public:
     // inspectors //
     Terrain getTerrain();
     Hero getHero();
+    Dragon getDragon();
 
 private:
     // update methods //
@@ -34,6 +36,7 @@ private:
     // members //
     Terrain terrain;
     Hero hero;
+    Dragon dragon;
     Controller controller;
 };
 
