@@ -50,7 +50,6 @@ Collision Tile::intersectingPoint(sf::Vector2<float> prevPoint, sf::Vector2<floa
             }
             break;
         case SQUARE:
-            return FLOOR;
             if (newPoint.x >= x && newPoint.y >= y && newPoint.x <= x+TILE_SIDE && newPoint.y <= y+TILE_SIDE){
                 return FLOOR;
             } else {

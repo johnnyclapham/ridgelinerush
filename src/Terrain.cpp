@@ -7,9 +7,11 @@
 #include "Column.h"
 #include "Obstacle.h"
 #include "Constants.h"
+#include "ObstaclePicker.h"
 
 Terrain::Terrain() {
     setBaseMap();
+    picker = ObstaclePicker();
     cycle = 0;
 }
 
@@ -29,8 +31,7 @@ void Terrain::despawnColumn() {
 
 void Terrain::spawnObstacle() {
     Obstacle ob = Obstacle();
-    ob.storeTile(Tile(ob.getX(), ob.getY(), UPPER_LEFT));
-    obstacleList.emplace_back(ob);
+    obstacleList.emplace_back(picker.getRandomObstacle());
 }
 
 void Terrain::despawnObstacle() {
@@ -64,11 +65,8 @@ void Terrain::setBaseMap() {
         Column column = Column();
         column.move(i * TILE_SIDE, i * TILE_SIDE);
         columnList.push_back(column);
-        if (i % 3 == 0) {
-            // TODO change this to retrieve one of several obstacle options
-            Obstacle ob = Obstacle();
-            ob.storeTile(Tile(ob.getX(), ob.getY(), UPPER_LEFT));
-            obstacleList.push_back(ob);
-        }
+//        if (i % 3 == 0 && i != 0) {
+//            obstacleList.push_back(picker.getRandomObstacle());
+//        }
     }
 }

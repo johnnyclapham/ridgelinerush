@@ -8,6 +8,7 @@
 #include "Column.h"
 #include "Obstacle.h"
 #include <vector>
+#include "ObstaclePicker.h"
 
 class Terrain {
 public:
@@ -27,6 +28,7 @@ public:
 private:
     void setBaseMap();
     int cycle;
+    ObstaclePicker picker;
 };
 
 #endif //CSCI437_TERRAIN_H
