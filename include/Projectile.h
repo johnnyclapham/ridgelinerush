@@ -4,7 +4,6 @@
 class Projectile {
   public:
     // constructors //
-    Projectile();
     Projectile(float x, float y, float damage, float angle, float speed);
 
     void move();
@@ -16,6 +15,6 @@ class Projectile {
     float angle;
     float speed;
     float x_coord, y_coord;
-}
+};
 
 #endif //RIDGELINERUSH_PROJECTILE_H
