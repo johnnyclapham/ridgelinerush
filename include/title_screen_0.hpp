@@ -61,7 +61,7 @@ int title_screen_0::Run (sf::RenderWindow &App)
 	              if (Event.type == sf::Event::KeyPressed)
 	              {
 
-									if (Event.key.code == sf::Keyboard::Key::Enter){
+									if (Event.key.code == sf::Keyboard::Return){
 										std::cout << "title_screen_0 -> game_screen_1\n";
 										//return 1 calls the 1 position screen
                     //1 position screen is game_screen_1
