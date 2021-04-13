@@ -15,10 +15,13 @@ Hero::Hero() {
     playerState = airborne;
     height = 60;
     width = 56;
+    health = 100;
+    damage = 5;
     topCollisionPt = position+sf::Vector2<float>(width/2, 0);
     bottomCollisionPt = position+sf::Vector2<float>(width/2, height);
     leftCollisionPt = position+sf::Vector2<float>(0, 2*height/3);
     rightCollisionPt = position+sf::Vector2<float>(width, 2*height/3);
+    powerup = Powerup();
 }
 
 Hero::Hero(float x, float y) {
@@ -72,9 +75,21 @@ void Hero::driftRight(){
     }
 }
 
-sf::Vector2<float> Hero::getPosition() {
-    return position;
-}
+void Hero::applyPowerup() {
+    switch (powerup.getPowerupType()) {
+        case PT::damage_boost: damage *= 2;
+        case PT::health_boost: if (health < 150) { health += 20; }
+        case PT::jump_boost: velocity.y *= 2;
+        case PT::speed_boost: velocity.x *= 2;
+        default: return;
+    }
+} // need to implement timer in game loop for next sprint
+
+sf::Vector2<float> Hero::getPosition() { return position; }
+
+int Hero::getHealth() { return health; }
+
+int Hero::getDamage() { return damage; }
 
 // Takes the current terrain, current position of the hero, and the proposed new position of the hero and returns
 // The position of where the hero should be with collision taken into account. Modifies state of hero in accordance
