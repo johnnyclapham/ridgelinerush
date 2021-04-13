@@ -32,7 +32,7 @@ int title_screen_0::Run (sf::RenderWindow &App)
 	  sf::Text menuText; //updated during re-rendering
 	  menuText.setFont(font); // font is a sf::Font
 	  menuText.setCharacterSize(36);
-	  menuText.setFillColor(sf::Color::Green);
+	  menuText.setColor(sf::Color::Green);
 	  menuText.setStyle(sf::Text::Bold);
 	  menuText.setPosition(50,0);
 		std::string menuString = "Title Screen\n"
@@ -61,7 +61,7 @@ int title_screen_0::Run (sf::RenderWindow &App)
 	              if (Event.type == sf::Event::KeyPressed)
 	              {
 
-									if (Event.key.code == sf::Keyboard::Key::Enter){
+									if (Event.key.code == sf::Keyboard::Return){
 										std::cout << "title_screen_0 -> game_screen_1\n";
 										//return 1 calls the 1 position screen
                     //1 position screen is game_screen_1
