@@ -2,8 +2,8 @@
 // Created by Evelyn on 3/26/2021.
 //
 
-#ifndef CSCI437_OBSTACLE_H
-#define CSCI437_OBSTACLE_H
+#ifndef RIDGELINERUSH_OBSTACLE_H
+#define RIDGELINERUSH_OBSTACLE_H
 
 #include "Tile.h"
 #include <vector>
@@ -33,4 +33,4 @@ private:
     std::vector<Tile> tileList;
 };
 
-#endif //CSCI437_OBSTACLE_H
+#endif //RIDGELINERUSH_OBSTACLE_H
