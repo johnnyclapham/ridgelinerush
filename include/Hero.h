@@ -6,6 +6,7 @@
 #define RIDGELINERUSH_HERO_H
 #include <SFML/Window.hpp>
 #include "Terrain.h"
+#include "Powerup.h"
 
 
 class Hero
@@ -24,6 +25,7 @@ public:
     void jump();
     void driftLeft();
     void driftRight();
+    void applyPowerup();
 
     // other //
     sf::Vector2<float> checkCollision(sf::Vector2<float> change, Terrain terrain);
@@ -31,6 +33,8 @@ public:
     // inspectors //
     sf::Vector2<float> getPosition();
     bool isGrounded(Terrain terrain);
+    int getHealth();
+    int getDamage();
 
     enum state {ground, airborne};
     enum intersectionType {floor, ceiling, wall};
@@ -39,6 +43,8 @@ private:
     // members //
     float width;
     float height;
+    int health;
+    int damage;
     sf::Vector2<float> position;
     sf::Vector2<float> velocity;
 
@@ -48,6 +54,7 @@ private:
     sf::Vector2<float> rightCollisionPt;
 
     state playerState;
+    Powerup powerup;
 };
 
 #endif // HERO_H
