@@ -11,8 +11,9 @@
 Controller::Controller() {
 }
 
-Controller::Controller(Hero *hero) {
+Controller::Controller(Hero *hero, Launcher *launcher) {
     playerHero = hero;
+    weaponLauncher = launcher;
 }
 
 void Controller::update(){
@@ -29,6 +30,11 @@ void Controller::update(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         (*playerHero).driftRight();
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        (*weaponLauncher).shoot();
     }
 }
 

@@ -15,7 +15,7 @@
 
 Logic::Logic() {
     terrain = Terrain();
-    controller = Controller(&hero);
+    controller = Controller(&hero, &launcher);
     hero = Hero();
     dragon = Dragon();
     sf::Vector2f heroPosition = hero.getPosition();

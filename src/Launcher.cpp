@@ -1,8 +1,10 @@
 #include "Launcher.h"
 #include "Projectile.h"
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 Launcher::Launcher() {
+  timer = sf::Clock();
   setPosition(0, 0);
   resetBaseValues();
 }
@@ -19,15 +21,20 @@ void Launcher::setPosition(float x, float y) {
 }
 
 Projectile* Launcher::shoot() {
-  Projectile *toReturn;
-  *toReturn = Projectile(x_coord, y_coord, damage, angle, speed);
-  return toReturn;
+  // Projectile *toReturn;
+  // *toReturn = Projectile(x_coord, y_coord, damage, angle, speed);
+  if (timer.getElapsedTime().asMilliseconds() >= fire_delay) {
+    std::cout << "Projectile fired" << std::endl;
+    timer.restart();
+  }
+  // return toReturn;
 }
 
 // reset everything except position
 void Launcher::resetBaseValues() {
+  timer.restart();
   angle = 0; // base angle
   speed = 1; // base speed constant
   damage = 1; // base damage
-  fire_delay = 1; // base fire delay
+  fire_delay = 500; // base fire delay, in milliseconds
 }

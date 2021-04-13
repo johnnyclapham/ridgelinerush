@@ -2,7 +2,7 @@
 #define RIDGELINERUSH_LAUNCHER_H
 
 #include "Projectile.h"
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 class Launcher {
   public:
@@ -21,6 +21,7 @@ class Launcher {
     float damage;
     float speed;
     float angle = 0;
+    sf::Clock timer;
 
     void resetBaseValues();
 };
