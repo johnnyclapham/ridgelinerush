@@ -16,6 +16,12 @@ Logic::Logic() {
     controller = Controller(&hero);
     hero = Hero();
     dragon = Dragon();
+    settings = Settings();
+    controller.setMvmtUpKey(settings.getMvmtUpKey());
+    controller.setMvmtLeftKey(settings.getMvmtLeftKey());
+    controller.setMvmtRightKey(settings.getMvmtRightKey());
+    controller.setAttackKey(settings.getAttackKey());
+    controller.setPauseKey(settings.getPauseKey());
 }
 
 void Logic::update(float time) {
@@ -23,6 +29,7 @@ void Logic::update(float time) {
     hero.update(.5*time, terrain);
     terrain.move(.5*time, .5*time);
     dragon.update(.5*time);
+    settings.read();
 }
 
 Terrain Logic::getTerrain() {
