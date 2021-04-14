@@ -5,6 +5,7 @@
 #ifndef RIDGELINERUSH_CONTROLLER_H
 #define RIDGELINERUSH_CONTROLLER_H
 #include "Hero.h"
+#include "Launcher.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -14,7 +15,7 @@ class Controller
 public:
     // constructors //
     Controller();
-    Controller(Hero *hero);
+    Controller(Hero *hero, Launcher *launcher);
 
     // mutators //
     void update();
@@ -22,6 +23,7 @@ public:
 private:
     // members //
     Hero *playerHero;
+    Launcher *weaponLauncher;
     std::string texture;
 };
 
