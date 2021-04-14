@@ -24,6 +24,7 @@ private:
     void drawHero();
     void drawDragon();
     void drawProjectiles();
+    void drawBackground();
 
     sf::RenderWindow *window;
     Logic *logic;
@@ -31,6 +32,7 @@ private:
     //Members
     Sprite heroSprite;
     Sprite dragonSprite;
+    Sprite backGroundSprite;
 };
 
 #endif //RIDGELINERUSH_PLAYERVIEW_H
