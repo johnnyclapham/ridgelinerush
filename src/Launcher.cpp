@@ -20,10 +20,15 @@ void Launcher::update(float time, Terrain terrain, Dragon *dragon, Hero *hero) {
   sf::Vector2f heroPosition = hero->getPosition();
   setPosition(heroPosition.x, heroPosition.y + 20);
 
+  int iter = 0;
   // iterate through projectiles for updates
-  for (int i = 0; i < projectileList.size(); i++) {
-    projectileList.at(i).move();
-    projectileList.at(i).handleCollision();
+  for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
+    projectileList.at(iter).move();
+    projectileList.at(iter).handleCollision();
+    if (projectileList.at(iter).getPosition().x < 0) {
+      projectileList.erase(i);
+    }
+    iter++;
   }
 }
 
