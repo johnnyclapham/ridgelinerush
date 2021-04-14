@@ -23,6 +23,7 @@ private:
     void drawTile(Tile tile, sf::Color color);
     void drawHero();
     void drawDragon();
+    void drawProjectiles();
 
     sf::RenderWindow *window;
     Logic *logic;

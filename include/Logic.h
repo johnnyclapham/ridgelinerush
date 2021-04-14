@@ -29,7 +29,7 @@ public:
     Terrain getTerrain();
     Hero getHero();
     Dragon getDragon();
-    // Launcher getLauncher();
+    Launcher getLauncher();
 
 private:
     // update methods //

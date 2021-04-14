@@ -28,6 +28,7 @@ void Logic::update(float time) {
     hero.update(.5*time, terrain);
     terrain.move(.5*time, .5*time);
     dragon.update(.5*time);
+    launcher.update(.5*time, terrain, &dragon, &hero);
 }
 
 Terrain Logic::getTerrain() {
@@ -42,6 +43,6 @@ Dragon Logic::getDragon() {
     return dragon;
 }
 
-// Launcher Logic::getLauncher() {
-//     return launcher;
-// }
+Launcher Logic::getLauncher() {
+    return launcher;
+}

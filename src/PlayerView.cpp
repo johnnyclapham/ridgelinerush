@@ -10,6 +10,8 @@
 #include "Tile.h"
 #include "Sprite.h"
 #include "Constants.h"
+#include "Launcher.h"
+#include "Projectile.h"
 
 PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     this->logic = logic;
@@ -23,8 +25,7 @@ void PlayerView::updateView(float time) {
     drawTerrain();
     drawHero();
     drawDragon();
-
-
+    drawProjectiles();
 }
 
 void PlayerView::drawTerrain() {
@@ -111,4 +112,15 @@ void PlayerView::drawDragon() {
     Dragon dragon = this->logic->getDragon();
     sf::Vector2<float> position = dragon.getPosition();
     dragonSprite.draw(position, window);
+}
+
+void PlayerView::drawProjectiles() {
+    Launcher launcher = this->logic->getLauncher();
+    for (int i = 0; i < launcher.projectileList.size(); i++) {
+        sf::Vector2f position = launcher.projectileList.at(i).getPosition();
+        sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, 10));
+        toDraw.setFillColor(sf::Color::Yellow);
+        toDraw.setPosition(position.x, position.y);
+        window->draw(toDraw);
+    }
 }
