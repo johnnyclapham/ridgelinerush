@@ -11,9 +11,7 @@ Settings::Settings() {
     screentype = ScreenSetting::Fullscreen;
     mvmt_up = sf::Keyboard::W;
     mvmt_left = sf::Keyboard::A;
-    mvmt_down = sf::Keyboard::S;
     mvmt_right = sf::Keyboard::D;
-    jump = sf::Keyboard::Space;
     attack = sf::Keyboard::X;
     pause = sf::Keyboard::P;
     write();
@@ -28,9 +26,7 @@ void Settings::write() {
     file << "screen type: " << getScreentype() << endl;
     file << "movement up: " << keyToStr(getMvmtUpKey()) << endl;
     file << "movement left: " << keyToStr(getMvmtLeftKey()) << endl;
-    file << "movement down: " << keyToStr(getMvmtDownKey()) << endl;
     file << "movement right: " << keyToStr(getMvmtRightKey()) << endl;
-    file << "jump: " << keyToStr(getJumpKey()) << endl;
     file << "attack: " << keyToStr(getAttackKey()) << endl;
     file << "pause: " << keyToStr(getPauseKey()) << endl;
 
@@ -49,9 +45,7 @@ void Settings::read() {
             if (tmp.compare(0, 13, "screen type: ") == 0) { setScreenType(strToScreentype(tmp.substr(13))); }
             if (tmp.compare(0, 13, "movement up: ") == 0) { string s = tmp.substr(13); setMvmtUpKey(strToKey(s)); }
             if (tmp.compare(0, 15, "movement left: ") == 0) { string s = tmp.substr(15); setMvmtLeftKey(strToKey(s)); }
-            if (tmp.compare(0, 15, "movement down: ") == 0) { string s = tmp.substr(15); setMvmtDownKey(strToKey(s)); }
             if (tmp.compare(0, 16, "movement right: ") == 0) { string s = tmp.substr(16); setMvmtRightKey(strToKey(s)); }
-            if (tmp.compare(0, 6, "jump: ") == 0) { string s = tmp.substr(6); setJumpKey(strToKey(s)); }
             if (tmp.compare(0, 8, "attack: ") == 0) { string s = tmp.substr(8); setAttackKey(strToKey(s)); }
             if (tmp.compare(0, 7, "pause: ") == 0) { string s = tmp.substr(7); setPauseKey(strToKey(s)); }
         }
@@ -60,26 +54,24 @@ void Settings::read() {
 }
 
 void Settings::restoreToDefault() {
-    this->volume = 100;
-    this->difficulty = 1;
-    this->screentype = ScreenSetting::Fullscreen;
-    this->mvmt_up = sf::Keyboard::W;
-    this->mvmt_left = sf::Keyboard::A;
-    this->mvmt_down = sf::Keyboard::S;
-    this->mvmt_right = sf::Keyboard::D;
-    this->jump = sf::Keyboard::Space;
-    this->attack = sf::Keyboard::X;
-    this->pause = sf::Keyboard::P;
+    volume = 100;
+    difficulty = 1;
+    screentype = ScreenSetting::Fullscreen;
+    mvmt_up = sf::Keyboard::W;
+    mvmt_left = sf::Keyboard::A;
+    mvmt_right = sf::Keyboard::D;
+    attack = sf::Keyboard::X;
+    pause = sf::Keyboard::P;
     write();
 }
 
-int Settings::getVolume() { return this->volume; }
+int Settings::getVolume() { return volume; }
 
-void Settings::setVolume(int v) { this->volume = v; write(); }
+void Settings::setVolume(int v) { volume = v; write(); }
 
-int Settings::getDifficulty() { return this->difficulty; }
+int Settings::getDifficulty() { return difficulty; }
 
-void Settings::setDifficulty(int d) { this->difficulty = d; write(); }
+void Settings::setDifficulty(int d) { difficulty = d; write(); }
 
 string Settings::getScreentype() {
     switch (screentype) {
@@ -95,35 +87,27 @@ ScreenSetting::ScreenType Settings::strToScreentype(const std::string &s) {
     else { return ScreenSetting::N; } // empty screentype value for totality
 }
 
-void Settings::setScreenType(ScreenSetting::ScreenType st) { this->screentype = st; write(); }
+void Settings::setScreenType(ScreenSetting::ScreenType st) { screentype = st; write(); }
 
-sf::Keyboard::Key Settings::getMvmtUpKey() { return this->mvmt_up; }
+sf::Keyboard::Key Settings::getMvmtUpKey() { return mvmt_up; }
 
-sf::Keyboard::Key Settings::getMvmtLeftKey() { return this->mvmt_left; }
+sf::Keyboard::Key Settings::getMvmtLeftKey() { return mvmt_left; }
 
-sf::Keyboard::Key Settings::getMvmtDownKey() { return this->mvmt_down; }
+sf::Keyboard::Key Settings::getMvmtRightKey() { return mvmt_right; }
 
-sf::Keyboard::Key Settings::getMvmtRightKey() { return this->mvmt_right; }
+sf::Keyboard::Key Settings::getAttackKey() { return attack; }
 
-sf::Keyboard::Key Settings::getJumpKey() { return this->jump; }
+sf::Keyboard::Key Settings::getPauseKey() { return pause; }
 
-sf::Keyboard::Key Settings::getAttackKey() { return this->attack; }
+void Settings::setMvmtUpKey(sf::Keyboard::Key k) { mvmt_up = k; write(); }
 
-sf::Keyboard::Key Settings::getPauseKey() { return this->pause; }
+void Settings::setMvmtLeftKey(sf::Keyboard::Key k) { mvmt_left = k; write(); }
 
-void Settings::setMvmtUpKey(sf::Keyboard::Key k) { this->mvmt_up = k; write(); }
+void Settings::setMvmtRightKey(sf::Keyboard::Key k) { mvmt_right = k; write(); }
 
-void Settings::setMvmtLeftKey(sf::Keyboard::Key k) { this->mvmt_left = k; write(); }
+void Settings::setAttackKey(sf::Keyboard::Key k) { attack = k; write(); }
 
-void Settings::setMvmtDownKey(sf::Keyboard::Key k) { this->mvmt_down = k; write(); }
-
-void Settings::setMvmtRightKey(sf::Keyboard::Key k) { this->mvmt_right = k; write(); }
-
-void Settings::setJumpKey(sf::Keyboard::Key k) { this->jump = k; write(); }
-
-void Settings::setAttackKey(sf::Keyboard::Key k) { this->attack = k; write(); }
-
-void Settings::setPauseKey(sf::Keyboard::Key k) { this->pause = k; write(); }
+void Settings::setPauseKey(sf::Keyboard::Key k) { pause = k; write(); }
 
 string Settings::keyToStr(sf::Keyboard::Key k) {
     switch(k) {
