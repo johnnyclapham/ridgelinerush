@@ -36,8 +36,7 @@ void PlayerView::drawTerrain() {
     sf::Color fillColor;
     for (int k = 0; k < terrain.columnList.size(); k++) {
         Column column = terrain.columnList.at(k);
-        if (k % 2 == 0) fillColor = sf::Color::White;
-        else fillColor = sf::Color::Green;
+        fillColor = sf::Color(156, 118, 92);
         std::vector<Tile> tiles = column.getTiles();
         for (int i = 0; i < tiles.size(); i++) {
             Tile tile = tiles.at(i);
@@ -47,7 +46,7 @@ void PlayerView::drawTerrain() {
     if (terrain.obstacleList.size() != 0) {
         for (int k = 0; k < terrain.obstacleList.size(); k++) {
             Obstacle obstacle = terrain.obstacleList.at(k);
-            fillColor = sf::Color::Red;
+            fillColor = sf::Color(156, 118, 92);
             std::vector<Tile> tiles = obstacle.getTiles();
             for (int i = 0; i < tiles.size(); i++) {
                 Tile tile = tiles.at(i);
