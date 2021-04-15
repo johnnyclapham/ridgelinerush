@@ -7,6 +7,7 @@
 
 #include "Constants.h"
 #include "Terrain.h"
+#include "Launcher.h"
 #include "Hero.h"
 #include "Dragon.h"
 #include "Controller.h"
@@ -29,6 +30,7 @@ public:
     Terrain getTerrain();
     Hero getHero();
     Dragon getDragon();
+    Launcher getLauncher();
 
 private:
     // update methods //
@@ -37,6 +39,7 @@ private:
     // members //
     Terrain terrain;
     Hero hero;
+    Launcher launcher;
     Dragon dragon;
     Controller controller;
     Settings settings;

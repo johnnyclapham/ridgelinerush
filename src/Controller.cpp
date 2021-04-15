@@ -11,8 +11,9 @@
 Controller::Controller() {
 }
 
-Controller::Controller(Hero *hero) {
+Controller::Controller(Hero *hero, Launcher *launcher) {
     playerHero = hero;
+    weaponLauncher = launcher;
 }
 
 void Controller::update(){
@@ -23,12 +24,25 @@ void Controller::update(){
 
     if (sf::Keyboard::isKeyPressed(mvmt_left))
     {
-        (*playerHero).driftLeft();
+        if((*playerHero).getFloorType() != NO_COLLISION){
+           (*playerHero).walk(LEFT);
+        } else {
+            (*playerHero).driftLeft();
+        }
     }
 
     if (sf::Keyboard::isKeyPressed(mvmt_right))
     {
-        (*playerHero).driftRight();
+        if((*playerHero).getFloorType() != NO_COLLISION){
+           (*playerHero).walk(RIGHT);
+        } else {
+            (*playerHero).driftRight();
+        }
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        (*weaponLauncher).shoot();
     }
 }
 

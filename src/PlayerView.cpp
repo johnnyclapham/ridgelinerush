@@ -10,21 +10,25 @@
 #include "Tile.h"
 #include "Sprite.h"
 #include "Constants.h"
+#include "Launcher.h"
+#include "Projectile.h"
 
 PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     this->logic = logic;
     this->window = window;
     heroSprite = Sprite("assets/hero.png");
     dragonSprite = Sprite("assets/dragonArt.png");
+    backGroundSprite = Sprite("assets/backgroundArt.png");
+    fireballSprite = Sprite("assets/fireball.png");
     updateView(.2);
 }
 
 void PlayerView::updateView(float time) {
+    drawBackground();
     drawTerrain();
     drawHero();
     drawDragon();
-
-
+    drawProjectiles();
 }
 
 void PlayerView::drawTerrain() {
@@ -32,8 +36,7 @@ void PlayerView::drawTerrain() {
     sf::Color fillColor;
     for (int k = 0; k < terrain.columnList.size(); k++) {
         Column column = terrain.columnList.at(k);
-        if (k % 2 == 0) fillColor = sf::Color::White;
-        else fillColor = sf::Color::Green;
+        fillColor = sf::Color(156, 118, 92);
         std::vector<Tile> tiles = column.getTiles();
         for (int i = 0; i < tiles.size(); i++) {
             Tile tile = tiles.at(i);
@@ -43,7 +46,7 @@ void PlayerView::drawTerrain() {
     if (terrain.obstacleList.size() != 0) {
         for (int k = 0; k < terrain.obstacleList.size(); k++) {
             Obstacle obstacle = terrain.obstacleList.at(k);
-            fillColor = sf::Color::Red;
+            fillColor = sf::Color(156, 118, 92);
             std::vector<Tile> tiles = obstacle.getTiles();
             for (int i = 0; i < tiles.size(); i++) {
                 Tile tile = tiles.at(i);
@@ -102,7 +105,10 @@ void PlayerView::drawTile(Tile tile, sf::Color color) { // color to be removed -
 
 void PlayerView::drawHero() {
     Hero hero = this->logic->getHero();
-    sf::Vector2<float> position = hero.getPosition();
+    sf::Vector2<float> position = sf::Vector2<float>(hero.getPosition().x, hero.getPosition().y);
+
+    heroSprite.setDirection(hero.getDirection());
+    heroSprite.setWidth(HERO_WIDTH);
     heroSprite.draw(position, window);
 }
 
@@ -111,4 +117,28 @@ void PlayerView::drawDragon() {
     Dragon dragon = this->logic->getDragon();
     sf::Vector2<float> position = dragon.getPosition();
     dragonSprite.draw(position, window);
+}
+
+//same as for our hero
+void PlayerView::drawBackground() {
+    sf::Vector2<float> position = sf::Vector2<float>(0,0);
+    backGroundSprite.draw(position, window);
+}
+
+void PlayerView::drawProjectiles() {
+    Launcher launcher = this->logic->getLauncher();
+    Dragon dragon = this->logic->getDragon();
+
+    for (int i = 0; i < launcher.projectileList.size(); i++) {
+        sf::Vector2f position = launcher.projectileList.at(i).getPosition();
+        sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, 10));
+        toDraw.setFillColor(sf::Color::Yellow);
+        toDraw.setPosition(position.x, position.y);
+        window->draw(toDraw);
+    }
+
+    for (int i = 0; i < dragon.projectileList.size(); i++) {
+        sf::Vector2f position = dragon.projectileList.at(i).getPosition();
+        fireballSprite.draw(position, window);
+    }
 }

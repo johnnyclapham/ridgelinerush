@@ -2,8 +2,8 @@
 // Created by Evelyn on 3/25/2021.
 //
 
-#ifndef CSCI437_PLAYERVIEW_H
-#define CSCI437_PLAYERVIEW_H
+#ifndef RIDGELINERUSH_PLAYERVIEW_H
+#define RIDGELINERUSH_PLAYERVIEW_H
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -23,6 +23,8 @@ private:
     void drawTile(Tile tile, sf::Color color);
     void drawHero();
     void drawDragon();
+    void drawProjectiles();
+    void drawBackground();
 
     sf::RenderWindow *window;
     Logic *logic;
@@ -30,6 +32,8 @@ private:
     //Members
     Sprite heroSprite;
     Sprite dragonSprite;
+    Sprite backGroundSprite;
+    Sprite fireballSprite;
 };
 
-#endif //CSCI437_PLAYERVIEW_H
+#endif //RIDGELINERUSH_PLAYERVIEW_H

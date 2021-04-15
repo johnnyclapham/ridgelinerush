@@ -6,14 +6,16 @@
 #include "Terrain.h"
 #include "Hero.h"
 #include "Dragon.h"
+#include "Launcher.h"
 #include "Logic.h"
 #include "Controller.h"
 #include <iostream>
+#include <SFML/Window.hpp>
 
 
 Logic::Logic() {
     terrain = Terrain();
-    controller = Controller(&hero);
+    controller = Controller(&hero, &launcher);
     hero = Hero();
     dragon = Dragon();
     settings = Settings();
@@ -22,6 +24,10 @@ Logic::Logic() {
     controller.setMvmtRightKey(settings.getMvmtRightKey());
     controller.setAttackKey(settings.getAttackKey());
     controller.setPauseKey(settings.getPauseKey());
+    sf::Vector2f heroPosition = hero.getPosition();
+    std::cout << heroPosition.x << " " << heroPosition.y << std::endl;
+    launcher = Launcher(heroPosition.x, heroPosition.y);
+
 }
 
 void Logic::update(float time) {
@@ -30,6 +36,7 @@ void Logic::update(float time) {
     terrain.move(.5*time, .5*time);
     dragon.update(.5*time);
     settings.read();
+    launcher.update(.5*time, terrain, &dragon, &hero);
 }
 
 Terrain Logic::getTerrain() {
@@ -40,6 +47,10 @@ Hero Logic::getHero() {
     return hero;
 }
 
-Dragon Logic::getDragon(){
-  return dragon;
+Dragon Logic::getDragon() {
+    return dragon;
+}
+
+Launcher Logic::getLauncher() {
+    return launcher;
 }

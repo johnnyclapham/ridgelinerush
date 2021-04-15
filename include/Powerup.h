@@ -17,4 +17,4 @@ class Powerup {
     PT::PowerupType pt;
     int time;
 };
-#endif
+#endif // RIDEGLINERUSH_POWERUP_H

@@ -2,8 +2,8 @@
 // Created by Evelyn on 4/8/2021.
 //
 
-#ifndef CSCI437_OBSTACLEPICKER_H
-#define CSCI437_OBSTACLEPICKER_H
+#ifndef RIDGELINERUSH_OBSTACLEPICKER_H
+#define RIDGELINERUSH_OBSTACLEPICKER_H
 
 #include "Obstacle.h"
 #include <vector>
@@ -19,4 +19,4 @@ private:
     std::vector<Obstacle> obstacleList;
 };
 
-#endif //CSCI437_OBSTACLEPICKER_H
+#endif //RIDGELINERUSH_OBSTACLEPICKER_H

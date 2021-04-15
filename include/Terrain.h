@@ -2,8 +2,8 @@
 // Created by Evelyn on 3/24/2021.
 //
 
-#ifndef CSCI437_TERRAIN_H
-#define CSCI437_TERRAIN_H
+#ifndef RIDGELINERUSH_TERRAIN_H
+#define RIDGELINERUSH_TERRAIN_H
 
 #include "Column.h"
 #include "Obstacle.h"
@@ -31,4 +31,4 @@ private:
     ObstaclePicker picker;
 };
 
-#endif //CSCI437_TERRAIN_H
+#endif //RIDGELINERUSH_TERRAIN_H
