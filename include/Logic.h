@@ -11,6 +11,7 @@
 #include "Hero.h"
 #include "Dragon.h"
 #include "Controller.h"
+#include "Settings.h"
 
 // This defines the main logic class, which serves as a container for all other logic components
 // and queries them as needed. The instance of this class will be a member of the respective views,
@@ -41,6 +42,7 @@ private:
     Launcher launcher;
     Dragon dragon;
     Controller controller;
+    Settings settings;
 };
 
 #endif //RIDGELINERUSH_LOGIC_H
