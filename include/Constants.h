@@ -10,11 +10,18 @@
 // are intended for terrain use for defining walkable areas
 enum TileShape { UPPER_LEFT, LOWER_LEFT, UPPER_RIGHT, LOWER_RIGHT, SQUARE };
 
-enum Collision {NO_COLLISION, CEILING, WALL, FLOOR};
+// Left slope is "/", right slope is "\"
+enum Collision {NO_COLLISION, CEILING, WALL, FLOOR, LEFT_SLOPE, RIGHT_SLOPE};
+
+enum Direction {LEFT, RIGHT};
 
 // Window width and window height - may not stay constants with resizble window
 const int WINDOW_WIDTH = 900;
 const int WINDOW_HEIGHT = 750;
+
+// Width and height of hero
+const int HERO_WIDTH = 56;
+const int HERO_HEIGHT = 60;
 
 // Length in pixels of one side of a square tile
 const float TILE_SIDE = WINDOW_WIDTH / 12;

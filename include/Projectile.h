@@ -2,12 +2,13 @@
 #define RIDGELINERUSH_PROJECTILE_H
 
 #include <SFML/Graphics.hpp>
+#include "Constants.h"
 
 class Projectile {
   public:
     // constructors //
     Projectile();
-    Projectile(float x, float y, float damage, float angle, float speed);
+    Projectile(float x, float y, float damage, float angle, float speed, Direction direction);
 
     void move();
     sf::Vector2f getPosition();
@@ -19,6 +20,7 @@ class Projectile {
     float angle;
     float speed;
     float x_coord, y_coord;
+    Direction projectileDirection;
 };
 
 #endif //RIDGELINERUSH_PROJECTILE_H

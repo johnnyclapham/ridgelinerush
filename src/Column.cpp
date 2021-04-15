@@ -42,9 +42,11 @@ Collision Column::intersecting(std::vector<sf::Vector2<float>> prevDiamond, std:
     } else {
         bool intersectsTile = false;
         for(int i = 0; i < newDiamond.size(); i++){
-            Collision collision = tileList[0].intersectingPoint(prevDiamond[i], newDiamond[i]);
-            if(collision != NO_COLLISION){
-                return collision;
+            for(int j = 0; j < 2; j++){
+                Collision collision = tileList[j].intersectingPoint(prevDiamond[i], newDiamond[i]);
+                if(collision != NO_COLLISION){
+                    return collision;
+                }
             }
         }
         //std::cout << "Here" << std::endl;

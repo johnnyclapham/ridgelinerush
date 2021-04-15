@@ -24,12 +24,20 @@ void Controller::update(){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        (*playerHero).driftLeft();
+        if((*playerHero).getFloorType() != NO_COLLISION){
+           (*playerHero).walk(LEFT);
+        } else {
+            (*playerHero).driftLeft();
+        }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        (*playerHero).driftRight();
+        if((*playerHero).getFloorType() != NO_COLLISION){
+           (*playerHero).walk(RIGHT);
+        } else {
+            (*playerHero).driftRight();
+        }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))

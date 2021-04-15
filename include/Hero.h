@@ -29,6 +29,9 @@ public:
 
     // other //
     sf::Vector2<float> checkCollision(sf::Vector2<float> change, Terrain terrain);
+    sf::Vector2<float> getCollisionPt(int index);
+    Collision getFloorType();
+    Direction getDirection();
 
     // inspectors //
     sf::Vector2<float> getPosition();
@@ -37,22 +40,26 @@ public:
     int getDamage();
 
     enum state {ground, airborne};
-    enum intersectionType {floor, ceiling, wall};
 
+    void walk(Direction direction);
 private:
     // members //
     float width;
     float height;
     int health;
     int damage;
+    Direction facingDirection;
     sf::Vector2<float> position;
     sf::Vector2<float> velocity;
+    sf::Vector2<float> velocityBuffer;
+    sf::Vector2<float> positionBuffer;
 
-    sf::Vector2<float> topCollisionPt;
-    sf::Vector2<float> bottomCollisionPt;
-    sf::Vector2<float> leftCollisionPt;
-    sf::Vector2<float> rightCollisionPt;
+    sf::Vector2<float> topLeftCollisionPt;
+    sf::Vector2<float> topRightCollisionPt;
+    sf::Vector2<float> bottomLeftCollisionPt;
+    sf::Vector2<float> bottomRightCollisionPt;
 
+    Collision floorType;
     state playerState;
     Powerup powerup;
 };

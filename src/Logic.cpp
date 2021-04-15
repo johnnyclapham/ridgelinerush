@@ -21,6 +21,7 @@ Logic::Logic() {
     sf::Vector2f heroPosition = hero.getPosition();
     std::cout << heroPosition.x << " " << heroPosition.y << std::endl;
     launcher = Launcher(heroPosition.x, heroPosition.y);
+
 }
 
 void Logic::update(float time) {

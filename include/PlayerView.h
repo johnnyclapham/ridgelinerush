@@ -33,6 +33,7 @@ private:
     Sprite heroSprite;
     Sprite dragonSprite;
     Sprite backGroundSprite;
+    Sprite fireballSprite;
 };
 
 #endif //RIDGELINERUSH_PLAYERVIEW_H

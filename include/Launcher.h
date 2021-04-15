@@ -15,6 +15,7 @@ class Launcher {
     Launcher(float x, float y);
 
     void setPosition(float x, float y);
+    void setDirection(Direction direction);
     void move(float x_diff, float y_diff);
     void update(float time, Terrain terrain, Dragon *dragon, Hero *hero);
     void shoot();
@@ -28,8 +29,9 @@ class Launcher {
     float damage;
     float speed;
     float angle = 0;
+    Direction launcherDirection;
     sf::Clock timer;
-    
+
     void resetBaseValues();
 };
 
