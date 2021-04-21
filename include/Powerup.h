@@ -10,7 +10,7 @@ class Powerup {
     Powerup();
     PT::PowerupType getPowerupType();
     void setPowerupType(const std::string &s);
-    std::string powerupToStr(PT::PowerupType p);
+    std::string powerupToStr();
     PT::PowerupType strToPowerup(const std::string &s);
 
   private:
