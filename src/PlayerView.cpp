@@ -164,6 +164,6 @@ void PlayerView::drawPowerups() {
             toDraw.setPosition(z1 + 100, z2 + 100);
             window->draw(toDraw);
         }
-        reset = 0;
+        //reset = 0;
     }
 }
