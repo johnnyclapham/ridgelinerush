@@ -13,7 +13,7 @@ void Powerup::setPowerupType(const std::string &s) {
     if (pt == PT::damage_boost || pt == PT::speed_boost || pt == PT::jump_boost) { time = 10; }
 }
 
-std::string Powerup::powerupToStr(PT::PowerupType p) {
+std::string Powerup::powerupToStr() {
     switch (pt) {
         case PT::damage_boost: return "damage boost";
         case PT::health_boost: return "health boost";
