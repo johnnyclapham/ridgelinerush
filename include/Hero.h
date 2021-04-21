@@ -26,6 +26,8 @@ public:
     void driftLeft();
     void driftRight();
     void applyPowerup();
+    void setPowerupOnScreen(int n);
+
 
     // other //
     sf::Vector2<float> checkCollision(sf::Vector2<float> change, Terrain terrain);
@@ -38,6 +40,8 @@ public:
     bool isGrounded(Terrain terrain);
     int getHealth();
     int getDamage();
+    std::string getPowerup();
+    int getPowerupOnScreen();
 
     enum state {ground, airborne};
 
@@ -48,6 +52,8 @@ private:
     float height;
     int health;
     int damage;
+    int powerupOnScreen;
+    int timer;
     Direction facingDirection;
     sf::Vector2<float> position;
     sf::Vector2<float> velocity;
