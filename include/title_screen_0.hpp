@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "cScreen.hpp"
+#include "menu.h"
 
 class title_screen_0 : public cScreen
 {
@@ -14,32 +15,30 @@ public:
 title_screen_0::title_screen_0 (void){}
 
 
-
-
-
 //here is our main section previously living in ridgerunner.cpp
 //filled with some dummy text for navigation demo
 
 int title_screen_0::Run (sf::RenderWindow &App)
 {
+
+
+
 		//Initialize our font
 	  sf::Font font;
 	  if (!font.loadFromFile("../assets/ACETONE.ttf")){
     		printf("\ngame closed\n");}
 
+    //create sfml text to display score to player
+    sf::Text menuText; //updated during re-rendering
+    menuText.setFont(font); // font is a sf::Font
+    menuText.setCharacterSize(125);
+    menuText.setFillColor(sf::Color::White);
+    menuText.setStyle(sf::Text::Bold);
+    menuText.setPosition(70,0);
+    std::string menuString = "Ridgeline Rush";
+    menuText.setString(menuString);
 
-	  //create sfml text to display score to player
-	  sf::Text menuText; //updated during re-rendering
-	  menuText.setFont(font); // font is a sf::Font
-	  menuText.setCharacterSize(36);
-	  menuText.setFillColor(sf::Color::Green);
-	  menuText.setStyle(sf::Text::Bold);
-	  menuText.setPosition(50,0);
-		std::string menuString = "Title Screen\n"
-		                         "Press ENTER to start game";
-		menuText.setString(menuString);
-
-
+    Menu menu(App.getSize().x, App.getSize().y);
 
 
 		// our game loop
@@ -61,19 +60,44 @@ int title_screen_0::Run (sf::RenderWindow &App)
 	              if (Event.type == sf::Event::KeyPressed)
 	              {
 
-									if (Event.key.code == sf::Keyboard::Return){
-										std::cout << "title_screen_0 -> game_screen_1\n";
-										//return 1 calls the 1 position screen
-                    //1 position screen is game_screen_1
-										return(1);
+                  if (Event.key.code == sf::Keyboard::Up){
+                    menu.MoveUp(); //move selection up
 
-									}
+                  } else if (Event.key.code == sf::Keyboard::Down){
+                    menu.MoveDown(); //move selection down
+
+                  } else if (Event.key.code == sf::Keyboard::Enter){
+                    switch (menu.GetPressedItem())
+                    //GetPressedItem calls the menu element array selectedItemIndex
+                    // this tells us which item has been selected and which screen
+                    // we must navigate to next
+                      {
+                      case 0:
+                        std::cout << "\n\nPlay button has been pressed\n";
+                        return 1; //1 navigates to game_screen_1
+                        break;
+                      case 1:
+                        std::cout << "\n\nOption button has been pressed\n";
+                        //TODO: navigate to option_screen_2
+                        break;
+
+                      case 2:
+                        std::cout << "\n\nInformation button has been pressed\n";
+                        //TODO: navigate to information_screen_3 (if we want it)
+                        break;
+                      case 3:
+                        std::cout << "\n\nGame close detected\n";
+                        return -1; //-1 will close the game
+                        break;
+                      }
+                  }
 								}
 
 
-				//clear, draw, and display our dummy screen
+				//clear, draw, and display our menu screen
 				App.clear(sf::Color::Black);
-				App.draw(menuText);
+        menu.draw(App);
+        App.draw(menuText);
 				App.display();
 
 			}
