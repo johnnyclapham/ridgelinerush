@@ -74,11 +74,14 @@ int title_screen_0::Run (sf::RenderWindow &App)
                       {
                       case 0:
                         std::cout << "\n\nPlay button has been pressed\n";
+                        std::cout << "title_screen_0 -> game_screen_1\n";
                         return 1; //1 navigates to game_screen_1
                         break;
                       case 1:
-                        std::cout << "\n\nOption button has been pressed\n";
+                        std::cout << "\n\nOption button has been pressed ye\n";
+                        std::cout << "title_screen_0 -> options_screen_2\n";
                         //TODO: navigate to option_screen_2
+                        return 2;
                         break;
 
                       case 2:
