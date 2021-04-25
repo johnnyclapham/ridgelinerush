@@ -55,7 +55,7 @@ void Dragon::update(float time){
 
 void Dragon::shoot() {
     if (timer.getElapsedTime().asMilliseconds() >= projectileDelay) {
-        projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT, 50));
+        projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT, 50, 50));
         timer.restart();
     }
 }

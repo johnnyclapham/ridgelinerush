@@ -15,11 +15,12 @@ Projectile::Projectile() {
   projectileDirection = RIGHT;
 }
 
-Projectile::Projectile(float x, float y, float damage, float angle, float speed, Direction direction, float height) {
+Projectile::Projectile(float x, float y, float damage, float angle, float speed, Direction direction, float height, float width) {
   this->damage = damage;
   this->angle = angle;
   this->speed = speed;
   this->height = height;
+  this->width = width;
   x_coord = x;
   y_coord = y;
   projectileDirection = direction;
@@ -45,29 +46,29 @@ bool Projectile::handleCollision(Terrain *terrain) {
   std::vector<Column> columnList = terrain->columnList;
   std::vector<Obstacle> obstacleList = terrain->obstacleList;
 
-  sf::Vector2f collisionPt = sf::Vector2f(x_coord, y_coord + (height / 2)); // area where the projectile will check for collision
+  float x_point = x_coord;
+  if (projectileDirection == RIGHT) x_point += width;
+  sf::Vector2f currentPt = sf::Vector2f(x_point, y_coord + (height / 2)); // area where the projectile will check for collision
+  float x_diff = (speed * (1 - abs(angle)));
+  if(projectileDirection == LEFT){
+    x_diff *= -1;
+  }
+  float y_diff = speed * angle;
+  sf::Vector2f newPt = sf::Vector2f(currentPt.x + x_diff, currentPt.y + y_diff);
 
   for (int i = 0; i < columnList.size(); i++) {
     // check tiles
     Tile check = columnList.at(i).getTiles().at(0);
-    if (collisionPt.x > check.getX() && collisionPt.x < check.getX() + TILE_SIDE) {
-      if (collisionPt.y > check.getY() && collisionPt.y < check.getY() + TILE_SIDE) {
-        std::cout << "Projectile collision detected" << std::endl;
-        return true;
-      }
-    }
+    Collision collision = check.intersectingPoint(currentPt, newPt);
+    if (collision != NO_COLLISION) return true;
   }
   if (obstacleList.size() != 0) {
     for (int i = 0; i < obstacleList.size(); i++) {
       // check tiles
       for (int j = 0; j < obstacleList.at(i).getTiles().size(); j++) {
         Tile check = obstacleList.at(i).getTiles().at(j);
-        if (collisionPt.x > check.getX() && collisionPt.x < check.getX() + TILE_SIDE) {
-          if (collisionPt.y > check.getY() && collisionPt.y < check.getY() + TILE_SIDE) {
-            std::cout << "Projectile collision detected" << std::endl;
-            return true;
-          }
-        }
+        Collision collision = check.intersectingPoint(currentPt, newPt);
+        if (collision != NO_COLLISION) return true;
       }
     }
   }

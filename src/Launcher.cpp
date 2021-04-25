@@ -46,7 +46,7 @@ void Launcher::setDirection(Direction direction) {
 void Launcher::shoot() {
   // add a projectile to the list
   if (timer.getElapsedTime().asMilliseconds() >= fire_delay) {
-    projectileList.emplace_back(Projectile(x_coord, y_coord, damage, angle, speed, launcherDirection, 10));
+    projectileList.emplace_back(Projectile(x_coord, y_coord, damage, angle, speed, launcherDirection, 10, 20));
     std::cout << "Projectile fired" << std::endl;
     timer.restart();
   }

@@ -9,7 +9,7 @@ class Projectile {
   public:
     // constructors //
     Projectile();
-    Projectile(float x, float y, float damage, float angle, float speed, Direction direction, float height);
+    Projectile(float x, float y, float damage, float angle, float speed, Direction direction, float height, float width);
 
     void move();
     sf::Vector2f getPosition();
@@ -17,6 +17,7 @@ class Projectile {
 
     float damage;
     float height;
+    float width;
 
   private:
     float angle;
