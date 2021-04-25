@@ -42,7 +42,7 @@ void Dragon::update(float time){
     // iterate through projectiles for updates
     for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
         projectileList.at(iter).move();
-        projectileList.at(iter).handleCollision();
+        // projectileList.at(iter).handleCollision();
         if (projectileList.at(iter).getPosition().x < 0) {
             projectileList.erase(i);
         }
@@ -55,7 +55,7 @@ void Dragon::update(float time){
 
 void Dragon::shoot() {
     if (timer.getElapsedTime().asMilliseconds() >= projectileDelay) {
-        projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT));
+        projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT, 50));
         timer.restart();
     }
 }

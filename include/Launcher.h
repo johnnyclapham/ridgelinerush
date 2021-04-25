@@ -17,7 +17,7 @@ class Launcher {
     void setPosition(float x, float y);
     void setDirection(Direction direction);
     void move(float x_diff, float y_diff);
-    void update(float time, Terrain terrain, Dragon *dragon, Hero *hero);
+    void update(float time, Terrain *terrain, Dragon *dragon, Hero *hero);
     void shoot();
     // TODO: apply item effect
 

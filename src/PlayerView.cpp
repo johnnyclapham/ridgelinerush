@@ -131,7 +131,7 @@ void PlayerView::drawProjectiles() {
 
     for (int i = 0; i < launcher.projectileList.size(); i++) {
         sf::Vector2f position = launcher.projectileList.at(i).getPosition();
-        sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, 10));
+        sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, launcher.projectileList.at(i).height));
         toDraw.setFillColor(sf::Color::Yellow);
         toDraw.setPosition(position.x, position.y);
         window->draw(toDraw);

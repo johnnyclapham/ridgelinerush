@@ -3,18 +3,20 @@
 
 #include <SFML/Graphics.hpp>
 #include "Constants.h"
+#include "Terrain.h"
 
 class Projectile {
   public:
     // constructors //
     Projectile();
-    Projectile(float x, float y, float damage, float angle, float speed, Direction direction);
+    Projectile(float x, float y, float damage, float angle, float speed, Direction direction, float height);
 
     void move();
     sf::Vector2f getPosition();
-    void handleCollision();
+    bool handleCollision(Terrain *terrain);
 
     float damage;
+    float height;
 
   private:
     float angle;
