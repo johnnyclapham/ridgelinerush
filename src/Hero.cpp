@@ -22,7 +22,6 @@ Hero::Hero() {
     health = 100;
     damage = 5;
     powerup = Powerup();
-    powerupOnScreen = 0;
     timer = 0;
     topLeftCollisionPt = position+sf::Vector2<float>(20, 20);
     topRightCollisionPt = position+sf::Vector2<float>(width-20, 20);
@@ -56,18 +55,17 @@ void Hero::update(float time, Terrain terrain){
     setPosition(position.x-time, position.y+time);
     velocityBuffer = sf::Vector2<float>(0, 0);
     positionBuffer = sf::Vector2<float>(0, 0);
-    if (getPowerupOnScreen() != 0 && getPowerup() == "no boost") {
-        if (powerupOnScreen == 1) { powerup.setPowerupType("damage boost"); }
-        if (powerupOnScreen == 2) { powerup.setPowerupType("health boost"); }
-        if (powerupOnScreen == 3) { powerup.setPowerupType("jump boost"); }
-        if (powerupOnScreen == 4) { powerup.setPowerupType("speed boost"); }
-        setPowerupOnScreen(0);
+    applyPowerup();
+    if ( (position.x < powerup.getXPos() + 10) && (position.x < powerup.getXPos() - 10) && (position.y < powerup.getYPos() + 10) && (position.y < powerup.getYPos() - 10) ) {
+        if (powerup.getBuffer() == 1) { powerup.setPowerupType("damage boost"); }
+        if (powerup.getBuffer() == 2) { powerup.setPowerupType("health boost"); }
+        if (powerup.getBuffer() == 3) { powerup.setPowerupType("jump boost"); }
+        if (powerup.getBuffer() == 4) { powerup.setPowerupType("speed boost"); }
     }
     if (getPowerup() != "no boost") {
         timer += time;
         if (time > 10000000) { powerup.setPowerupType("no boost"); timer = 0; }
     }
-    applyPowerup();
 }
 
 void Hero::changePosition(sf::Vector2<float> change, Terrain terrain) {
@@ -82,6 +80,8 @@ void Hero::setPosition(float x, float y) {
 void Hero::setPosition(sf::Vector2<float> newPosition) {
     position = newPosition;
 }
+
+bool Hero::isAirborne() { return (playerState == airborne); }
 
 void Hero::jump(){
     if(playerState == ground){
@@ -139,15 +139,21 @@ void Hero::walk(Direction direction){
 
 void Hero::applyPowerup() {
     switch (powerup.getPowerupType()) {
-        case PT::damage_boost: damage *= 2;
-        case PT::health_boost: if (health < 150) { health += 20; }
-        case PT::jump_boost: velocity.y *= 2;
-        case PT::speed_boost: velocity.x *= 2;
+        case PT::damage_boost: damage *= 1.1;
+        case PT::health_boost: health += 2;
+        case PT::jump_boost: velocity.y *= 1.1;
+        case PT::speed_boost: velocity.x *= 1.1;
         default: return;
     }
 }
 
 std::string Hero::getPowerup() { return powerup.powerupToStr(); }
+
+void Hero::setPowerup(std::string s) { powerup.setPowerupType(s); }
+
+void Hero::setPowerupPos(int x, int y) { powerup.setPos(x, y); }
+
+void Hero::setPowerupBuffer(int p) { powerup.setBuffer(p); }
 
 sf::Vector2<float> Hero::getPosition() { return position; }
 
@@ -161,13 +167,6 @@ Collision Hero::getFloorType(){
 
 Direction Hero::getDirection(){
     return facingDirection;
-}
-
-int Hero::getPowerupOnScreen() { return powerupOnScreen; }
-
-void Hero::setPowerupOnScreen(int n) { 
-    if (n < 0 || n > 4 ) { powerupOnScreen = 0; }
-    powerupOnScreen = n;
 }
 
 sf::Vector2<float> Hero::getCollisionPt(int index) {
