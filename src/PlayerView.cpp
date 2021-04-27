@@ -31,7 +31,7 @@ void PlayerView::updateView(float time) {
     drawHero();
     drawDragon();
     drawProjectiles();
-    reset += (time/GAME_TIME_FACTOR);
+    reset += time;
     drawPowerups();
 }
 
@@ -151,17 +151,19 @@ void PlayerView::drawPowerups() {
     Hero hero = this->logic->getHero();
     if (reset > 1000000) {
         srand(time(NULL));
-        int x = 0; // rand() % 100
-        int y = 0; // rand() % 5
-        if (x < 5) {
-            sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(10, 10));
-            if (y == 0) { toDraw.setFillColor(sf::Color::Green); hero.setPowerupOnScreen(1); }
-            if (y == 1) { toDraw.setFillColor(sf::Color::Blue); hero.setPowerupOnScreen(2); }
-            if (y == 2) { toDraw.setFillColor(sf::Color::Yellow); hero.setPowerupOnScreen(3); }
-            if (y == 3) { toDraw.setFillColor(sf::Color::Red); hero.setPowerupOnScreen(4); }
-            int z1 = hero.getPosition().x;
-            int z2 = hero.getPosition().y;
-            toDraw.setPosition(z1 + 100, z2 + 100);
+        int x = rand() % 100;
+        int y = (rand() % 4) + 1;
+        if (x < 20) {
+            sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(50, 50));
+            if (y == 0) { toDraw.setFillColor(sf::Color::Green); }
+            if (y == 1) { toDraw.setFillColor(sf::Color::Blue); }
+            if (y == 2) { toDraw.setFillColor(sf::Color::Yellow); }
+            if (y == 3) { toDraw.setFillColor(sf::Color::Red); }
+            hero.setPowerupBuffer(y);
+            int z1 = (rand() % WINDOW_WIDTH/2) + WINDOW_WIDTH/2;
+            int z2 = (rand() % WINDOW_HEIGHT) + 1;
+            hero.setPowerupPos(z1, z2);
+            toDraw.setPosition(z1, z2);
             window->draw(toDraw);
         }
         //reset = 0;
