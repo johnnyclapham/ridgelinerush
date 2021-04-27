@@ -26,7 +26,9 @@ public:
     void driftLeft();
     void driftRight();
     void applyPowerup();
-    void setPowerupOnScreen(int n);
+    void setPowerup(std::string s);
+    void setPowerupPos(int x, int y);
+    void setPowerupBuffer(int p);
 
 
     // other //
@@ -38,10 +40,10 @@ public:
     // inspectors //
     sf::Vector2<float> getPosition();
     bool isGrounded(Terrain terrain);
+    bool isAirborne();
     int getHealth();
     int getDamage();
     std::string getPowerup();
-    int getPowerupOnScreen();
 
     enum state {ground, airborne};
 
@@ -52,7 +54,6 @@ private:
     float height;
     int health;
     int damage;
-    int powerupOnScreen;
     int timer;
     Direction facingDirection;
     sf::Vector2<float> position;
