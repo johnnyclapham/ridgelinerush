@@ -27,6 +27,7 @@ private:
     void drawPowerups();
     void drawBackground();
 
+
     sf::RenderWindow *window;
     Logic *logic;
 
