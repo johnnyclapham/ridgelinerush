@@ -40,7 +40,8 @@ ObstaclePicker::ObstaclePicker() {
     // small triangular platform //
     ob = Obstacle();
     ob.storeTile(Tile(ob.getX(), ob.getY() - (4 * TILE_SIDE), UPPER_RIGHT));
-    ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - (4 * TILE_SIDE), UPPER_LEFT));
+    Tile tile = Tile(ob.getX() + TILE_SIDE, ob.getY() - (4 * TILE_SIDE), UPPER_LEFT);
+    ob.storeTile(tile);
     obstacleList.push_back(ob);
 
     // pillars //

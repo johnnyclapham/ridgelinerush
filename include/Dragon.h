@@ -6,6 +6,8 @@
 #define RIDGELINERUSH_DRAGON_H
 #include <SFML/Window.hpp>
 #include "Projectile.h"
+#include "Hitbox.h"
+#include "Hero.h"
 
 
 class Dragon
@@ -13,7 +15,8 @@ class Dragon
 public:
     // constructors //
     Dragon();
-    Dragon(float x, float y);
+    Dragon(Hero *hero, Terrain *terrain);
+    Dragon(float x, float y, Hero *hero, Terrain *terrain);
 
     // mutators //
     void update(float time);
@@ -29,8 +32,12 @@ public:
 
     std::vector<Projectile> projectileList;
 
+    Hitbox getHitbox();
+
 private:
     // members //
+    Hero *hero;
+    Terrain *terrain;
     float width;
     float height;
     float projectileDelay;

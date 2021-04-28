@@ -3,21 +3,30 @@
 //
 
 #include "Dragon.h"
+#include "Hero.h"
+#include "Terrain.h"
 #include <math.h>
 #include <iostream>
 
-
 Dragon::Dragon() {
+    
+}
+
+Dragon::Dragon(Hero *hero, Terrain *terrain) {
     setPosition(0, 0);
     //dragonMovementState = up; // not needed right now
+    this->hero = hero;
+    this->terrain = terrain;
     movementIteration = 0;
-    height = 60;
-    width = 56;
+    height = 250;
+    width = 200;
     timer = sf::Clock();
     resetShootValues();
 }
 
-Dragon::Dragon(float x, float y) {
+Dragon::Dragon(float x, float y, Hero *hero, Terrain *terrain) {
+    this->hero = hero;
+    this->terrain = terrain;
     setPosition(x, y);
 }
 
@@ -42,8 +51,8 @@ void Dragon::update(float time){
     // iterate through projectiles for updates
     for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
         projectileList.at(iter).move();
-        projectileList.at(iter).handleCollision();
-        if (projectileList.at(iter).getPosition().x < 0) {
+        if (projectileList.at(iter).handleCollision(terrain, hero->getHitbox())) projectileList.erase(i);
+        else if (projectileList.at(iter).getPosition().x < 0) {
             projectileList.erase(i);
         }
         iter++;
@@ -55,7 +64,7 @@ void Dragon::update(float time){
 
 void Dragon::shoot() {
     if (timer.getElapsedTime().asMilliseconds() >= projectileDelay) {
-        projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT));
+        projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT, 50, 50));
         timer.restart();
     }
 }
@@ -74,4 +83,8 @@ void Dragon::resetShootValues() {
   projectileSpeed = 1; // base speed constant
   projectileDamage = 1; // base damage
   projectileDelay = 2000; // base fire delay, in milliseconds
+}
+
+Hitbox Dragon::getHitbox() {
+    return Hitbox(position.x, position.y, width, height);
 }

@@ -9,29 +9,34 @@ Launcher::Launcher() {
   resetBaseValues();
 }
 
-Launcher::Launcher(float x, float y) {
+Launcher::Launcher(float x, float y, float width, float height) {
   setPosition(x, y);
+  projectileWidth = width;
+  projectileHeight = height;
   resetBaseValues();
   std::cout << "Launcher initialized, position is " << x_coord << " " << y_coord << std::endl;
 }
 
-void Launcher::update(float time, Terrain terrain, Dragon *dragon, Hero *hero) {
+void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
   // move launcher based on hero's position
   sf::Vector2f heroPosition = hero->getPosition();
   setPosition(heroPosition.x, heroPosition.y + 20);
   setDirection(hero->getDirection());
-  std::cout << hero->getDirection() << std::endl;
 
   int iter = 0;
   // iterate through projectiles for updates
   for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
     projectileList.at(iter).move();
-    projectileList.at(iter).handleCollision();
-    if (projectileList.at(iter).getPosition().x < 0) {
+    if (projectileList.at(iter).handleCollision(terrain, dragon->getHitbox())) projectileList.erase(i);
+    else if (projectileList.at(iter).getPosition().x < 0) {
       projectileList.erase(i);
     }
     iter++;
   }
+}
+
+void Launcher::updateDragon(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
+  // TODO this
 }
 
 void Launcher::setPosition(float x, float y) {
@@ -46,7 +51,7 @@ void Launcher::setDirection(Direction direction) {
 void Launcher::shoot() {
   // add a projectile to the list
   if (timer.getElapsedTime().asMilliseconds() >= fire_delay) {
-    projectileList.emplace_back(Projectile(x_coord, y_coord, damage, angle, speed, launcherDirection));
+    projectileList.emplace_back(Projectile(x_coord, y_coord, damage, angle, speed, launcherDirection, projectileHeight, projectileWidth));
     std::cout << "Projectile fired" << std::endl;
     timer.restart();
   }
@@ -56,7 +61,7 @@ void Launcher::shoot() {
 void Launcher::resetBaseValues() {
   timer.restart();
   angle = 0; // base angle (between -1 and 1)
-  speed = 1; // base speed constant
+  speed = 4; // base speed constant
   damage = 1; // base damage
   fire_delay = 500; // base fire delay, in milliseconds
 }

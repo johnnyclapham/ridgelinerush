@@ -24,7 +24,6 @@ public:
 
     Collision intersectingPoint(sf::Vector2<float> prevPoint, sf::Vector2<float> newPoint);
 
-
 private:
     // members //
     float x, y;

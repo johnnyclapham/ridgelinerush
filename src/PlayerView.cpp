@@ -22,6 +22,7 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     dragonSprite = Sprite("assets/dragonArt.png");
     backGroundSprite = Sprite("assets/backgroundArt.png");
     fireballSprite = Sprite("assets/fireball.png");
+    backgroundInit();
     updateView(.2);
 }
 
@@ -32,7 +33,7 @@ void PlayerView::updateView(float time) {
     drawDragon();
     drawProjectiles();
     reset += time;
-    drawPowerups();
+    //drawPowerups(); //commented out until working correctly
 }
 
 void PlayerView::drawTerrain() {
@@ -125,8 +126,14 @@ void PlayerView::drawDragon() {
 
 //same as for our hero
 void PlayerView::drawBackground() {
+    Background background = logic->getBackground();;
     sf::Vector2<float> position = sf::Vector2<float>(0,0);
-    backGroundSprite.draw(position, window);
+    bgLayer6.draw(sf::Vector2<float>(background.getOffset(5),0), window);
+    bgLayer5.draw(sf::Vector2<float>(background.getOffset(4),0), window);
+    bgLayer4.draw(sf::Vector2<float>(background.getOffset(3),0), window);
+    bgLayer3.draw(sf::Vector2<float>(background.getOffset(2),280), window);
+    bgLayer2.draw(sf::Vector2<float>(background.getOffset(1),330), window);
+    bgLayer1.draw(sf::Vector2<float>(background.getOffset(0),400), window);
 }
 
 void PlayerView::drawProjectiles() {
@@ -135,7 +142,7 @@ void PlayerView::drawProjectiles() {
 
     for (int i = 0; i < launcher.projectileList.size(); i++) {
         sf::Vector2f position = launcher.projectileList.at(i).getPosition();
-        sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, 10));
+        sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, launcher.projectileList.at(i).height));
         toDraw.setFillColor(sf::Color::Yellow);
         toDraw.setPosition(position.x, position.y);
         window->draw(toDraw);
@@ -146,6 +153,7 @@ void PlayerView::drawProjectiles() {
         fireballSprite.draw(position, window);
     }
 }
+
 
 void PlayerView::drawPowerups() {
     Hero hero = this->logic->getHero();
@@ -168,4 +176,16 @@ void PlayerView::drawPowerups() {
         }
         //reset = 0;
     }
+
+
+void PlayerView::backgroundInit(){
+    Background background = logic->getBackground();
+    std::vector<float> spriteWidths;
+    bgLayer1 = Sprite("assets/backgroundLayer1.png");
+    bgLayer2 = Sprite("assets/backgroundLayer2.png");
+    bgLayer3 = Sprite("assets/backgroundLayer3.png");
+    bgLayer4 = Sprite("assets/backgroundLayer4.png");
+    bgLayer5 = Sprite("assets/backgroundLayer5.png");
+    bgLayer6 = Sprite("assets/backgroundLayer6.png");
+    background.setSpriteWidths(spriteWidths);
 }

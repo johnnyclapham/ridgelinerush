@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1617067154 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\bin\ridgelinerush.cpp
+1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\bin\ridgelinerush.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Constants.h"
@@ -416,15 +416,17 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1618442574 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\constants.h
+1619574514 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\constants.h
 
-1618442462 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\logic.h
+1619573420 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\logic.h
 	"Constants.h"
 	"Terrain.h"
 	"Launcher.h"
 	"Hero.h"
 	"Dragon.h"
 	"Controller.h"
+	"Settings.h"
+	"Background.h"
 
 1618442463 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\terrain.h
 	"Column.h"
@@ -438,7 +440,7 @@
 	<SFML/Window.hpp>
 	<vector>
 
-1618003326 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\tile.h
+1619574853 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\tile.h
 	<SFML/Window.hpp>
 	"Constants.h"
 
@@ -450,7 +452,7 @@
 	"Obstacle.h"
 	<vector>
 
-1618443890 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\launcher.h
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\launcher.h
 	"Projectile.h"
 	"Dragon.h"
 	"Hero.h"
@@ -458,29 +460,34 @@
 	<vector>
 	<SFML/Graphics.hpp>
 
-1618443745 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\projectile.h
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\projectile.h
 	<SFML/Graphics.hpp>
 	"Constants.h"
+	"Terrain.h"
+	"Hitbox.h"
 
-1618445465 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\dragon.h
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\dragon.h
 	<SFML/Window.hpp>
 	"Projectile.h"
+	"Hitbox.h"
+	"Hero.h"
 
-1618442715 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\hero.h
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\hero.h
 	<SFML/Window.hpp>
 	"Terrain.h"
 	"Powerup.h"
+	"Hitbox.h"
 
 1618442810 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\powerup.h
 	<iostream>
 
-1618442462 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\controller.h
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\controller.h
 	"Hero.h"
 	"Launcher.h"
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 
-1618444707 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\playerview.h
+1619573231 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\playerview.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"Logic.h"
@@ -491,27 +498,32 @@
 	<SFML/Graphics.hpp>
 	"Constants.h"
 
-1617067154 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\screens.hpp
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\screens.hpp
 	"cScreen.hpp"
 	"title_screen_0.hpp"
 	"game_screen_1.hpp"
+	"options_screen_2.hpp"
 
 1617067154 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\cscreen.hpp
 
-1618326526 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\title_screen_0.hpp
+1619584849 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\title_screen_0.hpp
+	<iostream>
+	"cScreen.hpp"
+	"menu.h"
+	"background.h"
+
+1619576585 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\game_screen_1.hpp
 	<iostream>
 	"cScreen.hpp"
 
-1617841120 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\game_screen_1.hpp
-	<iostream>
-	"cScreen.hpp"
-
-1618445882 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\dragon.cpp
+1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\dragon.cpp
 	"Dragon.h"
+	"Hero.h"
+	"Terrain.h"
 	<math.h>
 	<iostream>
 
-1618444214 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\hero.cpp
+1619574988 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\hero.cpp
 	"Hero.h"
 	<math.h>
 	<iostream>
@@ -519,13 +531,13 @@
 	"Column.h"
 	<cstddef>
 
-1618444059 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\launcher.cpp
+1619573411 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\launcher.cpp
 	"Launcher.h"
 	"Projectile.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1618445801 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\logic.cpp
+1619574152 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\logic.cpp
 	"Logic.h"
 	"Terrain.h"
 	"Hero.h"
@@ -542,11 +554,11 @@
 	"Tile.h"
 	<iostream>
 
-1618267959 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\obstaclepicker.cpp
+1619574838 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\obstaclepicker.cpp
 	"ObstaclePicker.h"
 	<cstdlib>
 
-1618444830 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\playerview.cpp
+1619573231 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\playerview.cpp
 	<SFML/Graphics.hpp>
 	<vector>
 	<iostream>
@@ -562,22 +574,27 @@
 	"Powerup.h"
 	<iostream>
 
-1618444095 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\projectile.cpp
+1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\projectile.cpp
 	"Projectile.h"
 	<math.h>
+	"Tile.h"
+	"Terrain.h"
+	"Dragon.h"
+	"Hero.h"
+	"Hitbox.h"
 	<SFML/Graphics.hpp>
 
-1617067154 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\settings.cpp
+1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\settings.cpp
 	<fstream>
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Settings.h"
 
-1617067154 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\settings.h
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\settings.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1618442821 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\sprite.cpp
+1619573461 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\sprite.cpp
 	"Sprite.h"
 	<math.h>
 	<iostream>
@@ -592,7 +609,7 @@
 	"Constants.h"
 	"ObstaclePicker.h"
 
-1618442842 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\tile.cpp
+1619574860 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\tile.cpp
 	"Tile.h"
 	<math.h>
 	<iostream>
@@ -604,10 +621,45 @@
 	<vector>
 	<iostream>
 
-1618442638 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\controller.cpp
+1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\controller.cpp
 	"Controller.h"
 	<math.h>
 	<iostream>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
+
+1619584630 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\background.cpp
+	"Background.h"
+	<vector>
+	"Constants.h"
+	<math.h>
+
+1619573957 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\background.h
+	<vector>
+
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\hitbox.h
+
+1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\hitbox.cpp
+	"Hitbox.h"
+
+1619584399 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\menu.cpp
+	"menu.h"
+	<iostream>
+
+1619577681 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\menu.h
+	"SFML/Graphics.hpp"
+	"background.h"
+	"Sprite.h"
+
+1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\options.cpp
+	"options.h"
+	<iostream>
+
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\options.h
+	"SFML/Graphics.hpp"
+
+1619573067 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\options_screen_2.hpp
+	<iostream>
+	"cScreen.hpp"
+	"options.h"
 
