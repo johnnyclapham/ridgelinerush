@@ -33,7 +33,7 @@ void PlayerView::updateView(float time) {
     drawDragon();
     drawProjectiles();
     reset += time;
-    //drawPowerups(); //commented out until working correctly
+    drawPowerups(); 
 }
 
 void PlayerView::drawTerrain() {
