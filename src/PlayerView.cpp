@@ -6,7 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
-#include <time.h> 
+#include <time.h>
 #include "PlayerView.h"
 #include "Terrain.h"
 #include "Tile.h"
@@ -176,6 +176,7 @@ void PlayerView::drawPowerups() {
         }
         //reset = 0;
     }
+  }
 
 
 void PlayerView::backgroundInit(){
