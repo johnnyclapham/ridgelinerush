@@ -29,9 +29,9 @@ Logic::Logic() {
 
     // initialize launchers
     sf::Vector2f heroPosition = hero.getPosition();
-    sf::Vector2f dragonPosition = dragon.getPosition();
+    // sf::Vector2f dragonPosition = dragon.getPosition();
     launcher = Launcher(heroPosition.x, heroPosition.y, 20, 10);
-    dragonLauncher = Launcher(dragonPosition.x, dragonPosition.y, 50, 50);
+    // dragonLauncher = Launcher(dragonPosition.x, dragonPosition.y, 50, 50);
 }
 
 void Logic::update(float time) {

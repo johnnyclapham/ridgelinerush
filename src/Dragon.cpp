@@ -9,7 +9,7 @@
 #include <iostream>
 
 Dragon::Dragon() {
-    
+    // don't use this
 }
 
 Dragon::Dragon(Hero *hero, Terrain *terrain) {
