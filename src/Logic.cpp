@@ -17,17 +17,18 @@ Logic::Logic() {
     terrain = Terrain();
     controller = Controller(&hero, &launcher);
     hero = Hero();
-    dragon = Dragon();
+    dragon = Dragon(&hero, &terrain);
     settings = Settings();
     controller.setMvmtUpKey(settings.getMvmtUpKey());
     controller.setMvmtLeftKey(settings.getMvmtLeftKey());
     controller.setMvmtRightKey(settings.getMvmtRightKey());
     controller.setAttackKey(settings.getAttackKey());
     controller.setPauseKey(settings.getPauseKey());
+    // initialize launchers
     sf::Vector2f heroPosition = hero.getPosition();
-    std::cout << heroPosition.x << " " << heroPosition.y << std::endl;
-    launcher = Launcher(heroPosition.x, heroPosition.y);
-
+    sf::Vector2f dragonPosition = dragon.getPosition();
+    launcher = Launcher(heroPosition.x, heroPosition.y, 20, 10);
+    dragonLauncher = Launcher(dragonPosition.x, dragonPosition.y, 50, 50);
 }
 
 void Logic::update(float time) {
@@ -36,7 +37,8 @@ void Logic::update(float time) {
     terrain.move(.5*time, .5*time);
     dragon.update(.5*time);
     settings.read();
-    launcher.update(.5*time, &terrain, &dragon, &hero);
+    launcher.updateHero(.5*time, &terrain, &dragon, &hero);
+    dragonLauncher.updateDragon(.5*time, &terrain, &dragon, &hero);
 }
 
 Terrain Logic::getTerrain() {

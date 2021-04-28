@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Constants.h"
 #include "Terrain.h"
+#include "Hitbox.h"
 
 class Projectile {
   public:
@@ -13,7 +14,7 @@ class Projectile {
 
     void move();
     sf::Vector2f getPosition();
-    bool handleCollision(Terrain *terrain);
+    bool handleCollision(Terrain *terrain, Hitbox hitbox);
 
     float damage;
     float height;

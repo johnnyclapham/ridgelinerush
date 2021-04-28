@@ -4,6 +4,7 @@
 #include "Terrain.h"
 #include "Dragon.h"
 #include "Hero.h"
+#include "Hitbox.h"
 #include <SFML/Graphics.hpp>
 
 Projectile::Projectile() {
@@ -40,7 +41,7 @@ void Projectile::move() {
   y_coord = y_coord + y_diff;
 }
 
-bool Projectile::handleCollision(Terrain *terrain) {
+bool Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {
   // TODO check collision with any objects
   // check if there is a collision with the terrain
   std::vector<Column> columnList = terrain->columnList;
@@ -73,9 +74,26 @@ bool Projectile::handleCollision(Terrain *terrain) {
     }
   }
   
-  // check if there is a collision with the dragon
+  // check if there is a collision with the hitbox
 
-  // check if there is a collision with the hero
+  if (projectileDirection == LEFT) {
+    // calculate from right side of hitbox
+    if (hitbox.x + hitbox.width > currentPt.x && hitbox.x <= currentPt.x) {
+      if (currentPt.y >= hitbox.y && currentPt.y < hitbox.y + hitbox.height) {
+        std::cout << "Dragon hit" << std::endl;
+        return true;
+      }
+    }
+  }
+  else if (projectileDirection == RIGHT) {
+    // calculate from left side of hitbox
+    if (hitbox.x <= currentPt.x && hitbox.x + hitbox.width > currentPt.x) {
+      if (currentPt.y >= hitbox.y && currentPt.y < hitbox.y + hitbox.height) {
+        std::cout << "Hero hit" << std::endl;
+        return true;
+      }
+    }
+  }
 
   // return
   return false;

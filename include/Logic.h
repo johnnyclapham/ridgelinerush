@@ -31,6 +31,7 @@ public:
     Hero getHero();
     Dragon getDragon();
     Launcher getLauncher();
+    Launcher getDragonLauncher();
 
 private:
     // update methods //
@@ -40,6 +41,7 @@ private:
     Terrain terrain;
     Hero hero;
     Launcher launcher;
+    Launcher dragonLauncher;
     Dragon dragon;
     Controller controller;
     Settings settings;

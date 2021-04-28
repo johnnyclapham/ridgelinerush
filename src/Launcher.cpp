@@ -9,29 +9,35 @@ Launcher::Launcher() {
   resetBaseValues();
 }
 
-Launcher::Launcher(float x, float y) {
+Launcher::Launcher(float x, float y, float width, float height) {
   setPosition(x, y);
+  projectileWidth = width;
+  projectileHeight = height;
   resetBaseValues();
   std::cout << "Launcher initialized, position is " << x_coord << " " << y_coord << std::endl;
 }
 
-void Launcher::update(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
+void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
   // move launcher based on hero's position
   sf::Vector2f heroPosition = hero->getPosition();
   setPosition(heroPosition.x, heroPosition.y + 20);
   setDirection(hero->getDirection());
-  std::cout << hero->getDirection() << std::endl;
+  // std::cout << hero->getDirection() << std::endl;
 
   int iter = 0;
   // iterate through projectiles for updates
   for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
     projectileList.at(iter).move();
-    if (projectileList.at(iter).handleCollision(terrain)) projectileList.erase(i);
+    if (projectileList.at(iter).handleCollision(terrain, dragon->getHitbox())) projectileList.erase(i);
     else if (projectileList.at(iter).getPosition().x < 0) {
       projectileList.erase(i);
     }
     iter++;
   }
+}
+
+void Launcher::updateDragon(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
+  // TODO this
 }
 
 void Launcher::setPosition(float x, float y) {
@@ -46,7 +52,7 @@ void Launcher::setDirection(Direction direction) {
 void Launcher::shoot() {
   // add a projectile to the list
   if (timer.getElapsedTime().asMilliseconds() >= fire_delay) {
-    projectileList.emplace_back(Projectile(x_coord, y_coord, damage, angle, speed, launcherDirection, 10, 20));
+    projectileList.emplace_back(Projectile(x_coord, y_coord, damage, angle, speed, launcherDirection, projectileHeight, projectileWidth));
     std::cout << "Projectile fired" << std::endl;
     timer.restart();
   }

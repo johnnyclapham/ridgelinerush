@@ -299,3 +299,7 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
     return position;
 }
 
+Hitbox Hero::getHitbox() {
+    return Hitbox(position.x, position.y, HERO_WIDTH, HERO_HEIGHT);
+}
+
