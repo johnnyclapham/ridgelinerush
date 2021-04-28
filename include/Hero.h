@@ -7,6 +7,7 @@
 #include <SFML/Window.hpp>
 #include "Terrain.h"
 #include "Powerup.h"
+#include "Hitbox.h"
 
 
 class Hero
@@ -42,6 +43,8 @@ public:
     enum state {ground, airborne};
 
     void walk(Direction direction);
+
+    Hitbox getHitbox();
 private:
     // members //
     float width;
