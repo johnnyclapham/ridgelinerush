@@ -13,7 +13,7 @@ Sprite::Sprite() {
 
 Sprite::Sprite(const std::string &spritesheet) {
     texture = spritesheet;
-    spriteWidth = 0;
+    sf::Texture newTexture;
     spriteDirection = RIGHT;
 }
 
@@ -39,10 +39,9 @@ void Sprite::draw(sf::Vector2<float> position, sf::RenderWindow *window) {
        std::cout << "now loading   : "<<texture<<" \n";
        newTexture.loadFromFile(texture);
     }
-
     sprite.setTexture(newTexture);
-    sprite.setPosition(position);
     sprite.setScale(4,4);
+    sprite.setPosition(position);
     if(spriteDirection == LEFT){
         sprite.scale(-1.f,1.f);
         sprite.setPosition(position.x + spriteWidth, position.y);

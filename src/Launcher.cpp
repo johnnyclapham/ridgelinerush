@@ -23,8 +23,6 @@ void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *he
   setPosition(heroPosition.x, heroPosition.y + 20);
   setDirection(hero->getDirection());
 
-  //std::cout << hero->getDirection() << std::endl;
-
   int iter = 0;
   // iterate through projectiles for updates
   for (auto i = projectileList.begin(); i < projectileList.end(); i++) {

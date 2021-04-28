@@ -19,11 +19,14 @@ Logic::Logic() {
     hero = Hero();
     dragon = Dragon(&hero, &terrain);
     settings = Settings();
+    background = Background();
+
     controller.setMvmtUpKey(settings.getMvmtUpKey());
     controller.setMvmtLeftKey(settings.getMvmtLeftKey());
     controller.setMvmtRightKey(settings.getMvmtRightKey());
     controller.setAttackKey(settings.getAttackKey());
     controller.setPauseKey(settings.getPauseKey());
+
     // initialize launchers
     sf::Vector2f heroPosition = hero.getPosition();
     sf::Vector2f dragonPosition = dragon.getPosition();
@@ -39,6 +42,7 @@ void Logic::update(float time) {
     settings.read();
     launcher.updateHero(.5*time, &terrain, &dragon, &hero);
     dragonLauncher.updateDragon(.5*time, &terrain, &dragon, &hero);
+    background.update(.5*time);
 }
 
 Terrain Logic::getTerrain() {
@@ -51,6 +55,10 @@ Hero Logic::getHero() {
 
 Dragon Logic::getDragon() {
     return dragon;
+}
+
+Background Logic::getBackground() {
+    return background;
 }
 
 Launcher Logic::getLauncher() {

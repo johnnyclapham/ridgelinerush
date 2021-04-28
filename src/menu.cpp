@@ -46,6 +46,7 @@ Menu::Menu(float screenWidth, float screenHeight)
 
 
 	selectedItemIndex = 0;
+	backgroundInit();
 }
 
 
@@ -53,8 +54,9 @@ Menu::Menu()
 {
 }
 
-void Menu::draw(sf::RenderWindow &window)
+void Menu::draw(sf::RenderWindow &window, Background &background)
 {
+    drawBackground(window, background);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
 		window.draw(menu[i]);
@@ -90,4 +92,25 @@ int Menu::GetPressedItem(){
 	return selectedItemIndex;
 	//feeds the array index to our switch statement in title_screen_0
 
+}
+
+void Menu::backgroundInit(){
+    std::vector<float> spriteWidths;
+    bgLayer1 = Sprite("assets/backgroundLayer1.png");
+    bgLayer2 = Sprite("assets/backgroundLayer2.png");
+    bgLayer3 = Sprite("assets/backgroundLayer3.png");
+    bgLayer4 = Sprite("assets/backgroundLayer4.png");
+    bgLayer5 = Sprite("assets/backgroundLayer5.png");
+    bgLayer6 = Sprite("assets/backgroundLayer6.png");
+    background.setSpriteWidths(spriteWidths);
+}
+
+void Menu::drawBackground(sf::RenderWindow &window, Background &background) {
+    sf::Vector2<float> position = sf::Vector2<float>(0,0);
+    bgLayer6.draw(sf::Vector2<float>(background.getOffset(5),0), &window);
+    bgLayer5.draw(sf::Vector2<float>(background.getOffset(4),0), &window);
+    bgLayer4.draw(sf::Vector2<float>(background.getOffset(3),0), &window);
+    bgLayer3.draw(sf::Vector2<float>(background.getOffset(2),280), &window);
+    bgLayer2.draw(sf::Vector2<float>(background.getOffset(1),330), &window);
+    bgLayer1.draw(sf::Vector2<float>(background.getOffset(0),400), &window);
 }

@@ -29,7 +29,7 @@ const float TILE_SIDE = WINDOW_WIDTH / 12;
 const int COLUMN_LENGTH = 10;
 
 // Affects the speed of the game
-const float GAME_TIME_FACTOR = .0002;
+const float GAME_TIME_FACTOR = .0003;
 
 
 #endif //RIDGELINERUSH_CONSTANTS_H

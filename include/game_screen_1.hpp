@@ -49,9 +49,7 @@ int game_screen_1::Run (sf::RenderWindow &App)
       }
     }
 
-    // TODO set up gameTimeFactor for adaptive frame rate
     deltaMS = clock.getElapsedTime().asMicroseconds();
-    //std::cout << deltaMS*GAME_TIME_FACTOR << std::endl;
     gameLogic->update(deltaMS*GAME_TIME_FACTOR);
     clock.restart();
 

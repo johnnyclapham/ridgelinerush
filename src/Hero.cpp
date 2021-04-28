@@ -37,13 +37,6 @@ void Hero::update(float time, Terrain terrain){
        velocity += sf::Vector2<float>(0, .05*time);
     }
 
-    if(velocity.x > 0){
-        facingDirection = RIGHT;
-    }
-    if(velocity.x < 0){
-        facingDirection = LEFT;
-    }
-
     velocity += velocityBuffer*time;
     positionBuffer = positionBuffer*time;
     topLeftCollisionPt = position+sf::Vector2<float>(20, 5);
@@ -73,7 +66,7 @@ void Hero::jump(){
     if(playerState == ground){
         playerState = airborne;
         floorType = NO_COLLISION;
-        velocityBuffer.y -= 8.5;
+        velocityBuffer.y -= 7.5;
     }
 }
 
@@ -82,6 +75,7 @@ void Hero::driftLeft(){
     if(playerState == airborne){
         velocityBuffer.x -= .03;
     }
+    facingDirection = LEFT;
 }
 
 void Hero::driftRight(){
@@ -89,6 +83,7 @@ void Hero::driftRight(){
     if(playerState == airborne){
         velocityBuffer.x += .03;
     }
+    facingDirection = RIGHT;
 }
 
 void Hero::walk(Direction direction){
@@ -176,7 +171,6 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
     //Keeps track of the most recent collision type we have encountered, so if on the next step we
     //find no collision at all, we know whether to interpret the stop as hitting a wall, floor, etc.
     Collision lastCollision = NO_COLLISION;
-
     // Check if we can move the full length; if so we don't have to check any further steps
     bool noneIntersect = true;
     Collision collision;
@@ -185,6 +179,7 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
         if(collision != NO_COLLISION){
             noneIntersect = false;
             lastCollision = collision;
+            //std::cout << lastCollision << std::endl;
         }
     }
     for(int i = 0; i < obstacleList.size(); i++){
@@ -243,7 +238,7 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
         if(lastCollision == WALL){
             velocity.x = 0;
         } else if (lastCollision == FLOOR || lastCollision == LEFT_SLOPE || lastCollision == RIGHT_SLOPE){
-            std::cout << "changing to ground 2/3" << std::endl;
+            //std::cout << "changing to ground 2/3" << std::endl;
             playerState = ground;
             velocity.y = 0;
             velocity.x = 0;
@@ -274,7 +269,7 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
         if(lastCollision == WALL){
             velocity.x = 0;
         } else if (lastCollision == FLOOR || lastCollision == LEFT_SLOPE || lastCollision == RIGHT_SLOPE){
-            std::cout << "changing to ground 1/3" << std::endl;
+            //std::cout << "changing to ground 1/3" << std::endl;
             playerState = ground;
             velocity.y = 0;
             velocity.x = 0;
@@ -288,7 +283,7 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
     if(lastCollision == WALL){
         velocity.x = 0;
     } else if (lastCollision == FLOOR || lastCollision == LEFT_SLOPE || lastCollision == RIGHT_SLOPE){
-        std::cout << "changing to ground 3/3" << std::endl;
+        std::cout << "changing to ground 0/3" << std::endl;
         playerState = ground;
         velocity.y = 0;
         velocity.x = 0;
