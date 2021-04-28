@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
+#include <stdlib.h>
+#include <time.h> 
 #include "PlayerView.h"
 #include "Terrain.h"
 #include "Tile.h"
@@ -30,6 +32,8 @@ void PlayerView::updateView(float time) {
     drawHero();
     drawDragon();
     drawProjectiles();
+    reset += time;
+    //drawPowerups(); //commented out until working correctly
 }
 
 void PlayerView::drawTerrain() {
@@ -149,6 +153,29 @@ void PlayerView::drawProjectiles() {
         fireballSprite.draw(position, window);
     }
 }
+
+
+void PlayerView::drawPowerups() {
+    Hero hero = this->logic->getHero();
+    if (reset > 1000000) {
+        srand(time(NULL));
+        int x = rand() % 100;
+        int y = (rand() % 4) + 1;
+        if (x < 20) {
+            sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(50, 50));
+            if (y == 0) { toDraw.setFillColor(sf::Color::Green); }
+            if (y == 1) { toDraw.setFillColor(sf::Color::Blue); }
+            if (y == 2) { toDraw.setFillColor(sf::Color::Yellow); }
+            if (y == 3) { toDraw.setFillColor(sf::Color::Red); }
+            hero.setPowerupBuffer(y);
+            int z1 = (rand() % WINDOW_WIDTH/2) + WINDOW_WIDTH/2;
+            int z2 = (rand() % WINDOW_HEIGHT) + 1;
+            hero.setPowerupPos(z1, z2);
+            toDraw.setPosition(z1, z2);
+            window->draw(toDraw);
+        }
+        //reset = 0;
+    }
 
 
 void PlayerView::backgroundInit(){

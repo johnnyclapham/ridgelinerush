@@ -10,11 +10,18 @@ class Powerup {
     Powerup();
     PT::PowerupType getPowerupType();
     void setPowerupType(const std::string &s);
-    std::string powerupToStr(PT::PowerupType p);
+    std::string powerupToStr();
     PT::PowerupType strToPowerup(const std::string &s);
+    void setPos(int x, int y);
+    int getXPos();
+    int getYPos();
+    int getBuffer();
+    void setBuffer(int p);
 
   private:
     PT::PowerupType pt;
-    int time;
+    int xpos;
+    int ypos;
+    int buffer;
 };
 #endif // RIDEGLINERUSH_POWERUP_H

@@ -24,8 +24,10 @@ private:
     void drawHero();
     void drawDragon();
     void drawProjectiles();
+    void drawPowerups();
     void drawBackground();
     void backgroundInit();
+
 
     sf::RenderWindow *window;
     Logic *logic;
@@ -35,6 +37,9 @@ private:
     Sprite dragonSprite;
     Sprite backGroundSprite;
     Sprite fireballSprite;
+  
+    int reset;
+
 
     Sprite bgLayer1;
     Sprite bgLayer2;
