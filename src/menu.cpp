@@ -20,28 +20,28 @@ Menu::Menu(float screenWidth, float screenHeight)
 	menu[0].setFillColor(sf::Color::Red);
 	MenuText = "Play Game";
 	menu[0].setString(MenuText);
-	menu[0].setPosition(sf::Vector2f(screenWidth / 9, screenHeight / (MAX_NUMBER_OF_ITEMS + 1) * 1));
+	menu[0].setPosition(sf::Vector2f(screenWidth / 2 - 100, 250 + (screenHeight-250) / (MAX_NUMBER_OF_ITEMS + 1) * 1 ));
 	menu[0].setCharacterSize(50+5);
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
 	MenuText = "Options";
 	menu[1].setString(MenuText);
-	menu[1].setPosition(sf::Vector2f(screenWidth / 9, screenHeight / (MAX_NUMBER_OF_ITEMS + 1) * 2));
+	menu[1].setPosition(sf::Vector2f(screenWidth / 2 - 100, 250 + (screenHeight-250) / (MAX_NUMBER_OF_ITEMS + 1) * 2));
 	menu[1].setCharacterSize(50);
 
 	menu[2].setFont(font);
 	menu[2].setFillColor(sf::Color::White);
 	MenuText = "Information";
 	menu[2].setString(MenuText);
-	menu[2].setPosition(sf::Vector2f(screenWidth / 9, screenHeight / (MAX_NUMBER_OF_ITEMS + 1) * 3));
+	menu[2].setPosition(sf::Vector2f(screenWidth / 2 - 100, 250 + (screenHeight-250) / (MAX_NUMBER_OF_ITEMS + 1) * 3));
 	menu[2].setCharacterSize(50);
 
 	menu[3].setFont(font);
 	menu[3].setFillColor(sf::Color::White);
 	MenuText = "Exit Game";
 	menu[3].setString(MenuText);
-	menu[3].setPosition(sf::Vector2f(screenWidth / 9, screenHeight / (MAX_NUMBER_OF_ITEMS + 1) * 4));
+	menu[3].setPosition(sf::Vector2f(screenWidth / 2 - 100, 250 + (screenHeight-250) / (MAX_NUMBER_OF_ITEMS + 1) * 4));
 	menu[3].setCharacterSize(50);
 
 
@@ -57,6 +57,8 @@ Menu::Menu()
 void Menu::draw(sf::RenderWindow &window, Background &background)
 {
     drawBackground(window, background);
+    Sprite gameLogo = Sprite("assets/Logo.png");
+    gameLogo.draw(sf::Vector2<float>(180,20), &window);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
 		window.draw(menu[i]);
@@ -108,9 +110,9 @@ void Menu::backgroundInit(){
 void Menu::drawBackground(sf::RenderWindow &window, Background &background) {
     sf::Vector2<float> position = sf::Vector2<float>(0,0);
     bgLayer6.draw(sf::Vector2<float>(background.getOffset(5),0), &window);
-    bgLayer5.draw(sf::Vector2<float>(background.getOffset(4),0), &window);
-    bgLayer4.draw(sf::Vector2<float>(background.getOffset(3),0), &window);
-    bgLayer3.draw(sf::Vector2<float>(background.getOffset(2),280), &window);
-    bgLayer2.draw(sf::Vector2<float>(background.getOffset(1),330), &window);
-    bgLayer1.draw(sf::Vector2<float>(background.getOffset(0),400), &window);
+    bgLayer5.draw(sf::Vector2<float>(background.getOffset(4),50), &window);
+    bgLayer4.draw(sf::Vector2<float>(background.getOffset(3),50), &window);
+    bgLayer3.draw(sf::Vector2<float>(background.getOffset(2),330), &window);
+    bgLayer2.draw(sf::Vector2<float>(background.getOffset(1),380), &window);
+    bgLayer1.draw(sf::Vector2<float>(background.getOffset(0),450), &window);
 }

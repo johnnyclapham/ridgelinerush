@@ -35,8 +35,6 @@ int title_screen_0::Run (sf::RenderWindow &App)
     menuText.setFillColor(sf::Color::White);
     menuText.setStyle(sf::Text::Bold);
     menuText.setPosition(70,0);
-    std::string menuString = "Ridgeline Rush";
-    menuText.setString(menuString);
     background = Background();
 
     Menu menu(App.getSize().x, App.getSize().y);

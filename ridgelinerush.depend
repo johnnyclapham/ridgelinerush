@@ -506,7 +506,7 @@
 
 1617067154 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\cscreen.hpp
 
-1619578611 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\title_screen_0.hpp
+1619584849 c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\include\title_screen_0.hpp
 	<iostream>
 	"cScreen.hpp"
 	"menu.h"
@@ -628,7 +628,7 @@
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 
-1619573946 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\background.cpp
+1619584630 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\background.cpp
 	"Background.h"
 	<vector>
 	"Constants.h"
@@ -642,7 +642,7 @@
 1619573067 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\hitbox.cpp
 	"Hitbox.h"
 
-1619578267 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\menu.cpp
+1619584399 source:c:\users\john\documents\classes\2020-2021\2nd semester\game design\ridgeline rush\ridgelinerush\src\menu.cpp
 	"menu.h"
 	<iostream>
 

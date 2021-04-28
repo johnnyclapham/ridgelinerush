@@ -8,7 +8,7 @@
 #include <math.h>
 
 Background::Background() {
-    layerWidths = {1356,1548,1508,1172,1140,100};
+    layerWidths = {1356,1548,1508,1172,1302,100};
 }
 
 void Background::setSpriteWidths(std::vector<float> spriteWidths){
