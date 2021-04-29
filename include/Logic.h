@@ -34,6 +34,7 @@ public:
     Launcher getLauncher();
     Launcher getDragonLauncher();
     Background getBackground();
+    Hero* getHeroPointer();
 
 private:
     // update methods //
