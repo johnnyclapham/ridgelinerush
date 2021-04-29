@@ -32,6 +32,7 @@ public:
     void setPowerupBuffer(int p);
 
 
+
     // other //
     sf::Vector2<float> checkCollision(sf::Vector2<float> change, Terrain terrain);
     sf::Vector2<float> getCollisionPt(int index);
@@ -45,6 +46,9 @@ public:
     int getHealth();
     int getDamage();
     std::string getPowerup();
+    int getPowerupBuffer();
+    int getXpos();
+    int getYpos();
 
     enum state {ground, airborne};
 
