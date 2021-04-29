@@ -7,14 +7,14 @@
 class DragonAI {
   public:
     DragonAI();
-    DragonAI(&dragon, &hero);
+    DragonAI(Dragon *dragon, Hero *hero);
 
-    update(float time);
+    void update(float time);
   private:
     // members //
     Dragon *dragon;
     Hero *hero;
     sf::Clock attackTimer, specialTimer;
-}
+};
 
 #endif //RIDGELINERUSH_DRAGONAI_H
