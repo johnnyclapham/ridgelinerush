@@ -25,13 +25,13 @@ int title_screen_0::Run (sf::RenderWindow &App)
 
     //Initialize our font
     sf::Font font;
-    if (!font.loadFromFile("../assets/ACETONE.ttf")){
+    if (!font.loadFromFile(GAME_FONT_PATH)){
         printf("\ngame closed\n");}
 
     //create sfml text to display score to player
     sf::Text menuText; //updated during re-rendering
     menuText.setFont(font); // font is a sf::Font
-    menuText.setCharacterSize(125);
+    menuText.setCharacterSize(160);
     menuText.setFillColor(sf::Color::White);
     menuText.setStyle(sf::Text::Bold);
     menuText.setPosition(70,0);

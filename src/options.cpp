@@ -1,12 +1,13 @@
 #include "options.h"
 #include <iostream>
+#include "Constants.h"
 
 Options::Options(float screenWidth, float screenHeight)
 {
 	sf::String OptionsText;
 	float OptionsTextWidth;
 
-  sf::String fontPath = "assets/ACETONE.ttf";
+  sf::String fontPath = GAME_FONT_PATH;
   if(!font.loadFromFile(fontPath)){
      //error
      // new handling: if font fails to load, try alternate

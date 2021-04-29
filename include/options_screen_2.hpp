@@ -25,7 +25,7 @@ int options_screen_2::Run (sf::RenderWindow &App)
 
 		//Initialize our font
 	  sf::Font font;
-	  if (!font.loadFromFile("../assets/ACETONE.ttf")){
+	  if (!font.loadFromFile(GAME_FONT_PATH)){
     		printf("\ngame closed\n");}
 
     //create sfml text to display score to player

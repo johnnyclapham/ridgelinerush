@@ -4,6 +4,7 @@
 
 #ifndef RIDGELINERUSH_CONSTANTS_H
 #define RIDGELINERUSH_CONSTANTS_H
+#include <string>
 
 // Used as a member of the Tile class to determine what shape it is. The first four values are triangles,
 // indicating which corner the triangle is located in. The last option is for a square tile. These values
@@ -30,6 +31,9 @@ const int COLUMN_LENGTH = 10;
 
 // Affects the speed of the game
 const float GAME_TIME_FACTOR = .0003;
+
+// Main font used in the game
+const std::string GAME_FONT_PATH = "assets/8bitlim.ttf";
 
 
 #endif //RIDGELINERUSH_CONSTANTS_H

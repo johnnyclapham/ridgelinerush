@@ -27,6 +27,9 @@ private:
 	sf::Font font;
 	//array of elements for the menu
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
+    int normalCharSize;
+    int largerCharSize;
+    int topOffset;
 
     void drawBackground(sf::RenderWindow &window, Background &background);
 	void backgroundInit();
