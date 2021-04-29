@@ -10,6 +10,7 @@
 #include "Launcher.h"
 #include "Hero.h"
 #include "Dragon.h"
+#include "DragonAI.h"
 #include "Controller.h"
 #include "Settings.h"
 #include "Background.h"
@@ -45,6 +46,7 @@ private:
     Launcher launcher;
     Launcher dragonLauncher;
     Dragon dragon;
+    DragonAI dragonAI;
     Controller controller;
     Settings settings;
     Background background;
