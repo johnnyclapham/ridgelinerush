@@ -28,7 +28,7 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
 
 void PlayerView::updateView(float time) {
     drawBackground();
-    drawNewPowerups();
+    //drawNewPowerups();
     drawTerrain();
     drawHero();
     drawDragon();
@@ -206,10 +206,10 @@ void PlayerView::drawPowerups(int z1, int z2) {
         if (y == 2) { toDraw.setFillColor(sf::Color::Blue); }
         if (y == 3) { toDraw.setFillColor(sf::Color::Yellow); }
         if (y == 4) { toDraw.setFillColor(sf::Color::Red); }
-        std::cout << "powerupX: "<<z1;
-        std::cout << "powerupY: "<<z2<<"\n";
-        std::cout << "heroX: "<<hero.getXpos();
-        std::cout << "heroY: "<<hero.getYpos();
+        // std::cout << "powerupX: "<<z1;
+        // std::cout << "powerupY: "<<z2<<"\n";
+        // std::cout << "heroX: "<<hero.getXpos();
+        // std::cout << "heroY: "<<hero.getYpos();
         toDraw.setPosition(z1, z2);
         window->draw(toDraw);
     }
