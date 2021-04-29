@@ -24,7 +24,8 @@ private:
     void drawHero();
     void drawDragon();
     void drawProjectiles();
-    void drawPowerups();
+    void drawPowerups(int z1, int z2);
+    void drawNewPowerups();
     void drawBackground();
     void backgroundInit();
 
@@ -37,7 +38,7 @@ private:
     Sprite dragonSprite;
     Sprite backGroundSprite;
     Sprite fireballSprite;
-  
+
     int reset;
 
 
