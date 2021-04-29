@@ -31,12 +31,15 @@ int main(int argc, char** argv)
   	Screens.push_back(&s1);
     options_screen_2 s2;
   	Screens.push_back(&s2);
+    results_screen_3 s3;
+  	Screens.push_back(&s3);
 
   	//Main loop
   	while (screen >= 0)
   	{
       //update the screen with returned screen index
   		screen = Screens[screen]->Run(App);
+      std::cout << screen << '\n';
   	}
 
     //done
