@@ -1,6 +1,6 @@
 //
 // Created by Evelyn on 3/26/2021.
-//
+//.
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -28,12 +28,14 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
 
 void PlayerView::updateView(float time) {
     drawBackground();
+    drawNewPowerups();
     drawTerrain();
     drawHero();
     drawDragon();
     drawProjectiles();
     reset += time;
-    drawPowerups(); 
+    //drawNewPowerups();
+    //drawPowerups(); //commented out until working correctly
 }
 
 void PlayerView::drawTerrain() {
@@ -155,28 +157,63 @@ void PlayerView::drawProjectiles() {
 }
 
 
-void PlayerView::drawPowerups() {
-    Hero hero = this->logic->getHero();
-    if (reset > 1000000) {
+void PlayerView::drawNewPowerups() {
+  int z1,z2;
+    //Hero hero = this->logic->getHero();
+    Hero* hero = this->logic->getHeroPointer();
+    if (reset > 2000) {
         srand(time(NULL));
         int x = rand() % 100;
         int y = (rand() % 4) + 1;
-        if (x < 20) {
+        if (x < 99) {
             sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(50, 50));
-            if (y == 0) { toDraw.setFillColor(sf::Color::Green); }
-            if (y == 1) { toDraw.setFillColor(sf::Color::Blue); }
-            if (y == 2) { toDraw.setFillColor(sf::Color::Yellow); }
-            if (y == 3) { toDraw.setFillColor(sf::Color::Red); }
-            hero.setPowerupBuffer(y);
-            int z1 = (rand() % WINDOW_WIDTH/2) + WINDOW_WIDTH/2;
-            int z2 = (rand() % WINDOW_HEIGHT) + 1;
-            hero.setPowerupPos(z1, z2);
+            if (y == 1) { toDraw.setFillColor(sf::Color::Green); }
+            if (y == 2) { toDraw.setFillColor(sf::Color::Blue); }
+            if (y == 3) { toDraw.setFillColor(sf::Color::Yellow); }
+            if (y == 4) { toDraw.setFillColor(sf::Color::Red); }
+            hero->setPowerupBuffer(y);
+            z1 = (rand() % WINDOW_WIDTH/4) + WINDOW_WIDTH/2;
+            z2 = (rand() % WINDOW_HEIGHT/2) + 1;
+            // int z1 = 250;
+            // int z2 = 250;
+            // hero.setPowerupPos(z1, z2);
+            hero->setPowerupPos(z1, z2);
             toDraw.setPosition(z1, z2);
             window->draw(toDraw);
         }
-        //reset = 0;
+        reset = 0;
+
     }
+    drawPowerups(hero->getXpos(),hero->getYpos());
+    //  else {
+    //    drawPowerups(z1,z2);
+    // //   //get power up x and y coord
+    // //
+    // //   //draw the powerup
+    //  }
+    //std::cout << "reset: "<<reset<<"\n";
   }
+
+void PlayerView::drawPowerups(int z1, int z2) {
+    Hero hero = this->logic->getHero();
+    // if (reset < 2000) {
+    if (hero.getXpos() > 0 && hero.getYpos() > 0) {
+        //sf::Vector2<float> position = hero.getPowerupPosition();
+        sf::Vector2<float> position = sf::Vector2<float> (hero.getXpos(), hero.getYpos());
+        sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(50, 50));
+        int y = hero.getPowerupBuffer();
+        if (y == 1) { toDraw.setFillColor(sf::Color::Green); }
+        if (y == 2) { toDraw.setFillColor(sf::Color::Blue); }
+        if (y == 3) { toDraw.setFillColor(sf::Color::Yellow); }
+        if (y == 4) { toDraw.setFillColor(sf::Color::Red); }
+        std::cout << "powerupX: "<<z1;
+        std::cout << "powerupY: "<<z2<<"\n";
+        std::cout << "heroX: "<<hero.getXpos();
+        std::cout << "heroY: "<<hero.getYpos();
+        toDraw.setPosition(z1, z2);
+        window->draw(toDraw);
+    }
+}
 
 
 void PlayerView::backgroundInit(){
