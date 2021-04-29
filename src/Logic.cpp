@@ -53,6 +53,10 @@ Hero Logic::getHero() {
     return hero;
 }
 
+Hero* Logic::getHeroPointer() {
+    return &hero;
+}
+
 Dragon Logic::getDragon() {
     return dragon;
 }
