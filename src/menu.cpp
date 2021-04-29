@@ -36,7 +36,7 @@ Menu::Menu(float screenWidth, float screenHeight)
 
 	menu[2].setFont(font);
 	menu[2].setFillColor(sf::Color::White);
-	MenuText = "Information";
+	MenuText = "Results";
 	menu[2].setString(MenuText);
     menu[2].setCharacterSize(normalCharSize);
 	menu[2].setPosition(sf::Vector2f(screenWidth / 2 - menu[2].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 3));
