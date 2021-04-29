@@ -48,18 +48,40 @@ void Hero::update(float time, Terrain terrain){
     setPosition(position.x-time, position.y+time);
     velocityBuffer = sf::Vector2<float>(0, 0);
     positionBuffer = sf::Vector2<float>(0, 0);
-    applyPowerup();
-    if ( (position.x < powerup.getXPos() + 10) && (position.x < powerup.getXPos() - 10) && (position.y < powerup.getYPos() + 10) && (position.y < powerup.getYPos() - 10) ) {
-        if (powerup.getBuffer() == 1) { powerup.setPowerupType("damage boost"); }
-        if (powerup.getBuffer() == 2) { powerup.setPowerupType("health boost"); }
-        if (powerup.getBuffer() == 3) { powerup.setPowerupType("jump boost"); }
-        if (powerup.getBuffer() == 4) { powerup.setPowerupType("speed boost"); }
+    //applyPowerup(); //moved
+    if ( (position.x < powerup.getXPos() + 10) &&
+          (position.x < powerup.getXPos() - 10) &&
+          (position.y < powerup.getYPos() + 10) &&
+          (position.y < powerup.getYPos() - 10) ) {
+        if (powerup.getBuffer() == 1) {
+          powerup.setPowerupType("damage boost");
+          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+         }
+        if (powerup.getBuffer() == 2) {
+          powerup.setPowerupType("health boost");
+          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+         }
+        if (powerup.getBuffer() == 3) {
+          powerup.setPowerupType("jump boost");
+          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+         }
+        if (powerup.getBuffer() == 4) {
+          powerup.setPowerupType("speed boost");
+          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+         }
     }
+    // std::cout << "powerupX: "<<powerup.getXPos();
+    // std::cout << "powerupY: "<<powerup.getYPos()<<"\n";
+    // std::cout << "heroX: "<<position.x;
+    // std::cout << "heroY: "<<position.y << "\n";
     if (getPowerup() != "no boost") {
         timer += time;
         if (time > 10000000) { powerup.setPowerupType("no boost"); timer = 0; }
     }
+
+    applyPowerup();
 }
+
 
 void Hero::changePosition(sf::Vector2<float> change, Terrain terrain) {
     sf::Vector2<float> newPosition = checkCollision(change, terrain);
@@ -150,11 +172,23 @@ void Hero::setPowerupPos(int x, int y) { powerup.setPos(x, y); }
 
 void Hero::setPowerupBuffer(int p) { powerup.setBuffer(p); }
 
+int Hero::getPowerupBuffer(){
+  return powerup.getBuffer();
+}
+
 sf::Vector2<float> Hero::getPosition() { return position; }
 
 int Hero::getHealth() { return health; }
 
 int Hero::getDamage() { return damage; }
+
+int Hero::getXpos() {
+  return powerup.getXPos();
+}
+
+int Hero::getYpos() {
+  return powerup.getYPos();
+}
 
 Collision Hero::getFloorType(){
     return floorType;
@@ -319,4 +353,3 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
 Hitbox Hero::getHitbox() {
     return Hitbox(position.x, position.y, HERO_WIDTH, HERO_HEIGHT);
 }
-
