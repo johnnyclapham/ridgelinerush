@@ -59,8 +59,8 @@ private:
     // members //
     float width;
     float height;
-    int health;
-    int damage;
+    float health;
+    float damage;
     int timer;
     Direction facingDirection;
     sf::Vector2<float> position;
