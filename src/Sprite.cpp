@@ -34,10 +34,11 @@ void Sprite::draw(sf::Vector2<float> position, sf::RenderWindow *window) {
        //error
        // new handling: if sprite fails to load, try alternate
        // addressing method (for Mac OS)
-       std::cout << "failed to load: "<<texture<<" \n";
-       texture = "../"+texture;
-       std::cout << "now loading   : "<<texture<<" \n";
-       newTexture.loadFromFile(texture);
+       // commented out for console spam
+       // std::cout << "failed to load: "<<texture<<" \n";
+      texture = "../"+texture;
+      std::cout << "Error with standard path. Now loading   : "<<texture<<" \n";
+      newTexture.loadFromFile(texture);
     }
     sprite.setTexture(newTexture);
     sprite.setScale(4,4);
@@ -48,4 +49,3 @@ void Sprite::draw(sf::Vector2<float> position, sf::RenderWindow *window) {
     }
     window->draw(sprite);
 }
-
