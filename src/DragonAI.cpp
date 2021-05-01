@@ -50,8 +50,12 @@ void DragonAI::update(float time) {
         }
       }
 
-      dragon->setProjectileAngle(calculateAttackAngle());
-      dragon->shoot();
+      if (attackTimer.getElapsedTime().asMilliseconds() >= dragon->getDelay()) {
+        dragon->setProjectileAngle(calculateAttackAngle());
+        dragon->shoot();
+        attackTimer.restart();
+      }
+      
 
       break;
 
@@ -70,7 +74,7 @@ void DragonAI::update(float time) {
       }
       // hold in place
       else if (hold) {
-        if (specialTimer.getElapsedTime().asMilliseconds() >= 1000 * 3) {
+        if (specialTimer.getElapsedTime().asMilliseconds() >= 3000) {
           hold = false;
           fall = true;
           dragon->setDelay(500);
@@ -89,7 +93,32 @@ void DragonAI::update(float time) {
       
       if (!hold) dragon->setProjectileAngle(calculateAttackAngle());
       // attack
-      dragon->shoot();
+      if (attackTimer.getElapsedTime().asMilliseconds() >= dragon->getDelay()) {
+        dragon->shoot();
+        attackTimer.restart();
+      }
+
+      break;
+
+    case TRIPLE:
+      if (attackTimer.getElapsedTime().asMilliseconds() >= dragon->getDelay()) {
+        dragon->setProjectileAngle(0);
+        dragon->shoot();
+
+        dragon->setProjectileAngle(-.2);
+        dragon->shoot();
+
+        dragon->setProjectileAngle(.2);
+        dragon->shoot();
+
+        attackTimer.restart();
+      }
+
+      // after 3 seconds, return to normal
+      if (specialTimer.getElapsedTime().asMilliseconds() >= 3000) {
+        switchPattern(NORMAL);
+        resetSpecialCounter();
+      }
 
       break;
 
@@ -112,6 +141,11 @@ void DragonAI::switchPattern(AttackPattern newPattern) {
       dragon->setProjectileAngle(.5);
       std::cout << "Barrage activated" << std::endl;
       break;
+    case TRIPLE:
+      dragon->setDelay(400);
+      specialTimer.restart();
+      std::cout << "Triple shot activated" << std::endl;
+      break;
   }
 
   pattern = newPattern;
@@ -122,12 +156,15 @@ void DragonAI::resetSpecialCounter() {
 }
 
 AttackPattern DragonAI::selectPattern() {
-  int pattern_options = 2; // INCREMENT THIS IF YOU ADD A NEW PATTERN
+  int pattern_options = 3; // INCREMENT THIS IF YOU ADD A NEW PATTERN
   int pick = rand() % (pattern_options - 1);
 
   switch (pick) {
     case 0:
       return BARRAGE;
+      break;
+    case 1:
+      return TRIPLE;
       break;
   }
 }

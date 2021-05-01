@@ -4,7 +4,7 @@
 #include "Dragon.h"
 #include "Hero.h"
 
-enum AttackPattern { NORMAL, BARRAGE };
+enum AttackPattern { NORMAL, BARRAGE, TRIPLE };
 
 class DragonAI {
   public:
