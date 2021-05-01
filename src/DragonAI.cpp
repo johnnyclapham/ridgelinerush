@@ -147,5 +147,13 @@ float DragonAI::calculateAttackAngle() {
 
   float slope = y_diff / x_diff;
 
-  return slope / 100;
+  if (slope == 0) return 0;
+  if (slope < .25) return .125;
+  if (slope < .5) return .25;
+  if (slope < .75) return .375;
+  if (slope < 1) return .5;
+  if (slope < 1.5) return .625;
+  if (slope < 2) return .75;
+  if (slope < 4) return .875;
+  return 1;
 }
