@@ -23,8 +23,13 @@ public:
     void setPosition(float x, float y);
     void resetShootValues();
 
+    void setDelay(float delay);
+    void setProjectileAngle(float angle);
+    void setProjectileSpeed(float speed);
+
     // inspectors //
     sf::Vector2<float> getPosition();
+    float getDelay();
 
     void shoot();
 

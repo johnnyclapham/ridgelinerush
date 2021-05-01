@@ -9,19 +9,19 @@
 #include <iostream>
 
 Dragon::Dragon() {
-    
+    // don't use this
 }
 
 Dragon::Dragon(Hero *hero, Terrain *terrain) {
-    setPosition(0, 0);
+    setPosition(0, 200);
     //dragonMovementState = up; // not needed right now
     this->hero = hero;
     this->terrain = terrain;
     movementIteration = 0;
     height = 250;
     width = 200;
-    timer = sf::Clock();
     resetShootValues();
+    timer = sf::Clock();
 }
 
 Dragon::Dragon(float x, float y, Hero *hero, Terrain *terrain) {
@@ -31,22 +31,7 @@ Dragon::Dragon(float x, float y, Hero *hero, Terrain *terrain) {
 }
 
 void Dragon::update(float time){
-    //100 cycles move up
-    if (movementIteration<=99){
-      //decrease y position of dragon
-      setPosition(position.x, position.y-0.5*time);
-      movementIteration+=1;
-
-    //100 cycles move down
-  } else if (movementIteration>=100 && movementIteration<=199) {
-      //increase y position of dragon
-      setPosition(position.x, position.y+0.5*time);
-      movementIteration+=1;
-    }
-    //after 200 cycles reset ticker
-    else if (movementIteration>=200){
-      movementIteration=0;
-    }
+    // update projectiles - all of the shooting AI is handled through DragonAI.cpp
     int iter = 0;
     // iterate through projectiles for updates
     for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
@@ -57,16 +42,25 @@ void Dragon::update(float time){
         }
         iter++;
     }
-    shoot();
     //std::cout << "movement iteration: "<<movementIteration<<"\n";
 }
 
 
 void Dragon::shoot() {
-    if (timer.getElapsedTime().asMilliseconds() >= projectileDelay) {
-        projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT, 50, 50));
-        timer.restart();
-    }
+    projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT, 50, 50));
+    
+}
+
+void Dragon::setProjectileAngle(float angle) {
+    projectileAngle = angle;
+}
+
+float Dragon::getDelay() {
+    return projectileDelay;
+}
+
+void Dragon::setDelay(float delay) {
+    projectileDelay = delay;
 }
 
 sf::Vector2<float> Dragon::getPosition() {
@@ -77,10 +71,14 @@ void Dragon::setPosition(float x, float y) {
     position = sf::Vector2<float>(x,y);
 }
 
+void Dragon::setProjectileSpeed(float speed) {
+    projectileSpeed = speed;
+}
+
 void Dragon::resetShootValues() {
   timer.restart();
   projectileAngle = 0; // base angle (between -1 and 1)
-  projectileSpeed = 1; // base speed constant
+  projectileSpeed = 4; // base speed constant
   projectileDamage = 1; // base damage
   projectileDelay = 2000; // base fire delay, in milliseconds
 }
