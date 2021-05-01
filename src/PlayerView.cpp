@@ -22,13 +22,17 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     dragonSprite = Sprite("assets/dragonArt.png");
     backGroundSprite = Sprite("assets/backgroundArt.png");
     fireballSprite = Sprite("assets/fireball.png");
+    powerupDamageSprite = Sprite("assets/powerups/damage.png");
+    powerupHealthSprite = Sprite("assets/powerups/health.png");
+    powerupJumpSprite = Sprite("assets/powerups/jump.png");
+    powerupSpeedSprite = Sprite("assets/powerups/speed.png");
     backgroundInit();
     updateView(.2);
 }
 
 void PlayerView::updateView(float time) {
     drawBackground();
-    //drawNewPowerups();
+    drawNewPowerups();
     drawTerrain();
     drawHero();
     drawDragon();
@@ -202,16 +206,33 @@ void PlayerView::drawPowerups(int z1, int z2) {
         sf::Vector2<float> position = sf::Vector2<float> (hero.getXpos(), hero.getYpos());
         sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(50, 50));
         int y = hero.getPowerupBuffer();
-        if (y == 1) { toDraw.setFillColor(sf::Color::Green); }
-        if (y == 2) { toDraw.setFillColor(sf::Color::Blue); }
-        if (y == 3) { toDraw.setFillColor(sf::Color::Yellow); }
-        if (y == 4) { toDraw.setFillColor(sf::Color::Red); }
+        if (y == 1) { //damage
+          toDraw.setFillColor(sf::Color::Green);
+          powerupDamageSprite.draw(position, window);
+         }
+        if (y == 2) { //health
+          toDraw.setFillColor(sf::Color::Blue);
+          powerupHealthSprite.draw(position, window);
+         }
+        if (y == 3) { //jump
+          toDraw.setFillColor(sf::Color::Yellow);
+          powerupJumpSprite.draw(position, window);
+         }
+        if (y == 4) { //speed
+          toDraw.setFillColor(sf::Color::Red);
+          powerupSpeedSprite.draw(position, window);
+         }
         // std::cout << "powerupX: "<<z1;
         // std::cout << "powerupY: "<<z2<<"\n";
         // std::cout << "heroX: "<<hero.getXpos();
         // std::cout << "heroY: "<<hero.getYpos();
-        toDraw.setPosition(z1, z2);
-        window->draw(toDraw);
+
+        //commented out as sprites are now used
+        // toDraw.setPosition(z1, z2);
+        // window->draw(toDraw);
+
+
+        //dragonSprite.draw(position, window);
     }
 }
 

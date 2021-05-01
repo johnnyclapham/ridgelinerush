@@ -38,6 +38,10 @@ private:
     Sprite dragonSprite;
     Sprite backGroundSprite;
     Sprite fireballSprite;
+    Sprite powerupDamageSprite;
+    Sprite powerupHealthSprite;
+    Sprite powerupJumpSprite;
+    Sprite powerupSpeedSprite;
 
     int reset;
 

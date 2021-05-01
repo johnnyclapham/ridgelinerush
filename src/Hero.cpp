@@ -49,26 +49,40 @@ void Hero::update(float time, Terrain terrain){
     velocityBuffer = sf::Vector2<float>(0, 0);
     positionBuffer = sf::Vector2<float>(0, 0);
     //applyPowerup(); //moved
-    if ( (position.x < powerup.getXPos() + 10) &&
-          (position.x < powerup.getXPos() - 10) &&
-          (position.y < powerup.getYPos() + 10) &&
-          (position.y < powerup.getYPos() - 10) ) {
+    // if ( (position.x < powerup.getXPos() + 2) &&
+    //       (position.x < powerup.getXPos() - 2) &&
+    //       (position.y < powerup.getYPos() + 2) &&
+    //       (position.y < powerup.getYPos() - 2) ) {
+
+    //new collision detection below
+    if ((position.x < powerup.getXPos()+50 ) &&
+        ((position.x + 50 > powerup.getXPos())) &&
+        (position.y<powerup.getYPos()+50) &&
+        (position.y + 50 > powerup.getYPos()))
+        {
+
         if (powerup.getBuffer() == 1) {
           powerup.setPowerupType("damage boost");
-          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+          std::cout << "\nPowerup Consumed (Damage): "<<powerup.getBuffer()<<"\n";
+
          }
         if (powerup.getBuffer() == 2) {
           powerup.setPowerupType("health boost");
-          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+          std::cout << "\nPowerup Consumed (Health): "<<powerup.getBuffer()<<"\n";
+
          }
         if (powerup.getBuffer() == 3) {
           powerup.setPowerupType("jump boost");
-          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+          std::cout << "\nPowerup Consumed (jump): "<<powerup.getBuffer()<<"\n";
+
          }
         if (powerup.getBuffer() == 4) {
           powerup.setPowerupType("speed boost");
-          std::cout << "$$$Powerup Consumed: "<<powerup.getBuffer()<<"\n\n";
+          std::cout << "\nPowerup Consumed (speed): "<<powerup.getBuffer()<<"\n";
+
          }
+         applyPowerup();
+         setPowerupPos(10,WINDOW_HEIGHT-60); // Move powerup to UI space
     }
     // std::cout << "powerupX: "<<powerup.getXPos();
     // std::cout << "powerupY: "<<powerup.getYPos()<<"\n";
@@ -77,9 +91,11 @@ void Hero::update(float time, Terrain terrain){
     if (getPowerup() != "no boost") {
         timer += time;
         if (time > 10000000) { powerup.setPowerupType("no boost"); timer = 0; }
+
+        //applyPowerup(); //Causes many bad things
     }
 
-    applyPowerup();
+    //applyPowerup();
 }
 
 
@@ -156,11 +172,31 @@ void Hero::walk(Direction direction){
 
 void Hero::applyPowerup() {
     switch (powerup.getPowerupType()) {
-        case PT::damage_boost: damage *= 1.1;
-        case PT::health_boost: health += 2;
-        case PT::jump_boost: velocity.y *= 1.1;
-        case PT::speed_boost: velocity.x *= 1.1;
-        default: return;
+        case PT::damage_boost:
+          std::cout << "Old damage: "<< damage;
+          damage *= 1.01;
+          std::cout << " New damage: "<< damage<<"\n\n";
+          break;
+
+        case PT::health_boost:
+          std::cout << "Old health: "<< health;
+          health += 2;
+          std::cout << " New health: "<< health<<"\n\n";
+          break;
+
+        case PT::jump_boost:
+          std::cout << "Old velocity.y: "<< velocity.y;
+          velocity.y *= 1.01;
+          std::cout << " New velocity.y: "<< velocity.y<<"\n\n";
+          break;
+
+        case PT::speed_boost:
+          std::cout << "Old velocity.x: "<< velocity.x;
+          velocity.x *= 1.01;
+          std::cout << " New velocity.x: "<< velocity.x<<"\n\n";
+          break;
+          
+        default:  return;
     }
 }
 
