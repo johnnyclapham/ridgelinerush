@@ -23,6 +23,8 @@ public:
     void setPosition(float x, float y);
     void resetShootValues();
 
+    void setProjectileAngle(float angle);
+
     // inspectors //
     sf::Vector2<float> getPosition();
 
