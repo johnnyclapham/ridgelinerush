@@ -38,13 +38,13 @@ void Hero::update(float time, Terrain terrain){
        velocity += sf::Vector2<float>(0, .05*time);
     }
 
-    velocity += velocityBuffer*time;
+    velocity += velocityBuffer; //*time;
     positionBuffer = positionBuffer*time;
     topLeftCollisionPt = position+sf::Vector2<float>(20, 5);
     topRightCollisionPt = position+sf::Vector2<float>(width-20, 5);
     bottomLeftCollisionPt = position+sf::Vector2<float>(20, height);
     bottomRightCollisionPt = position+sf::Vector2<float>(width-20, height);
-    changePosition(velocity+positionBuffer, terrain);
+    changePosition(velocity*time+positionBuffer, terrain); // changePosition(velocity+positionBuffer, terrain);
     setPosition(position.x-time, position.y+time);
     velocityBuffer = sf::Vector2<float>(0, 0);
     positionBuffer = sf::Vector2<float>(0, 0);
@@ -125,7 +125,7 @@ void Hero::jump(){
 void Hero::driftLeft(){
     //std::cout << position.x<< std::endl;
     if(playerState == airborne){
-        velocityBuffer.x -= .03;
+        velocityBuffer.x -= .1;
     }
     facingDirection = LEFT;
 }
@@ -133,7 +133,7 @@ void Hero::driftLeft(){
 void Hero::driftRight(){
     //std::cout << position.x<< std::endl;
     if(playerState == airborne){
-        velocityBuffer.x += .03;
+        velocityBuffer.x += .1;
     }
     facingDirection = RIGHT;
 }
