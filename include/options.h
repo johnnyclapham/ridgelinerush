@@ -1,11 +1,12 @@
 #include "SFML/Graphics.hpp"
+#include "Settings.h"
 
 
 #ifndef RIDGELINERUSH_OPTIONS_H
 #define RIDGELINERUSH_OPTIONS_H
 
-#define MAX_NUMBER_OF_ITEMS 4 //# of elem. on screen
-//(we have 4 buttons)
+#define MAX_NUMBER_OF_ITEMS 9 //# of elem. on screen
+//(we have 8 buttons)
 
 class Options
 {
@@ -16,9 +17,7 @@ public:
 	void draw(sf::RenderWindow &window);
 	void MoveUp(); //to move selection up
 	void MoveDown(); //to mover selection down
-	//function to get current selection
-	// int GetPressedItem() { return selectedItemIndex; }
-  int GetPressedItem();
+    int GetPressedItem(); //function to get current selection
 
 private:
 	int selectedItemIndex;
