@@ -7,7 +7,7 @@ Options::Options(float screenWidth, float screenHeight)
 {
 	sf::String OptionsText;
 	float OptionsTextWidth;
-    Settings s = Settings(0);
+        Settings s = Settings(0);
 
     sf::String fontPath = GAME_FONT_PATH;
     if(!font.loadFromFile(fontPath)){
