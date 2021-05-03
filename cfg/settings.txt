@@ -1,6 +1,6 @@
 SETTINGS:
 
-volume: 100
+volume: 9
 movement up: W
 movement left: A
 movement right: D
