@@ -5,7 +5,7 @@
 #ifndef RIDGELINERUSH_OPTIONS_H
 #define RIDGELINERUSH_OPTIONS_H
 
-#define MAX_NUMBER_OF_ITEMS 9 //# of elem. on screen
+#define MAX_NUMBER_OF_OPTIONS_ITEMS 9 //# of elem. on screen
 //(we have 9 buttons)
 
 class Options
@@ -23,7 +23,7 @@ private:
 	int selectedItemIndex;
 	sf::Font font;
 	//array of elements for the Options
-	sf::Text options[MAX_NUMBER_OF_ITEMS];
+	sf::Text options[MAX_NUMBER_OF_OPTIONS_ITEMS];
 
 };
 

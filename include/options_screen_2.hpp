@@ -32,7 +32,7 @@ int options_screen_2::Run (sf::RenderWindow &App)
     sf::Text optionsText; //updated during re-rendering
     optionsText.setFont(font); // font is a sf::Font
     optionsText.setCharacterSize(125);
-    optionsText.setFillColor(sf::Color::White); //setFillColor
+    optionsText.setFillColor(sf::Color::White);
     optionsText.setStyle(sf::Text::Bold);
     optionsText.setPosition(70,0);
     std::string optionsString = "Options";
@@ -73,9 +73,10 @@ int options_screen_2::Run (sf::RenderWindow &App)
                     // we must navigate to next
                       {
                       case 0:
-                        std::cout << "\n\nVolume not modified.\n";
-                        //TODO: Do domething on press
-                        //implement an option
+                        std::cout << "\n\nVolume modified.\n";
+                        std::cout << s.keyToStr(Event.key.code) << std::endl;
+                        // restrict volume input to between 0 and 9
+                        if (Event.key.code > 25 && Event.key.code < 36) { s.setVolume(Event.key.code - 26); }
                         break;
                       case 1:
                         std::cout << "\n\nNew <jump> key set.\n";
