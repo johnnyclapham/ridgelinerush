@@ -6,7 +6,7 @@
 using namespace std;
 
 Settings::Settings() {
-    volume = 100;
+    volume = 9;
     difficulty = 1;
     mvmt_up = sf::Keyboard::W;
     mvmt_left = sf::Keyboard::A;
@@ -57,7 +57,7 @@ void Settings::read() {
 }
 
 void Settings::restoreToDefault() {
-    volume = 100;
+    volume = 9;
     difficulty = 1;
     mvmt_up = sf::Keyboard::W;
     mvmt_left = sf::Keyboard::A;
