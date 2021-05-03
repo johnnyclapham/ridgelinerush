@@ -72,8 +72,11 @@ Results::Results()
 {
 }
 
-void Results::draw(sf::RenderWindow &window)
+void Results::draw(sf::RenderWindow &window, Background &background)
 {
+  drawBackground(window, background);
+  Sprite gameLogo = Sprite("assets/Logo.png");
+  gameLogo.draw(sf::Vector2<float>(175,20), &window);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
 		window.draw(results[i]);

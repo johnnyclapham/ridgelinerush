@@ -4,12 +4,14 @@
 #include <iostream>
 #include "cScreen.hpp"
 #include "results.h"
+#include "Background.h"
 
 class results_screen_3 : public cScreen
 {
 public:
     results_screen_3 (void);
     virtual int Run (sf::RenderWindow &App);
+    Background background;
 };
 
 results_screen_3::results_screen_3 (void){}
@@ -31,35 +33,33 @@ int results_screen_3::Run (sf::RenderWindow &App)
     //create sfml text to display score to player
     sf::Text resultsText; //updated during re-rendering
     resultsText.setFont(font); // font is a sf::Font
-    resultsText.setCharacterSize(125);
+    resultsText.setCharacterSize(160);
     resultsText.setFillColor(sf::Color::White);
     resultsText.setStyle(sf::Text::Bold);
     resultsText.setPosition(70,0);
-    std::string resultsString = "Results";
-    resultsText.setString(resultsString);
+    background = Background();
 
     Results results(App.getSize().x, App.getSize().y);
-
+    sf::Clock clock;
+    int deltaMS;
 
 		// our game loop
 	  while(App.isOpen())
 	  {
-	    //App.setFramerateLimit(60);
-
+      deltaMS = clock.getElapsedTime().asMicroseconds();
+      background.update(deltaMS*GAME_TIME_FACTOR);
+      clock.restart();
 	    // process events
 	    sf::Event Event;
 	    while(App.pollEvent(Event)){
-
 	              // Exit
 	              if(Event.type == sf::Event::Closed){
 	                App.close();
 	                printf("\ngame closed\n");
 	              }
-
 	              // key pressed event
 	              if (Event.type == sf::Event::KeyPressed)
 	              {
-
                   if (Event.key.code == sf::Keyboard::Up){
                     results.MoveUp(); //move selection up
 
@@ -97,14 +97,14 @@ int results_screen_3::Run (sf::RenderWindow &App)
                   }
 								}
 
-
+              }
 				//clear, draw, and display our results screen
 				App.clear(sf::Color::Black);
-        results.draw(App);
+        results.draw(App, background);
         App.draw(resultsText);
 				App.display();
 
-			}
+
 		}
 
     //exit (should not be needed)

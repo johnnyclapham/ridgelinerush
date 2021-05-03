@@ -97,6 +97,20 @@ void Hero::update(float time, Terrain terrain){
     }
 
     //applyPowerup();
+
+    //check if hero is too high
+    if (position.y<=-100){
+      //velocity.y *= -1;
+      position.y = -99;
+      std::cout << "\n\nToo high!\n\n";
+    }
+
+    //check if hero is off right of screen
+    if (position.x>=WINDOW_WIDTH){
+      position.x -= 10;
+      std::cout << "\n\nToo wide!\n\n";
+    }
+
 }
 
 
@@ -183,7 +197,7 @@ void Hero::applyPowerup() {
     switch (powerup.getPowerupType()) {
         case PT::damage_boost:
           std::cout << "Old damage: "<< damage;
-          damage *= 1.01;
+          damage *= 1.1;
           std::cout << " New damage: "<< damage<<"\n\n";
           break;
 
@@ -195,13 +209,13 @@ void Hero::applyPowerup() {
 
         case PT::jump_boost:
           std::cout << "Old velocity.y: "<< velocity.y;
-          velocity.y *= 1.01;
+          velocity.y *= 1.1;
           std::cout << " New velocity.y: "<< velocity.y<<"\n\n";
           break;
 
         case PT::speed_boost:
           std::cout << "Old velocity.x: "<< velocity.x;
-          velocity.x *= 1.01;
+          velocity.x *= 1.1;
           std::cout << " New velocity.x: "<< velocity.x<<"\n\n";
           break;
         default:  return;
