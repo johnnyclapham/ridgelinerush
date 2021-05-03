@@ -41,7 +41,7 @@ void Logic::update(float time) {
     terrain.move(.5*time, .5*time);
     dragon.update(.5*time);
     dragonAI.update(.5*time);
-    settings.read();
+    // settings.read();
     launcher.updateHero(.5*time, &terrain, &dragon, &hero);
     dragonLauncher.updateDragon(.5*time, &terrain, &dragon, &hero);
     background.update(.5*time);
