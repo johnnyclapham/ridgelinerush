@@ -48,7 +48,7 @@ void Controller::update(){
         }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if (sf::Keyboard::isKeyPressed(attack))
     {
         (*weaponLauncher).shoot();
     }
@@ -64,7 +64,7 @@ sf::Keyboard::Key Controller::getMvmtDownKey() { return mvmt_down; }
 
 sf::Keyboard::Key Controller::getAttackKey() { return attack; }
 
-sf::Keyboard::Key Controller::getPauseKey() { return pause; }
+sf::Keyboard::Key Controller::getQuitKey() { return quit; }
 
 void Controller::setMvmtUpKey(sf::Keyboard::Key k) { mvmt_up = k; }
 
@@ -76,6 +76,6 @@ void Controller::setMvmtDownKey(sf::Keyboard::Key k) { mvmt_down = k; }
 
 void Controller::setAttackKey(sf::Keyboard::Key k) { attack = k; }
 
-void Controller::setPauseKey(sf::Keyboard::Key k) { pause = k; }
+void Controller::setQuitKey(sf::Keyboard::Key k) { quit = k; }
 
 
