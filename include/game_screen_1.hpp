@@ -55,6 +55,14 @@ int game_screen_1::Run (sf::RenderWindow &App)
 
     playerView.updateView(deltaMS*GAME_TIME_FACTOR);
 
+    //if hero is off screen end the game
+    Hero hero = gameLogic->getHero();
+    sf::Vector2<float> position = sf::Vector2<float>(hero.getPosition().x, hero.getPosition().y);
+    if(position.y>WINDOW_HEIGHT||position.x<=0){
+      return 3;
+    }
+  
+
     // display
     App.display();
     //sf::sleep(sf::milliseconds(50));
