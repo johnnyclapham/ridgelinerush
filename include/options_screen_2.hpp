@@ -32,13 +32,13 @@ int options_screen_2::Run (sf::RenderWindow &App)
     sf::Text optionsText; //updated during re-rendering
     optionsText.setFont(font); // font is a sf::Font
     optionsText.setCharacterSize(125);
-    optionsText.setFillColor(sf::Color::White);
+    optionsText.setFillColor(sf::Color::White); //setFillColor
     optionsText.setStyle(sf::Text::Bold);
     optionsText.setPosition(70,0);
     std::string optionsString = "Options";
     optionsText.setString(optionsString);
-
     Options options(App.getSize().x, App.getSize().y);
+    Settings s = Settings(0);
 
 
 		// our game loop
@@ -66,43 +66,66 @@ int options_screen_2::Run (sf::RenderWindow &App)
                   } else if (Event.key.code == sf::Keyboard::Down){
                     options.MoveDown(); //move selection down
 
-                  } else if (Event.key.code == sf::Keyboard::Enter){
+                  } else { //Enter
                     switch (options.GetPressedItem())
                     //GetPressedItem calls the options element array selectedItemIndex
                     // this tells us which item has been selected and which screen
                     // we must navigate to next
                       {
                       case 0:
-                        std::cout << "\n\nOption 1 pressed\n";
+                        std::cout << "\n\nVolume not modified.\n";
                         //TODO: Do domething on press
                         //implement an option
                         break;
                       case 1:
-                        std::cout << "\n\nOption 2 pressed\n";
-                        //TODO: Do domething on press
-                        //implement an option
+                        std::cout << "\n\nNew <jump> key set.\n";
+                        std::cout << s.keyToStr(Event.key.code) << std::endl;
+                        s.setMvmtUpKey(Event.key.code);
                         break;
-
                       case 2:
-                        std::cout << "\n\nOption 3 pressed\n";
-                        //TODO: Do domething on press
-                        //implement an option
+                        std::cout << "\n\nNew <move forward> key set.\n";
+                        std::cout << s.keyToStr(Event.key.code) << std::endl;
+                        s.setMvmtRightKey(Event.key.code);
                         break;
                       case 3:
+                        std::cout << "\n\nNew <move backward> key set.\n";
+                        std::cout << s.keyToStr(Event.key.code) << std::endl;
+                        s.setMvmtLeftKey(Event.key.code);
+                        break;
+                      case 4:
+                        std::cout << "\n\nNew <jump cancel> key set.\n";
+                        std::cout << s.keyToStr(Event.key.code) << std::endl;
+                        s.setMvmtDownKey(Event.key.code);
+                        break;
+                      case 5:
+                        std::cout << "\n\nNew <attack> key set.\n";
+                        std::cout << s.keyToStr(Event.key.code) << std::endl;
+                        s.setAttackKey(Event.key.code);
+                        break;
+                      case 6:
+                        std::cout << "\n\nNew <quit> key set.\n";
+                        std::cout << s.keyToStr(Event.key.code) << std::endl;
+                        s.setQuitKey(Event.key.code);
+                        break;
+                      case 7:
+                        std::cout << "\n\nSettings restored to defaults.\n";
+                        s.restoreToDefault();
+                        break;
+                      case 8:
                         std::cout << "\n\nReturning to Main Menu\n";
                         std::cout << "title_screen_0 <- options_screen_2\n";
                         return 0; //0 goes to main menu
                         break;
                       }
                   }
-								}
+	}
 
 
-				//clear, draw, and display our options screen
-				App.clear(sf::Color::Black);
-        options.draw(App);
-        App.draw(optionsText);
-				App.display();
+		//clear, draw, and display our options screen
+		App.clear(sf::Color::Black);
+                options.draw(App);
+                App.draw(optionsText);
+		App.display();
 
 			}
 		}
