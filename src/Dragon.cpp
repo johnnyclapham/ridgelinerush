@@ -43,6 +43,7 @@ void Dragon::update(float time){
         projectileList.at(iter).move();
         if (projectileList.at(iter).handleCollision(terrain, hero->getHitbox()) == HERO){
             hero->modifyHealth(-1*projectileList.at(iter).damage);
+            if (hero->getHealth() == 0) hero->die();
             projectileList.erase(i);
         } else if (projectileList.at(iter).getPosition().x < 0 || projectileList.at(iter).handleCollision(terrain, hero->getHitbox()) == TERRAIN) {
             projectileList.erase(i);

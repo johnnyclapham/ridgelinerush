@@ -50,6 +50,8 @@ int game_screen_1::Run (sf::RenderWindow &App)
 
     deltaMS = clock.getElapsedTime().asMicroseconds();
     gameLogic->update(deltaMS*GAME_TIME_FACTOR);
+    // if the hero is dead, go to the lose screen
+    if (gameLogic->getHeroPointer()->healthDepleted()) return 3;
     clock.restart();
 
     // clear screen and fill with blue
