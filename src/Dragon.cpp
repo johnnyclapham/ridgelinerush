@@ -36,8 +36,10 @@ void Dragon::update(float time){
     // iterate through projectiles for updates
     for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
         projectileList.at(iter).move();
-        if (projectileList.at(iter).handleCollision(terrain, hero->getHitbox())) projectileList.erase(i);
-        else if (projectileList.at(iter).getPosition().x < 0) {
+        if (projectileList.at(iter).handleCollision(terrain, hero->getHitbox()) == HERO){
+            hero->modifyHealth(-1*projectileList.at(iter).damage);
+            projectileList.erase(i);
+        } else if (projectileList.at(iter).getPosition().x < 0 || projectileList.at(iter).handleCollision(terrain, hero->getHitbox()) == TERRAIN) {
             projectileList.erase(i);
         }
         iter++;
@@ -47,8 +49,8 @@ void Dragon::update(float time){
 
 
 void Dragon::shoot() {
-    projectileList.emplace_back(Projectile(position.x+160, position.y+110, 50, projectileAngle, projectileSpeed, RIGHT, 50, 50));
-    
+    projectileList.emplace_back(Projectile(position.x+160, position.y+110, 1, projectileAngle, projectileSpeed, RIGHT, 50, 50));
+
 }
 
 void Dragon::setProjectileAngle(float angle) {

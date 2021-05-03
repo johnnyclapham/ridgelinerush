@@ -15,6 +15,8 @@ Sprite::Sprite(const std::string &spritesheet) {
     texture = spritesheet;
     sf::Texture newTexture;
     spriteDirection = RIGHT;
+    scaleX = 4;
+    scaleY = 4;
 }
 
 void Sprite::update(float time){
@@ -26,6 +28,15 @@ void Sprite::setDirection(Direction direction){
 
 void Sprite::setWidth(float width){
     spriteWidth = width;
+}
+
+void Sprite::setScale(sf::Vector2<float> scale){
+    scaleX = scale.x;
+    scaleY = scale.y;
+}
+
+sf::FloatRect Sprite::getBounds(){
+    return sprite.getGlobalBounds();
 }
 
 void Sprite::draw(sf::Vector2<float> position, sf::RenderWindow *window) {
@@ -41,7 +52,7 @@ void Sprite::draw(sf::Vector2<float> position, sf::RenderWindow *window) {
       newTexture.loadFromFile(texture);
     }
     sprite.setTexture(newTexture);
-    sprite.setScale(4,4);
+    sprite.setScale(scaleX,scaleY);
     sprite.setPosition(position);
     if(spriteDirection == LEFT){
         sprite.scale(-1.f,1.f);
@@ -49,3 +60,4 @@ void Sprite::draw(sf::Vector2<float> position, sf::RenderWindow *window) {
     }
     window->draw(sprite);
 }
+

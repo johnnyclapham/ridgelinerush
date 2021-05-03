@@ -6,6 +6,7 @@ screen type: Fullscreen
 movement up: W
 movement left: A
 movement right: D
+movement down: S
 attack: X
 pause: P
 

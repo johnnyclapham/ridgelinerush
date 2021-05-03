@@ -28,6 +28,8 @@ private:
     void drawNewPowerups();
     void drawBackground();
     void backgroundInit();
+    void drawHealthBar();
+    void healthBarInit();
 
 
     sf::RenderWindow *window;
@@ -45,6 +47,9 @@ private:
 
     int reset;
 
+    Sprite healthBarOutline;
+    Sprite healthBar;
+    Sprite healthBarDivider;
 
     Sprite bgLayer1;
     Sprite bgLayer2;

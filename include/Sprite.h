@@ -19,7 +19,10 @@ public:
     void update(float time);
     void setDirection(Direction direction);
     void setWidth(float width);
+    void setScale(sf::Vector2<float> scale);
     void draw(sf::Vector2<float> position, sf::RenderWindow* window);
+
+    sf::FloatRect getBounds();
 
 private:
     // members //
@@ -27,6 +30,8 @@ private:
     float spriteWidth;
     Direction spriteDirection;
     std::string texture;
+    float scaleX;
+    float scaleY;
 };
 
 #endif // SPRITE_H

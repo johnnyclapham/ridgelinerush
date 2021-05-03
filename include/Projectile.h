@@ -14,7 +14,7 @@ class Projectile {
 
     void move();
     sf::Vector2f getPosition();
-    bool handleCollision(Terrain *terrain, Hitbox hitbox);
+    EntityCollision handleCollision(Terrain *terrain, Hitbox hitbox);
 
     float damage;
     float height;

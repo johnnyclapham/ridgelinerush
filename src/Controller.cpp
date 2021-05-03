@@ -7,6 +7,7 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "Settings.h"
 
 Controller::Controller() {
 }
@@ -40,6 +41,13 @@ void Controller::update(){
         }
     }
 
+    if (sf::Keyboard::isKeyPressed(mvmt_down))
+    {
+        if((*playerHero).getFloorType() == NO_COLLISION){
+            (*playerHero).fastFall();
+        }
+    }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         (*weaponLauncher).shoot();
@@ -52,6 +60,8 @@ sf::Keyboard::Key Controller::getMvmtLeftKey() { return mvmt_left; }
 
 sf::Keyboard::Key Controller::getMvmtRightKey() { return mvmt_right; }
 
+sf::Keyboard::Key Controller::getMvmtDownKey() { return mvmt_down; }
+
 sf::Keyboard::Key Controller::getAttackKey() { return attack; }
 
 sf::Keyboard::Key Controller::getPauseKey() { return pause; }
@@ -61,6 +71,8 @@ void Controller::setMvmtUpKey(sf::Keyboard::Key k) { mvmt_up = k; }
 void Controller::setMvmtLeftKey(sf::Keyboard::Key k) { mvmt_left = k; }
 
 void Controller::setMvmtRightKey(sf::Keyboard::Key k) { mvmt_right = k; }
+
+void Controller::setMvmtDownKey(sf::Keyboard::Key k) { mvmt_down = k; }
 
 void Controller::setAttackKey(sf::Keyboard::Key k) { attack = k; }
 

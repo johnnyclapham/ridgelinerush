@@ -14,6 +14,8 @@ enum TileShape { UPPER_LEFT, LOWER_LEFT, UPPER_RIGHT, LOWER_RIGHT, SQUARE };
 // Left slope is "/", right slope is "\"
 enum Collision {NO_COLLISION, CEILING, WALL, FLOOR, LEFT_SLOPE, RIGHT_SLOPE};
 
+enum EntityCollision {TERRAIN, HERO, DRAGON, NONE};
+
 enum Direction {LEFT, RIGHT};
 
 // Window width and window height - may not stay constants with resizble window

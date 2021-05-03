@@ -12,6 +12,7 @@ Settings::Settings() {
     mvmt_up = sf::Keyboard::W;
     mvmt_left = sf::Keyboard::A;
     mvmt_right = sf::Keyboard::D;
+    mvmt_down = sf::Keyboard::S;
     attack = sf::Keyboard::X;
     pause = sf::Keyboard::P;
     write();
@@ -27,6 +28,7 @@ void Settings::write() {
     file << "movement up: " << keyToStr(getMvmtUpKey()) << endl;
     file << "movement left: " << keyToStr(getMvmtLeftKey()) << endl;
     file << "movement right: " << keyToStr(getMvmtRightKey()) << endl;
+    file << "movement down: " << keyToStr(getMvmtDownKey()) << endl;
     file << "attack: " << keyToStr(getAttackKey()) << endl;
     file << "pause: " << keyToStr(getPauseKey()) << endl;
 
@@ -46,6 +48,7 @@ void Settings::read() {
             if (tmp.compare(0, 13, "movement up: ") == 0) { string s = tmp.substr(13); setMvmtUpKey(strToKey(s)); }
             if (tmp.compare(0, 15, "movement left: ") == 0) { string s = tmp.substr(15); setMvmtLeftKey(strToKey(s)); }
             if (tmp.compare(0, 16, "movement right: ") == 0) { string s = tmp.substr(16); setMvmtRightKey(strToKey(s)); }
+            if (tmp.compare(0, 15, "movement down: ") == 0) { string s = tmp.substr(15); setMvmtDownKey(strToKey(s)); }
             if (tmp.compare(0, 8, "attack: ") == 0) { string s = tmp.substr(8); setAttackKey(strToKey(s)); }
             if (tmp.compare(0, 7, "pause: ") == 0) { string s = tmp.substr(7); setPauseKey(strToKey(s)); }
         }
@@ -60,6 +63,7 @@ void Settings::restoreToDefault() {
     mvmt_up = sf::Keyboard::W;
     mvmt_left = sf::Keyboard::A;
     mvmt_right = sf::Keyboard::D;
+    mvmt_down = sf::Keyboard::S;
     attack = sf::Keyboard::X;
     pause = sf::Keyboard::P;
     write();
@@ -95,6 +99,8 @@ sf::Keyboard::Key Settings::getMvmtLeftKey() { return mvmt_left; }
 
 sf::Keyboard::Key Settings::getMvmtRightKey() { return mvmt_right; }
 
+sf::Keyboard::Key Settings::getMvmtDownKey() { return mvmt_down; }
+
 sf::Keyboard::Key Settings::getAttackKey() { return attack; }
 
 sf::Keyboard::Key Settings::getPauseKey() { return pause; }
@@ -104,6 +110,8 @@ void Settings::setMvmtUpKey(sf::Keyboard::Key k) { mvmt_up = k; write(); }
 void Settings::setMvmtLeftKey(sf::Keyboard::Key k) { mvmt_left = k; write(); }
 
 void Settings::setMvmtRightKey(sf::Keyboard::Key k) { mvmt_right = k; write(); }
+
+void Settings::setMvmtDownKey(sf::Keyboard::Key k) { mvmt_down = k; write(); }
 
 void Settings::setAttackKey(sf::Keyboard::Key k) { attack = k; write(); }
 
@@ -115,7 +123,7 @@ string Settings::keyToStr(sf::Keyboard::Key k) {
         case sf::Keyboard::B: return "B";
         case sf::Keyboard::C: return "C";
         case sf::Keyboard::D: return "D";
-        case sf::Keyboard::E: return "E"; 
+        case sf::Keyboard::E: return "E";
         case sf::Keyboard::F: return "F";
         case sf::Keyboard::G: return "G";
         case sf::Keyboard::H: return "H";
@@ -222,7 +230,7 @@ sf::Keyboard::Key Settings::strToKey(const string &s) {
     if (s == "B") { return sf::Keyboard::B; }
     if (s == "C") { return sf::Keyboard::C; }
     if (s == "D") { return sf::Keyboard::D; }
-    if (s == "E") { return sf::Keyboard::E; } 
+    if (s == "E") { return sf::Keyboard::E; }
     if (s == "F") { return sf::Keyboard::F; }
     if (s == "G") { return sf::Keyboard::G; }
     if (s == "H") { return sf::Keyboard::H; }

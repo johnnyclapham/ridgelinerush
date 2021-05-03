@@ -27,6 +27,7 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     powerupJumpSprite = Sprite("assets/powerups/jump.png");
     powerupSpeedSprite = Sprite("assets/powerups/speed.png");
     backgroundInit();
+    healthBarInit();
     updateView(.2);
 }
 
@@ -37,8 +38,8 @@ void PlayerView::updateView(float time) {
     drawHero();
     drawDragon();
     drawProjectiles();
+    drawHealthBar();
     reset += time;
-    //drawNewPowerups();
     //drawPowerups(); //commented out until working correctly
 }
 
@@ -160,7 +161,6 @@ void PlayerView::drawProjectiles() {
     }
 }
 
-
 void PlayerView::drawNewPowerups() {
   int z1,z2;
     //Hero hero = this->logic->getHero();
@@ -208,7 +208,7 @@ void PlayerView::drawPowerups(int z1, int z2) {
         int y = hero.getPowerupBuffer();
         if (y == 1) { //damage
           toDraw.setFillColor(sf::Color::Green);
-          powerupDamageSprite.draw(position, window);
+          powerupDamageSprite.draw(sf::Vector2<float>(0,0), window);
          }
         if (y == 2) { //health
           toDraw.setFillColor(sf::Color::Blue);
@@ -236,6 +236,40 @@ void PlayerView::drawPowerups(int z1, int z2) {
     }
 }
 
+void PlayerView::drawHealthBar() {
+    Hero hero = this->logic->getHero();
+    sf::Vector2<float> healthBarPosition = sf::Vector2<float>(600,25);
+    sf::Vector2<float> healthBarInnerPosition = healthBarPosition+sf::Vector2<float>(64,8);
+    healthBar.setScale(sf::Vector2<float>(4*(float(hero.getHealth())/float(hero.getMaxHealth())), 4));
+    healthBar.draw(healthBarInnerPosition, window);
+    for(int i = 0; i < hero.getHealth(); i++){
+        healthBarDivider.draw(healthBarInnerPosition + sf::Vector2<float>((i+1)*(healthBar.getBounds().width/hero.getHealth()) -8,0), window);
+    }
+    healthBarOutline.draw(healthBarPosition, window);
+    sf::Font font;
+    if(!font.loadFromFile("assets/PKMN RBYGSC.ttf")){
+     //error
+     // new handling: if font fails to load, try alternate
+     // addressing method (for Mac OS)
+     std::cout << "failed to load font, trying alternate path \n";
+     std::cout << "now loading   : ../PKMN RBYGSC.ttf \n";
+     font.loadFromFile("../assets/PKMN RBYGSC.ttf");
+    }
+    sf::Text text;
+    text.setString(std::to_string(hero.getHealth()));
+    text.setFont(font);
+    text.setPosition(healthBarPosition+sf::Vector2<float>(31-(text.getGlobalBounds().width/2),6));
+    text.setFillColor(sf::Color(124,97,69));
+    text.setCharacterSize(32);
+    window->draw(text);
+}
+
+void PlayerView::healthBarInit(){
+    Background background = logic->getBackground();
+    healthBarOutline = Sprite("assets/Health bar outline.png");
+    healthBar = Sprite("assets/Health bar.png");
+    healthBarDivider = Sprite("assets/Health bar divider.png");
+}
 
 void PlayerView::backgroundInit(){
     Background background = logic->getBackground();

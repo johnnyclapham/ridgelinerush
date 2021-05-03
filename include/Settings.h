@@ -15,6 +15,7 @@ class Settings {
     sf::Keyboard::Key mvmt_up;
     sf::Keyboard::Key mvmt_left;
     sf::Keyboard::Key mvmt_right;
+    sf::Keyboard::Key mvmt_down;
     sf::Keyboard::Key attack;
     sf::Keyboard::Key pause;
 
@@ -33,11 +34,13 @@ class Settings {
     sf::Keyboard::Key getMvmtUpKey();
     sf::Keyboard::Key getMvmtLeftKey();
     sf::Keyboard::Key getMvmtRightKey();
+    sf::Keyboard::Key getMvmtDownKey();
     sf::Keyboard::Key getAttackKey();
     sf::Keyboard::Key getPauseKey();
     void setMvmtUpKey(sf::Keyboard::Key k);
     void setMvmtLeftKey(sf::Keyboard::Key k);
     void setMvmtRightKey(sf::Keyboard::Key k);
+    void setMvmtDownKey(sf::Keyboard::Key k);
     void setAttackKey(sf::Keyboard::Key k);
     void setPauseKey(sf::Keyboard::Key k);
     std::string keyToStr(sf::Keyboard::Key k);
