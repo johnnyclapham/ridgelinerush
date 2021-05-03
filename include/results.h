@@ -15,7 +15,7 @@ public:
 	Results(float screenWidth, float screenHeight);
 	Results();
 
-	void draw(sf::RenderWindow &window);
+	void draw(sf::RenderWindow &window, Background &background);
 	void MoveUp(); //to move selection up
 	void MoveDown(); //to mover selection down
 	//function to get current selection
