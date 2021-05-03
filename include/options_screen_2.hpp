@@ -119,14 +119,14 @@ int options_screen_2::Run (sf::RenderWindow &App)
                         break;
                       }
                   }
-								}
+	}
 
 
 				//clear, draw, and display our options screen
-				App.clear(sf::Color::Black);
+		App.clear(sf::Color::Black);
                 options.draw(App);
                 App.draw(optionsText);
-				App.display();
+		App.display();
 
 			}
 		}
