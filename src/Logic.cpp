@@ -19,7 +19,7 @@ Logic::Logic() {
     hero = Hero();
     dragon = Dragon(&hero, &terrain);
     dragonAI = DragonAI(&dragon, &hero);
-    settings = Settings();
+    settings = Settings(0);
     background = Background();
 
     controller.setMvmtUpKey(settings.getMvmtUpKey());
