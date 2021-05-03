@@ -1,11 +1,8 @@
 SETTINGS:
 
 volume: 100
-difficulty: 1
-screen type: Fullscreen
 movement up: W
 movement left: A
 movement right: D
-attack: X
-pause: P
-
+attack: Spacebar
+quit: Escape
