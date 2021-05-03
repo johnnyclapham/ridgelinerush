@@ -6,7 +6,7 @@
 #define RIDGELINERUSH_OPTIONS_H
 
 #define MAX_NUMBER_OF_OPTIONS_ITEMS 9 //# of elem. on screen
-//(we have 8 buttons)
+//(we have 9 buttons)
 
 class Options
 {
