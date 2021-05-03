@@ -26,6 +26,7 @@ public:
     void jump();
     void driftLeft();
     void driftRight();
+    void fastFall();
     void applyPowerup();
     void setPowerup(std::string s);
     void setPowerupPos(int x, int y);
@@ -44,6 +45,8 @@ public:
     bool isGrounded(Terrain terrain);
     bool isAirborne();
     int getHealth();
+    int getMaxHealth();
+    void modifyHealth(int amount);
     int getDamage();
     std::string getPowerup();
     int getPowerupBuffer();
@@ -59,8 +62,9 @@ private:
     // members //
     float width;
     float height;
-    float health;
-    float damage;
+    int health;
+    int maxHealth;
+    int damage;
     int timer;
     Direction facingDirection;
     sf::Vector2<float> position;

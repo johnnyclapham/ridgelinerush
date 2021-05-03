@@ -25,6 +25,7 @@ Logic::Logic() {
     controller.setMvmtUpKey(settings.getMvmtUpKey());
     controller.setMvmtLeftKey(settings.getMvmtLeftKey());
     controller.setMvmtRightKey(settings.getMvmtRightKey());
+    controller.setMvmtDownKey(settings.getMvmtDownKey());
     controller.setAttackKey(settings.getAttackKey());
     controller.setQuitKey(settings.getQuitKey());
 

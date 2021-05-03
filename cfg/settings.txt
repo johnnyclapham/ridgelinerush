@@ -4,6 +4,7 @@ volume: 100
 movement up: W
 movement left: A
 movement right: D
+movement down: S
 attack: Spacebar
 quit: Escape
 

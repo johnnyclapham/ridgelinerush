@@ -19,7 +19,8 @@ Hero::Hero() {
     floorType = NO_COLLISION;
     height = HERO_HEIGHT;
     width = HERO_WIDTH;
-    health = 100;
+    health = 10;
+    maxHealth = 10;
     damage = 5;
     powerup = Powerup();
     timer = 0;
@@ -35,7 +36,7 @@ Hero::Hero(float x, float y) {
 
 void Hero::update(float time, Terrain terrain){
     if(playerState == airborne){
-       velocity += sf::Vector2<float>(0, .05*time);
+       velocity += sf::Vector2<float>(0, .2*time);
     }
 
     velocity += velocityBuffer; //*time;
@@ -118,7 +119,7 @@ void Hero::jump(){
     if(playerState == ground){
         playerState = airborne;
         floorType = NO_COLLISION;
-        velocityBuffer.y -= 7.5;
+        velocityBuffer.y -= 11.5;
     }
 }
 
@@ -138,34 +139,42 @@ void Hero::driftRight(){
     facingDirection = RIGHT;
 }
 
+void Hero::fastFall(){
+
+    std::cout << "fast fall" << std::endl;
+    if(playerState == airborne && velocity.y < 3){
+        velocityBuffer.y += 4;
+    }
+}
+
 void Hero::walk(Direction direction){
     if(direction == LEFT){
         facingDirection = LEFT;
         switch(floorType){
             case LEFT_SLOPE:
-                positionBuffer.x -= 2;
-                positionBuffer.y += 2;
+                positionBuffer.x -= 3;
+                positionBuffer.y += 3;
                 break;
             case RIGHT_SLOPE:
-                positionBuffer.x += 3;
-                positionBuffer.y -= 3;
+                positionBuffer.x += 4;
+                positionBuffer.y -= 4;
                 break;
             case FLOOR:
-                positionBuffer.x -= 4;
+                positionBuffer.x -= 5;
         }
     }  else if(direction == RIGHT){
         facingDirection = RIGHT;
         switch(floorType){
             case LEFT_SLOPE:
-                positionBuffer.x += 3;
-                positionBuffer.y -= 3;
+                positionBuffer.x += 4;
+                positionBuffer.y -= 4;
                 break;
             case RIGHT_SLOPE:
-                positionBuffer.x -= 2;
-                positionBuffer.y += 2;
+                positionBuffer.x -= 3;
+                positionBuffer.y += 3;
                 break;
             case FLOOR:
-                positionBuffer.x += 4;
+                positionBuffer.x += 5;
         }
     }
 }
@@ -195,7 +204,6 @@ void Hero::applyPowerup() {
           velocity.x *= 1.01;
           std::cout << " New velocity.x: "<< velocity.x<<"\n\n";
           break;
-          
         default:  return;
     }
 }
@@ -214,7 +222,21 @@ int Hero::getPowerupBuffer(){
 
 sf::Vector2<float> Hero::getPosition() { return position; }
 
+// Health related methods
+
 int Hero::getHealth() { return health; }
+int Hero::getMaxHealth() { return maxHealth; }
+
+void Hero::modifyHealth(int amount){
+    std::cout << "here" << std::endl;
+    if(health + amount > maxHealth){
+        health = maxHealth;
+    } else if (health + amount < 0){
+        health = 0;
+    } else {
+        health += amount;
+    }
+}
 
 int Hero::getDamage() { return damage; }
 

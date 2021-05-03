@@ -41,7 +41,7 @@ void Projectile::move() {
   y_coord = y_coord + y_diff;
 }
 
-bool Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {
+EntityCollision Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {
   // TODO check collision with any objects
   // check if there is a collision with the terrain
   std::vector<Column> columnList = terrain->columnList;
@@ -61,7 +61,7 @@ bool Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {
     // check tiles
     Tile check = columnList.at(i).getTiles().at(0);
     Collision collision = check.intersectingPoint(currentPt, newPt);
-    if (collision != NO_COLLISION) return true;
+    if (collision != NO_COLLISION) return TERRAIN;
   }
   if (obstacleList.size() != 0) {
     for (int i = 0; i < obstacleList.size(); i++) {
@@ -69,11 +69,11 @@ bool Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {
       for (int j = 0; j < obstacleList.at(i).getTiles().size(); j++) {
         Tile check = obstacleList.at(i).getTiles().at(j);
         Collision collision = check.intersectingPoint(currentPt, newPt);
-        if (collision != NO_COLLISION) return true;
+        if (collision != NO_COLLISION) return TERRAIN;
       }
     }
   }
-  
+
   // check if there is a collision with the hitbox
 
   if (projectileDirection == LEFT) {
@@ -81,7 +81,7 @@ bool Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {
     if (hitbox.x + hitbox.width > currentPt.x && hitbox.x <= currentPt.x) {
       if (currentPt.y >= hitbox.y && currentPt.y < hitbox.y + hitbox.height) {
         std::cout << "Dragon hit" << std::endl;
-        return true;
+        return DRAGON;
       }
     }
   }
@@ -90,11 +90,11 @@ bool Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {
     if (hitbox.x <= currentPt.x && hitbox.x + hitbox.width > currentPt.x) {
       if (currentPt.y >= hitbox.y && currentPt.y < hitbox.y + hitbox.height) {
         std::cout << "Hero hit" << std::endl;
-        return true;
+        return HERO;
       }
     }
   }
 
   // return
-  return false;
+  return NONE;
 }
