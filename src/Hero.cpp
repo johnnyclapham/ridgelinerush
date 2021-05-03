@@ -24,6 +24,7 @@ Hero::Hero() {
     damage = 5;
     powerup = Powerup();
     timer = 0;
+    dead = false;
     topLeftCollisionPt = position+sf::Vector2<float>(20, 20);
     topRightCollisionPt = position+sf::Vector2<float>(width-20, 20);
     bottomLeftCollisionPt = position+sf::Vector2<float>(20, height);
@@ -424,4 +425,12 @@ sf::Vector2<float> Hero::checkCollision(sf::Vector2<float> change, Terrain terra
 
 Hitbox Hero::getHitbox() {
     return Hitbox(position.x, position.y, HERO_WIDTH, HERO_HEIGHT);
+}
+
+bool Hero::healthDepleted() {
+    return dead;
+}
+
+void Hero::die() {
+    dead = true;
 }

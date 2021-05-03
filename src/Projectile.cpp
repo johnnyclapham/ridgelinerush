@@ -37,8 +37,8 @@ void Projectile::move() {
     x_diff *= -1;
   }
   float y_diff = speed * angle;
-  x_coord = x_coord + x_diff;
-  y_coord = y_coord + y_diff;
+  x_coord = x_coord + (2 * x_diff);
+  y_coord = y_coord + (2 * y_diff);
 }
 
 EntityCollision Projectile::handleCollision(Terrain *terrain, Hitbox hitbox) {

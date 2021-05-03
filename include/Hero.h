@@ -31,6 +31,7 @@ public:
     void setPowerup(std::string s);
     void setPowerupPos(int x, int y);
     void setPowerupBuffer(int p);
+    bool healthDepleted();
 
 
 
@@ -56,6 +57,7 @@ public:
     enum state {ground, airborne};
 
     void walk(Direction direction);
+    void die();
 
     Hitbox getHitbox();
 private:
@@ -66,6 +68,7 @@ private:
     int maxHealth;
     int damage;
     int timer;
+    bool dead;
     Direction facingDirection;
     sf::Vector2<float> position;
     sf::Vector2<float> velocity;
