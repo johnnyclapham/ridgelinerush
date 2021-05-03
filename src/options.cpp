@@ -102,11 +102,11 @@ void Options::MoveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
 	{
-		options[selectedItemIndex].setColor(sf::Color::White);
+		options[selectedItemIndex].setFillColor(sf::Color::White);
 		options[selectedItemIndex].setCharacterSize(50);
 		//decreasing our index
 		selectedItemIndex--;
-		options[selectedItemIndex].setColor(sf::Color::Green);
+		options[selectedItemIndex].setFillColor(sf::Color::Green);
 		options[selectedItemIndex].setCharacterSize(50+5);
 	}
 }
@@ -115,10 +115,10 @@ void Options::MoveDown()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
 	{
-		options[selectedItemIndex].setColor(sf::Color::White);
+		options[selectedItemIndex].setFillColor(sf::Color::White);
 		options[selectedItemIndex].setCharacterSize(50);
 		selectedItemIndex++;
-		options[selectedItemIndex].setColor(sf::Color::Green);
+		options[selectedItemIndex].setFillColor(sf::Color::Green);
 		options[selectedItemIndex].setCharacterSize(50+5);
 	}
 }
