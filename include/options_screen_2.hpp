@@ -122,7 +122,7 @@ int options_screen_2::Run (sf::RenderWindow &App)
 	}
 
 
-				//clear, draw, and display our options screen
+		//clear, draw, and display our options screen
 		App.clear(sf::Color::Black);
                 options.draw(App);
                 App.draw(optionsText);
