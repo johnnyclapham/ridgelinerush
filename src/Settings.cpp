@@ -8,46 +8,46 @@ using namespace std;
 Settings::Settings() {
     volume = 100;
     difficulty = 1;
-    screentype = ScreenSetting::Fullscreen;
     mvmt_up = sf::Keyboard::W;
     mvmt_left = sf::Keyboard::A;
     mvmt_right = sf::Keyboard::D;
-    attack = sf::Keyboard::X;
-    pause = sf::Keyboard::P;
+    attack = sf::Keyboard::Space;
+    quit = sf::Keyboard::Escape;
     write();
+}
+
+Settings::Settings(int x) {
+    read();
 }
 
 void Settings::write() {
     fstream file;
-    file.open("./cfg/settings.txt", ios::out);
+    file.open("../cfg/settings.txt", ios::out);
     file << "SETTINGS:\n" << endl;
     file << "volume: " << getVolume() << endl;
-    file << "difficulty: " << getDifficulty() << endl;
-    file << "screen type: " << getScreentype() << endl;
+    // file << "difficulty: " << getDifficulty() << endl;
     file << "movement up: " << keyToStr(getMvmtUpKey()) << endl;
     file << "movement left: " << keyToStr(getMvmtLeftKey()) << endl;
     file << "movement right: " << keyToStr(getMvmtRightKey()) << endl;
     file << "attack: " << keyToStr(getAttackKey()) << endl;
-    file << "pause: " << keyToStr(getPauseKey()) << endl;
-
+    file << "quit: " << keyToStr(getQuitKey()) << endl;
     file << endl;
     file.close();
 }
 
 void Settings::read() {
     fstream file;
-    file.open("./cfg/settings.txt", ios::in);
+    file.open("../cfg/settings.txt", ios::in);
     if (file.is_open()) {
         string tmp;
         while (getline(file, tmp)) {
             if (tmp.compare(0, 8, "volume: ") == 0) { setVolume(stoi(tmp.substr(8))); }
-            if (tmp.compare(0, 12, "difficulty: ") == 0) { setDifficulty(stoi(tmp.substr(12))); }
-            if (tmp.compare(0, 13, "screen type: ") == 0) { setScreenType(strToScreentype(tmp.substr(13))); }
+            // if (tmp.compare(0, 12, "difficulty: ") == 0) { setDifficulty(stoi(tmp.substr(12))); }
             if (tmp.compare(0, 13, "movement up: ") == 0) { string s = tmp.substr(13); setMvmtUpKey(strToKey(s)); }
             if (tmp.compare(0, 15, "movement left: ") == 0) { string s = tmp.substr(15); setMvmtLeftKey(strToKey(s)); }
             if (tmp.compare(0, 16, "movement right: ") == 0) { string s = tmp.substr(16); setMvmtRightKey(strToKey(s)); }
             if (tmp.compare(0, 8, "attack: ") == 0) { string s = tmp.substr(8); setAttackKey(strToKey(s)); }
-            if (tmp.compare(0, 7, "pause: ") == 0) { string s = tmp.substr(7); setPauseKey(strToKey(s)); }
+            if (tmp.compare(0, 6, "quit: ") == 0) { string s = tmp.substr(6); setQuitKey(strToKey(s)); }
         }
         file.close();
     }
@@ -56,12 +56,11 @@ void Settings::read() {
 void Settings::restoreToDefault() {
     volume = 100;
     difficulty = 1;
-    screentype = ScreenSetting::Fullscreen;
     mvmt_up = sf::Keyboard::W;
     mvmt_left = sf::Keyboard::A;
     mvmt_right = sf::Keyboard::D;
-    attack = sf::Keyboard::X;
-    pause = sf::Keyboard::P;
+    attack = sf::Keyboard::Space;
+    quit = sf::Keyboard::Escape;
     write();
 }
 
@@ -73,22 +72,6 @@ int Settings::getDifficulty() { return difficulty; }
 
 void Settings::setDifficulty(int d) { difficulty = d; write(); }
 
-string Settings::getScreentype() {
-    switch (screentype) {
-        case ScreenSetting::Fullscreen: return "Fullscreen";
-        case ScreenSetting::Windowed: return "Windowed";
-        default: return "  "; // empty
-    }
-}
-
-ScreenSetting::ScreenType Settings::strToScreentype(const std::string &s) {
-    if (s == "Fullscreen") { return ScreenSetting::Fullscreen; }
-    if (s == "Windowed") { return ScreenSetting::Windowed; }
-    else { return ScreenSetting::N; } // empty screentype value for totality
-}
-
-void Settings::setScreenType(ScreenSetting::ScreenType st) { screentype = st; write(); }
-
 sf::Keyboard::Key Settings::getMvmtUpKey() { return mvmt_up; }
 
 sf::Keyboard::Key Settings::getMvmtLeftKey() { return mvmt_left; }
@@ -97,7 +80,7 @@ sf::Keyboard::Key Settings::getMvmtRightKey() { return mvmt_right; }
 
 sf::Keyboard::Key Settings::getAttackKey() { return attack; }
 
-sf::Keyboard::Key Settings::getPauseKey() { return pause; }
+sf::Keyboard::Key Settings::getQuitKey() { return quit; }
 
 void Settings::setMvmtUpKey(sf::Keyboard::Key k) { mvmt_up = k; write(); }
 
@@ -107,7 +90,7 @@ void Settings::setMvmtRightKey(sf::Keyboard::Key k) { mvmt_right = k; write(); }
 
 void Settings::setAttackKey(sf::Keyboard::Key k) { attack = k; write(); }
 
-void Settings::setPauseKey(sf::Keyboard::Key k) { pause = k; write(); }
+void Settings::setQuitKey(sf::Keyboard::Key k) { quit = k; write(); }
 
 string Settings::keyToStr(sf::Keyboard::Key k) {
     switch(k) {
@@ -211,8 +194,6 @@ string Settings::keyToStr(sf::Keyboard::Key k) {
         case sf::Keyboard::F13: return "F13";
         case sf::Keyboard::F14: return "F14";
         case sf::Keyboard::F15: return "F15";
-        case sf::Keyboard::Pause: return "Pause";
-        case sf::Keyboard::KeyCount: return "KeyCount";
         default: return "Unknown key";
     }
 }
@@ -318,7 +299,5 @@ sf::Keyboard::Key Settings::strToKey(const string &s) {
     if (s == "F13") { return sf::Keyboard::F13; }
     if (s == "F14") { return sf::Keyboard::F14; }
     if (s == "F15") { return sf::Keyboard::F15; }
-    if (s == "Pause") { return sf::Keyboard::Pause; }
-    if (s == "KeyCount") { return sf::Keyboard::KeyCount; }
     return sf::Keyboard::Unknown;
 }
