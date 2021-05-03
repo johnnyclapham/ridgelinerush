@@ -32,7 +32,7 @@ int options_screen_2::Run (sf::RenderWindow &App)
     sf::Text optionsText; //updated during re-rendering
     optionsText.setFont(font); // font is a sf::Font
     optionsText.setCharacterSize(125);
-    optionsText.setColor(sf::Color::White); //setFillColor
+    optionsText.setFillColor(sf::Color::White);
     optionsText.setStyle(sf::Text::Bold);
     optionsText.setPosition(70,0);
     std::string optionsString = "Options";
