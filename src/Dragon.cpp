@@ -18,10 +18,14 @@ Dragon::Dragon(Hero *hero, Terrain *terrain) {
     this->hero = hero;
     this->terrain = terrain;
     movementIteration = 0;
+    timesKilled = 0;
+    health = 5;
     height = 250;
     width = 200;
     resetShootValues();
     timer = sf::Clock();
+    respawnTimer = sf::Clock();
+    visible = true;
 }
 
 Dragon::Dragon(float x, float y, Hero *hero, Terrain *terrain) {
@@ -31,6 +35,7 @@ Dragon::Dragon(float x, float y, Hero *hero, Terrain *terrain) {
 }
 
 void Dragon::update(float time){
+    if (!visible && respawnTimer.getElapsedTime().asMilliseconds() > 5000) visible = true;
     // update projectiles - all of the shooting AI is handled through DragonAI.cpp
     int iter = 0;
     // iterate through projectiles for updates
@@ -61,6 +66,19 @@ float Dragon::getDelay() {
     return projectileDelay;
 }
 
+void Dragon::hit() {
+    health--;
+    if (!health) {
+        std::cout << "DRAGON KILLED" << std::endl;
+        // despawn dragon temporarily
+        timesKilled++;
+        visible = false;
+        respawnTimer.restart();
+        health = 5;
+        setPosition(0, 200);
+    }
+}
+
 void Dragon::setDelay(float delay) {
     projectileDelay = delay;
 }
@@ -86,5 +104,10 @@ void Dragon::resetShootValues() {
 }
 
 Hitbox Dragon::getHitbox() {
-    return Hitbox(position.x, position.y, width, height);
+    if (visible) return Hitbox(position.x, position.y, width, height);
+    else return Hitbox(WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0); // return bottom corner, for no hitbox
+}
+
+bool Dragon::isVisible() {
+    return visible;
 }

@@ -31,6 +31,8 @@ public:
     sf::Vector2<float> getPosition();
     float getDelay();
 
+    void hit();
+
     void shoot();
 
     enum state {up, down};
@@ -39,17 +41,25 @@ public:
 
     Hitbox getHitbox();
 
+    bool isVisible();
+
 private:
     // members //
     Hero *hero;
     Terrain *terrain;
     float width;
     float height;
+    int health;
+    int timesKilled;
     float projectileDelay;
     float projectileDamage;
     float projectileSpeed;
     float projectileAngle = 0;
     int movementIteration;
+
+    bool visible;
+    sf::Clock respawnTimer;
+
     sf::Clock timer;
 
     sf::Vector2<float> position;

@@ -20,6 +20,11 @@ DragonAI::DragonAI(Dragon *dragon, Hero *hero) {
 }
 
 void DragonAI::update(float time) {
+  if (!dragon->isVisible()) {
+    normalMovementIteration = 0;
+    return;
+  }
+
   float x = dragon->getPosition().x;
   float y = dragon->getPosition().y;
 

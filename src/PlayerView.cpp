@@ -128,7 +128,7 @@ void PlayerView::drawHero() {
 void PlayerView::drawDragon() {
     Dragon dragon = this->logic->getDragon();
     sf::Vector2<float> position = dragon.getPosition();
-    dragonSprite.draw(position, window);
+    if (dragon.isVisible()) dragonSprite.draw(position, window);
 }
 
 //same as for our hero

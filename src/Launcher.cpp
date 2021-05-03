@@ -27,7 +27,11 @@ void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *he
   // iterate through projectiles for updates
   for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
     projectileList.at(iter).move();
-    if (projectileList.at(iter).handleCollision(terrain, dragon->getHitbox())) projectileList.erase(i);
+    EntityCollision collision = projectileList.at(iter).handleCollision(terrain, dragon->getHitbox());
+    if (collision != NONE) {
+      projectileList.erase(i);
+    }
+    if (collision == DRAGON) dragon->hit();
     else if (projectileList.at(iter).getPosition().x < 0) {
       projectileList.erase(i);
     }
