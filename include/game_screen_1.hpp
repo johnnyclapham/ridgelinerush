@@ -27,17 +27,6 @@ int game_screen_1::Run (sf::RenderWindow &App)
   sf::Clock clock;
   int deltaMS;
 
-  sf::Music music;
-  std::string path = "assets/sounds/battle_theme.wav";
-  if (!music.openFromFile(path)) {
-    path = "../" + path;
-    std::cout << "Error with standard path. Now loading   : " << path << " \n";
-  }
-  music.openFromFile(path);
-  music.setVolume(20);
-  music.setLoop(true);
-  music.play();
-
   // start main loop
   while(App.isOpen())
   {
@@ -49,7 +38,7 @@ int game_screen_1::Run (sf::RenderWindow &App)
       if(Event.type == sf::Event::Closed)
         App.close();
 
-      std::cout << s.keyToStr(s.getQuitKey()) << std::endl;
+      //std::cout << s.keyToStr(s.getQuitKey()) << std::endl;
       if (Event.key.code == s.getQuitKey()){
         std::cout << "title_screen_0 <- game_screen_1\n";
         //return 0 calls the 0 position screen

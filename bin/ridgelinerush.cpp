@@ -21,6 +21,7 @@ int main(int argc, char** argv)
   	//Application variables
   	std::vector<cScreen*> Screens;
   	int screen = 0;
+  	int prevScreen = 1;
 
 
 
@@ -34,12 +35,36 @@ int main(int argc, char** argv)
     results_screen_3 s3;
   	Screens.push_back(&s3);
 
+    sf::Music music;
+
   	//Main loop
   	while (screen >= 0)
   	{
       //update the screen with returned screen index
-  		screen = Screens[screen]->Run(App);
-      std::cout << screen << '\n';
+      if(screen == 1){
+        std::string path = "assets/sounds/battle_theme.wav";
+        if (!music.openFromFile(path)) {
+            path = "../" + path;
+            std::cout << "Error with standard path. Now loading   : " << path << " \n";
+        }
+        music.openFromFile(path);
+        music.setVolume(15);
+        music.setLoop(true);
+        music.play();
+      } else if (prevScreen == 1){
+        std::string path = "assets/sounds/menu_theme.wav";
+        if (!music.openFromFile(path)) {
+            path = "../" + path;
+            std::cout << "Error with standard path. Now loading   : " << path << " \n";
+        }
+        music.openFromFile(path);
+        music.setVolume(15);
+        music.setLoop(true);
+        music.play();
+      }
+      prevScreen = screen;
+      screen = Screens[screen]->Run(App);
+
   	}
 
     //done

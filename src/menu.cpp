@@ -15,8 +15,6 @@ Menu::Menu(float screenWidth, float screenHeight)
      //error
      // new handling: if font fails to load, try alternate
      // addressing method (for Mac OS)
-     std::cout << "failed to load font, trying alternate path \n";
-     std::cout << "now loading   : ../ACETONE.ttf \n";
      font.loadFromFile("../"+fontPath);
   }
 
@@ -61,7 +59,6 @@ Menu::Menu()
 void Menu::draw(sf::RenderWindow &window, Background &background)
 {
     drawBackground(window, background);
-    Sprite gameLogo = Sprite("assets/Logo.png");
     gameLogo.draw(sf::Vector2<float>(175,20), &window);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
@@ -106,6 +103,7 @@ int Menu::GetPressedItem(){
 
 void Menu::backgroundInit(){
     std::vector<float> spriteWidths;
+    gameLogo = Sprite("assets/Logo.png");
     bgLayer1 = Sprite("assets/backgroundLayer1.png");
     bgLayer2 = Sprite("assets/backgroundLayer2.png");
     bgLayer3 = Sprite("assets/backgroundLayer3.png");

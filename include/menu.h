@@ -34,6 +34,7 @@ private:
     void drawBackground(sf::RenderWindow &window, Background &background);
 	void backgroundInit();
     Sprite bgLayer1, bgLayer2, bgLayer3, bgLayer4, bgLayer5, bgLayer6;
+    Sprite gameLogo;
     Background background;
 
 };
