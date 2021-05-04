@@ -41,34 +41,34 @@ Results::Results(float screenWidth, float screenHeight)
 
 	std::string result0 = std::to_string(score);
 	results[0].setFont(font);
-	results[0].setColor(sf::Color(240,204,136));
+	results[0].setFillColor(sf::Color(240,204,136));
 	ResultsText = "SCORE - " + result0;
 	results[0].setString(ResultsText);
-    results[0].setCharacterSize(largerCharSize);
+    	results[0].setCharacterSize(largerCharSize);
 	results[0].setPosition(sf::Vector2f(screenWidth / 2 - results[0].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 1 ));
 
 
 	std::string result1 = std::to_string(remhealth);
 	results[1].setFont(font);
-	results[1].setColor(sf::Color::White);
+	results[1].setFillColor(sf::Color::White);
 	ResultsText = result1+" Health Remaining ";
 	results[1].setString(ResultsText);
-    results[1].setCharacterSize(normalCharSize);
+    	results[1].setCharacterSize(normalCharSize);
 	results[1].setPosition(sf::Vector2f(screenWidth / 2 - results[1].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 2));
 
 	std::string result2 = std::to_string(dragonskilled);
 	results[2].setFont(font);
-	results[2].setColor(sf::Color::White);
+	results[2].setFillColor(sf::Color::White);
 	ResultsText = result2+" Dragons Killed ";
 	results[2].setString(ResultsText);
-    results[2].setCharacterSize(normalCharSize);
+    	results[2].setCharacterSize(normalCharSize);
 	results[2].setPosition(sf::Vector2f(screenWidth / 2 - results[2].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 3));
 
 	results[3].setFont(font);
-	results[3].setColor(sf::Color::White);
+	results[3].setFillColor(sf::Color::White);
 	ResultsText = "Return to Main Menu";
 	results[3].setString(ResultsText);
-    results[3].setCharacterSize(normalCharSize);
+    	results[3].setCharacterSize(normalCharSize);
 	results[3].setPosition(sf::Vector2f(screenWidth / 2 - results[3].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 4));
 
 
@@ -96,13 +96,13 @@ void Results::MoveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
 	{
-		results[selectedItemIndex].setColor(sf::Color::White);
+		results[selectedItemIndex].setFillColor(sf::Color::White);
 		results[selectedItemIndex].setCharacterSize(normalCharSize);
 		results[selectedItemIndex].setPosition(sf::Vector2f(WINDOW_WIDTH / 2 - results[selectedItemIndex].getLocalBounds().width/2, topOffset + (WINDOW_HEIGHT-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * (selectedItemIndex+1)));
 		//decreasing our index
 		selectedItemIndex--;
         results[selectedItemIndex].setCharacterSize(largerCharSize);
-		results[selectedItemIndex].setColor(sf::Color(240,204,136));
+		results[selectedItemIndex].setFillColor(sf::Color(240,204,136));
 		results[selectedItemIndex].setPosition(sf::Vector2f(WINDOW_WIDTH / 2 - results[selectedItemIndex].getLocalBounds().width/2, topOffset + (WINDOW_HEIGHT-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * (selectedItemIndex+1)));
 	}
 }
@@ -111,11 +111,11 @@ void Results::MoveDown()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
 	{
-		results[selectedItemIndex].setColor(sf::Color::White);
+		results[selectedItemIndex].setFillColor(sf::Color::White);
 		results[selectedItemIndex].setCharacterSize(normalCharSize);
 		results[selectedItemIndex].setPosition(sf::Vector2f(WINDOW_WIDTH / 2 - results[selectedItemIndex].getLocalBounds().width/2, topOffset + (WINDOW_HEIGHT-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * (selectedItemIndex+1)));
 		selectedItemIndex++;
-		results[selectedItemIndex].setColor(sf::Color(240,204,136));
+		results[selectedItemIndex].setFillColor(sf::Color(240,204,136));
 		results[selectedItemIndex].setCharacterSize(largerCharSize);
 		results[selectedItemIndex].setPosition(sf::Vector2f(WINDOW_WIDTH / 2 - results[selectedItemIndex].getLocalBounds().width/2, topOffset + (WINDOW_HEIGHT-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * (selectedItemIndex+1)));
 	}
