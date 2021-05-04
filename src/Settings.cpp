@@ -14,7 +14,6 @@ Settings::Settings() {
     mvmt_down = sf::Keyboard::S;
     attack = sf::Keyboard::Space;
     quit = sf::Keyboard::Escape;
-    write();
 }
 
 Settings::Settings(int x) {
@@ -65,7 +64,6 @@ void Settings::restoreToDefault() {
     mvmt_down = sf::Keyboard::S;
     attack = sf::Keyboard::Space;
     quit = sf::Keyboard::Escape;
-
     write();
 }
 

@@ -26,8 +26,10 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     powerupHealthSprite = Sprite("assets/powerups/health.png");
     powerupJumpSprite = Sprite("assets/powerups/jump.png");
     powerupSpeedSprite = Sprite("assets/powerups/speed.png");
+    projectileSprite = Sprite("assets/projectile.png");
     backgroundInit();
     healthBarInit();
+    tileInit();
     updateView(.2);
 }
 
@@ -72,46 +74,19 @@ void PlayerView::drawTerrain() {
 void PlayerView::drawTile(Tile tile, sf::Color color) { // color to be removed - here for clarity of program for now
     sf::Vector2f tileSide = sf::Vector2f(TILE_SIDE, TILE_SIDE);
     if (tile.getShape() == LOWER_RIGHT) {
-        sf::ConvexShape toDraw;
-        toDraw.setPointCount(3);
-        toDraw.setPoint(0, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY() + TILE_SIDE));
-        toDraw.setPoint(1, sf::Vector2f(tile.getX(), tile.getY() + TILE_SIDE));
-        toDraw.setPoint(2, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY()));
-        toDraw.setFillColor(color);
-        window->draw(toDraw);
+        lowerRightTriangle.draw(tile.getPosition(), window);
     }
     else if (tile.getShape() == LOWER_LEFT) {
-        sf::ConvexShape toDraw;
-        toDraw.setPointCount(3);
-        toDraw.setPoint(0, sf::Vector2f(tile.getX(), tile.getY()));
-        toDraw.setPoint(1, sf::Vector2f(tile.getX(), tile.getY() + TILE_SIDE));
-        toDraw.setPoint(2, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY() + TILE_SIDE));
-        toDraw.setFillColor(color);
-        window->draw(toDraw);
+        lowerLeftTriangle.draw(tile.getPosition(), window);
     }
     else if (tile.getShape() == UPPER_LEFT) {
-        sf::ConvexShape toDraw;
-        toDraw.setPointCount(3);
-        toDraw.setPoint(0, sf::Vector2f(tile.getX(), tile.getY()));
-        toDraw.setPoint(1, sf::Vector2f(tile.getX(), tile.getY() + TILE_SIDE));
-        toDraw.setPoint(2, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY()));
-        toDraw.setFillColor(color);
-        window->draw(toDraw);
+        upperLeftTriangle.draw(tile.getPosition(), window);
     }
     else if (tile.getShape() == UPPER_RIGHT) {
-        sf::ConvexShape toDraw;
-        toDraw.setPointCount(3);
-        toDraw.setPoint(0, sf::Vector2f(tile.getX(), tile.getY()));
-        toDraw.setPoint(1, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY() + TILE_SIDE));
-        toDraw.setPoint(2, sf::Vector2f(tile.getX() + TILE_SIDE, tile.getY()));
-        toDraw.setFillColor(color);
-        window->draw(toDraw);
+        upperRightTriangle.draw(tile.getPosition(), window);
     }
     else {
-        sf::RectangleShape toDraw = sf::RectangleShape(tileSide);
-        toDraw.setFillColor(color);
-        toDraw.setPosition(tile.getX(), tile.getY());
-        window->draw(toDraw);
+        innerSquare1.draw(tile.getPosition(), window);
     }
 }
 
@@ -150,9 +125,11 @@ void PlayerView::drawProjectiles() {
     for (int i = 0; i < launcher.projectileList.size(); i++) {
         sf::Vector2f position = launcher.projectileList.at(i).getPosition();
         sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, launcher.projectileList.at(i).height));
-        toDraw.setFillColor(sf::Color::Yellow);
-        toDraw.setPosition(position.x, position.y);
-        window->draw(toDraw);
+        projectileSprite.draw(position, window);
+
+        // toDraw.setFillColor(sf::Color::Yellow);
+        // toDraw.setPosition(position.x, position.y);
+        // window->draw(toDraw);
     }
 
     for (int i = 0; i < dragon.projectileList.size(); i++) {
@@ -281,4 +258,12 @@ void PlayerView::backgroundInit(){
     bgLayer5 = Sprite("assets/backgroundLayer5.png");
     bgLayer6 = Sprite("assets/backgroundLayer6.png");
     background.setSpriteWidths(spriteWidths);
+}
+
+void PlayerView::tileInit(){
+   innerSquare1 = Sprite("assets/Tiles/InnerSquare1.png");
+   upperLeftTriangle = Sprite("assets/Tiles/UpperLeftTriangle.png");
+   lowerLeftTriangle = Sprite("assets/Tiles/LowerLeftTriangle.png");
+   upperRightTriangle = Sprite("assets/Tiles/UpperRightTriangle.png");
+   lowerRightTriangle = Sprite("assets/Tiles/LowerRightTriangle.png");
 }

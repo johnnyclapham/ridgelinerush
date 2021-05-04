@@ -13,10 +13,19 @@ Sprite::Sprite() {
 
 Sprite::Sprite(const std::string &spritesheet) {
     texture = spritesheet;
-    sf::Texture newTexture;
     spriteDirection = RIGHT;
     scaleX = 4;
     scaleY = 4;
+    if(!newTexture.loadFromFile(texture)){
+       //error
+       // new handling: if sprite fails to load, try alternate
+       // addressing method (for Mac OS)
+       // commented out for console spam
+       // std::cout << "failed to load: "<<texture<<" \n";
+      texture = "../"+texture;
+      std::cout << "Error with standard path. Now loading   : "<<texture<<" \n";
+      newTexture.loadFromFile(texture);
+    }
 }
 
 void Sprite::update(float time){
@@ -40,17 +49,6 @@ sf::FloatRect Sprite::getBounds(){
 }
 
 void Sprite::draw(sf::Vector2<float> position, sf::RenderWindow *window) {
-    sf::Texture newTexture;
-    if(!newTexture.loadFromFile(texture)){
-       //error
-       // new handling: if sprite fails to load, try alternate
-       // addressing method (for Mac OS)
-       // commented out for console spam
-       // std::cout << "failed to load: "<<texture<<" \n";
-      texture = "../"+texture;
-      std::cout << "Error with standard path. Now loading   : "<<texture<<" \n";
-      newTexture.loadFromFile(texture);
-    }
     sprite.setTexture(newTexture);
     sprite.setScale(scaleX,scaleY);
     sprite.setPosition(position);
