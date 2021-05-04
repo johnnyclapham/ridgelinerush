@@ -38,7 +38,7 @@ int game_screen_1::Run (sf::RenderWindow &App)
 
   sf::Clock clock;
   int deltaMS;
-  int score;
+  int score = 0;
 
 
   // start main loop
