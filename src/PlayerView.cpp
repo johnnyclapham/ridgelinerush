@@ -20,7 +20,6 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     this->window = window;
     heroSprite = Sprite("assets/hero.png");
     dragonSprite = Sprite("assets/dragonArt.png");
-    backGroundSprite = Sprite("assets/backgroundArt.png");
     fireballSprite = Sprite("assets/fireball.png");
     powerupDamageSprite = Sprite("assets/powerups/damage.png");
     powerupHealthSprite = Sprite("assets/powerups/health.png");
@@ -181,12 +180,12 @@ void PlayerView::drawPowerups(int z1, int z2) {
     // if (reset < 2000) {
     if (hero.getXpos() > 0 && hero.getYpos() > 0) {
         //sf::Vector2<float> position = hero.getPowerupPosition();
-        sf::Vector2<float> position = sf::Vector2<float> (hero.getXpos(), hero.getYpos());
+        sf::Vector2<float> position = sf::Vector2<float>(0,400);
         sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(50, 50));
         int y = hero.getPowerupBuffer();
         if (y == 1) { //damage
           toDraw.setFillColor(sf::Color::Green);
-          powerupDamageSprite.draw(sf::Vector2<float>(0,0), window);
+          powerupDamageSprite.draw(position, window);
          }
         if (y == 2) { //health
           toDraw.setFillColor(sf::Color::Blue);
@@ -236,7 +235,7 @@ void PlayerView::drawHealthBar() {
         else correctPath = "assets/PKMN RBYGSC.ttf";
     }
     font.loadFromFile(correctPath);
-    
+
     sf::Text text;
     text.setString(std::to_string(hero.getHealth()));
     text.setFont(font);

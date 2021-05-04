@@ -1,4 +1,5 @@
 #include "results.h"
+#include <fstream>
 #include <iostream>
 #include "Constants.h"
 #include <string>
@@ -6,6 +7,22 @@
 
 Results::Results(float screenWidth, float screenHeight)
 {
+
+    int score;
+    int remhealth;
+    int dragonskilled;
+    std::fstream file;
+    file.open("../cfg/results.txt", std::ios::in);
+    if (file.is_open()) {
+        std::string tmp;
+        while (getline(file, tmp)) {
+            if (tmp.compare(0, 7, "score: ") == 0) { score = std::stoi(tmp.substr(7)); }
+            if (tmp.compare(0, 18, "remaining health: ") == 0) { remhealth = std::stoi(tmp.substr(18)); }
+            if (tmp.compare(0, 16, "dragons killed: ") == 0) { dragonskilled = std::stoi(tmp.substr(16)); }
+
+        }
+        file.close();
+    }
 	sf::String ResultsText;
 	float ResultsTextWidth;
 
@@ -22,44 +39,36 @@ Results::Results(float screenWidth, float screenHeight)
      font.loadFromFile("../"+fontPath);
   }
 
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//TODO: fetch hero attributes here and display
-	std::string result0 = std::to_string(1);
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	std::string result0 = std::to_string(score);
 	results[0].setFont(font);
 	results[0].setFillColor(sf::Color(240,204,136));
-	ResultsText = result0+" dragons killed ";
+	ResultsText = "SCORE - " + result0;
 	results[0].setString(ResultsText);
-  results[0].setCharacterSize(largerCharSize);
+    	results[0].setCharacterSize(largerCharSize);
 	results[0].setPosition(sf::Vector2f(screenWidth / 2 - results[0].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 1 ));
 
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//TODO: fetch hero attributes here and display
-	std::string result1 = std::to_string(96);
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	std::string result1 = std::to_string(remhealth);
 	results[1].setFont(font);
 	results[1].setFillColor(sf::Color::White);
-	ResultsText = result1+" health remaining ";
+	ResultsText = result1+" Health Remaining ";
 	results[1].setString(ResultsText);
-  results[1].setCharacterSize(normalCharSize);
+    	results[1].setCharacterSize(normalCharSize);
 	results[1].setPosition(sf::Vector2f(screenWidth / 2 - results[1].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 2));
 
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//TODO: fetch hero attributes here and display
-	std::string result2 = std::to_string(10);
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	std::string result2 = std::to_string(dragonskilled);
 	results[2].setFont(font);
 	results[2].setFillColor(sf::Color::White);
-	ResultsText = result2+" points collected ";
+	ResultsText = result2+" Dragons Killed ";
 	results[2].setString(ResultsText);
-  results[2].setCharacterSize(normalCharSize);
+    	results[2].setCharacterSize(normalCharSize);
 	results[2].setPosition(sf::Vector2f(screenWidth / 2 - results[2].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 3));
 
 	results[3].setFont(font);
 	results[3].setFillColor(sf::Color::White);
 	ResultsText = "Return to Main Menu";
 	results[3].setString(ResultsText);
-    results[3].setCharacterSize(normalCharSize);
+    	results[3].setCharacterSize(normalCharSize);
 	results[3].setPosition(sf::Vector2f(screenWidth / 2 - results[3].getLocalBounds().width/2, topOffset + (screenHeight-topOffset) / (MAX_NUMBER_OF_ITEMS + 1) * 4));
 
 
