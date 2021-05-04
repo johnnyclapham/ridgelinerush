@@ -7,7 +7,6 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "Settings.h"
 
 Controller::Controller() {
 }
@@ -15,9 +14,17 @@ Controller::Controller() {
 Controller::Controller(Hero *hero, Launcher *launcher) {
     playerHero = hero;
     weaponLauncher = launcher;
+    s.read();
 }
 
 void Controller::update(){
+    s.read();
+    setMvmtUpKey(s.getMvmtUpKey());
+    setMvmtLeftKey(s.getMvmtLeftKey());
+    setMvmtRightKey(s.getMvmtRightKey());
+    setMvmtDownKey(s.getMvmtDownKey());
+    setAttackKey(s.getAttackKey());
+    setQuitKey(s.getQuitKey());
     if (sf::Keyboard::isKeyPressed(mvmt_up))
     {
         (*playerHero).jump();

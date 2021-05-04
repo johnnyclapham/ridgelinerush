@@ -6,6 +6,7 @@
 #define RIDGELINERUSH_CONTROLLER_H
 #include "Hero.h"
 #include "Launcher.h"
+#include "Settings.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -39,6 +40,7 @@ private:
     Hero *playerHero;
     Launcher *weaponLauncher;
     std::string texture;
+    Settings s;
     sf::Keyboard::Key mvmt_up;
     sf::Keyboard::Key mvmt_left;
     sf::Keyboard::Key mvmt_right;

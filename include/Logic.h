@@ -12,7 +12,6 @@
 #include "Dragon.h"
 #include "DragonAI.h"
 #include "Controller.h"
-#include "Settings.h"
 #include "Background.h"
 
 // This defines the main logic class, which serves as a container for all other logic components
@@ -49,7 +48,6 @@ private:
     Dragon dragon;
     DragonAI dragonAI;
     Controller controller;
-    Settings settings;
     Background background;
 };
 
