@@ -10,7 +10,7 @@ class title_screen_0 : public cScreen
 {
 public:
     title_screen_0 (void);
-    virtual int Run (sf::RenderWindow &App);
+    virtual int Run (sf::RenderWindow &App, sf::Music& music);
     Background background;
 };
 
@@ -20,7 +20,7 @@ title_screen_0::title_screen_0 (void){}
 //here is our main section previously living in ridgerunner.cpp
 //filled with some dummy text for navigation demo
 
-int title_screen_0::Run (sf::RenderWindow &App)
+int title_screen_0::Run (sf::RenderWindow &App, sf::Music& music)
 {
 
     //Initialize our font

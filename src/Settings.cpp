@@ -24,7 +24,7 @@ void Settings::write() {
     fstream file;
     file.open("../cfg/settings.txt", ios::out);
     if (file.fail()) {
-        file.open("cfg/settings.txt", std::ios::in);
+        file.open("cfg/settings.txt", std::ios::out);
     }
     file << "SETTINGS:\n" << endl;
     file << "volume: " << getVolume() << endl;

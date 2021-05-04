@@ -25,14 +25,14 @@ class game_screen_1 : public cScreen
 {
 public:
     game_screen_1 (void);
-    virtual int Run (sf::RenderWindow &App);
+    virtual int Run (sf::RenderWindow &App, sf::Music& music);
 };
 
 game_screen_1::game_screen_1 (void){}
 
 
 
-int game_screen_1::Run (sf::RenderWindow &App)
+int game_screen_1::Run (sf::RenderWindow &App, sf::Music& music)
 {
   // initialize logic and views
   Logic *gameLogic = new Logic();

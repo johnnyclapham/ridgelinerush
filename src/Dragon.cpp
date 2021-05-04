@@ -74,7 +74,7 @@ void Dragon::fireSound() {
     }
     buffer.loadFromFile(bufferPath);
     sound.setBuffer(buffer);
-    sound.setVolume(s.getVolume() * 2);
+    sound.setVolume(s.getVolume());
     sound.setPitch(.6);
     sound.play();
 }
@@ -89,7 +89,7 @@ void Dragon::heroHit() {
     }
     heroHitBuffer.loadFromFile(heroHitBufferPath);
     heroHitSound.setBuffer(heroHitBuffer);
-    heroHitSound.setVolume(s.getVolume() * 4);
+    heroHitSound.setVolume(s.getVolume());
     heroHitSound.setPitch(1.1);
     heroHitSound.play();
 }
@@ -136,7 +136,7 @@ void Dragon::resetShootValues() {
   projectileAngle = 0; // base angle (between -1 and 1)
   projectileSpeed = .6; // base speed constant
   projectileDamage = 1; // base damage
-  projectileDelay = 2000; // base fire delay, in milliseconds
+  projectileDelay = 1600; // base fire delay, in milliseconds
 }
 
 Hitbox Dragon::getHitbox() {

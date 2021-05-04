@@ -10,7 +10,7 @@ class results_screen_3 : public cScreen
 {
 public:
     results_screen_3 (void);
-    virtual int Run (sf::RenderWindow &App);
+    virtual int Run (sf::RenderWindow &App, sf::Music& music);
     Background background;
 };
 
@@ -20,7 +20,7 @@ results_screen_3::results_screen_3 (void){}
 //here is our main section previously living in ridgerunner.cpp
 //filled with some dummy text for navigation demo
 
-int results_screen_3::Run (sf::RenderWindow &App)
+int results_screen_3::Run (sf::RenderWindow &App, sf::Music& music)
 {
 
 

@@ -74,7 +74,7 @@ void Launcher::weaponSound() {
   }
   buffer.loadFromFile(bufferPath);
   sound.setBuffer(buffer);
-  sound.setVolume(s.getVolume() * 4);
+  sound.setVolume(s.getVolume());
   sound.setPitch(3);
   sound.play();
 }
@@ -89,7 +89,7 @@ void Launcher::dragonHit() {
   }
   dragonHitBuffer.loadFromFile(dragonHitBufferPath);
   dragonHitSound.setBuffer(dragonHitBuffer);
-  dragonHitSound.setVolume(s.getVolume() * 4);
+  dragonHitSound.setVolume(s.getVolume());
   dragonHitSound.play();
 }
 

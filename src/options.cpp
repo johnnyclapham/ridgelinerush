@@ -18,6 +18,7 @@ Options::Options(float screenWidth, float screenHeight)
         std::cout << "now loading   : ../ACETONE.ttf \n";
         font.loadFromFile("../"+fontPath);
   }
+    backgroundInit();
 
 	options[0].setFont(font);
 	options[0].setFillColor(sf::Color::Green);
@@ -90,8 +91,9 @@ Options::Options()
 {
 }
 
-void Options::draw(sf::RenderWindow &window)
+void Options::draw(sf::RenderWindow &window, Background &background)
 {
+    drawBackground(window, background);
 	for (int i = 0; i < MAX_NUMBER_OF_OPTIONS_ITEMS; i++)
 	{
 		window.draw(options[i]);
@@ -127,4 +129,25 @@ int Options::GetPressedItem(){
 	return selectedItemIndex;
 	//feeds the array index to our switch statement in title_screen_0
 
+}
+
+void Options::backgroundInit(){
+    std::vector<float> spriteWidths;
+    bgLayer1 = Sprite("assets/backgroundLayer1.png");
+    bgLayer2 = Sprite("assets/backgroundLayer2.png");
+    bgLayer3 = Sprite("assets/backgroundLayer3.png");
+    bgLayer4 = Sprite("assets/backgroundLayer4.png");
+    bgLayer5 = Sprite("assets/backgroundLayer5.png");
+    bgLayer6 = Sprite("assets/backgroundLayer6.png");
+    background.setSpriteWidths(spriteWidths);
+}
+
+void Options::drawBackground(sf::RenderWindow &window, Background &background) {
+    sf::Vector2<float> position = sf::Vector2<float>(0,0);
+    bgLayer6.draw(sf::Vector2<float>(background.getOffset(5),0), &window);
+    bgLayer5.draw(sf::Vector2<float>(background.getOffset(4),50), &window);
+    bgLayer4.draw(sf::Vector2<float>(background.getOffset(3),50), &window);
+    bgLayer3.draw(sf::Vector2<float>(background.getOffset(2),330), &window);
+    bgLayer2.draw(sf::Vector2<float>(background.getOffset(1),380), &window);
+    bgLayer1.draw(sf::Vector2<float>(background.getOffset(0),450), &window);
 }

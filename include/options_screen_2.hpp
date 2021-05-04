@@ -9,7 +9,8 @@ class options_screen_2 : public cScreen
 {
 public:
     options_screen_2 (void);
-    virtual int Run (sf::RenderWindow &App);
+    virtual int Run (sf::RenderWindow &App, sf::Music& music);
+    Background background;
 };
 
 options_screen_2::options_screen_2 (void){}
@@ -18,7 +19,7 @@ options_screen_2::options_screen_2 (void){}
 //here is our main section previously living in ridgerunner.cpp
 //filled with some dummy text for navigation demo
 
-int options_screen_2::Run (sf::RenderWindow &App)
+int options_screen_2::Run (sf::RenderWindow &App, sf::Music& music)
 {
 
 
@@ -39,12 +40,15 @@ int options_screen_2::Run (sf::RenderWindow &App)
     optionsText.setString(optionsString);
     Options options(App.getSize().x, App.getSize().y);
     Settings s = Settings(0);
-
+    sf::Clock clock;
+    int deltaMS;
 
 		// our game loop
 	  while(App.isOpen())
 	  {
-	    //App.setFramerateLimit(60);
+        deltaMS = clock.getElapsedTime().asMicroseconds();
+	    background.update(deltaMS*GAME_TIME_FACTOR);
+	    clock.restart();
 
 	    // process events
 	    sf::Event Event;
@@ -76,7 +80,11 @@ int options_screen_2::Run (sf::RenderWindow &App)
                         std::cout << "\n\nVolume modified.\n";
                         std::cout << s.keyToStr(Event.key.code) << std::endl;
                         // restrict volume input to between 0 and 9
-                        if (Event.key.code > 25 && Event.key.code < 36) { s.setVolume(Event.key.code - 26); }
+                        if (Event.key.code > 25 && Event.key.code < 36) {
+                            s.setVolume(Event.key.code - 26);
+                            music.setVolume((Event.key.code - 26)*3);
+                        }
+
                         break;
                       case 1:
                         std::cout << "\n\nNew <jump> key set.\n";
@@ -121,14 +129,12 @@ int options_screen_2::Run (sf::RenderWindow &App)
                   }
 	}
 
-
-		//clear, draw, and display our options screen
-		App.clear(sf::Color::Black);
-                options.draw(App);
-                App.draw(optionsText);
-		App.display();
-
 			}
+            //clear, draw, and display our options screen
+            App.clear(sf::Color::Black);
+            options.draw(App, background);
+            App.draw(optionsText);
+            App.display();
 		}
 
     //exit (should not be needed)

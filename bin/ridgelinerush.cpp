@@ -38,7 +38,7 @@ int main(int argc, char** argv)
   	Screens.push_back(&s3);
 
     sf::Music music;
-
+    music.setVolume(s.getVolume() * 3);
   	//Main loop
   	while (screen >= 0)
   	{
@@ -50,7 +50,6 @@ int main(int argc, char** argv)
             std::cout << "Error with standard path. Now loading   : " << path << " \n";
         }
         music.openFromFile(path);
-        music.setVolume(s.getVolume() * 5 + 10);
         music.setLoop(true);
         music.play();
       } else if (prevScreen == 1){
@@ -60,12 +59,11 @@ int main(int argc, char** argv)
             std::cout << "Error with standard path. Now loading   : " << path << " \n";
         }
         music.openFromFile(path);
-        music.setVolume(s.getVolume() * 5 + 10);
         music.setLoop(true);
         music.play();
       }
       prevScreen = screen;
-      screen = Screens[screen]->Run(App);
+      screen = Screens[screen]->Run(App, music);
 
   	}
 

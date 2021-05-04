@@ -205,7 +205,7 @@ void Hero::powerupSound() {
     }
     buffer.loadFromFile(bufferPath);
     sound.setBuffer(buffer);
-    sound.setVolume(s.getVolume() * 4);
+    sound.setVolume(s.getVolume());
     sound.play();
 }
 
