@@ -31,6 +31,8 @@ public:
     // inspectors //
     sf::Vector2<float> getPosition();
     float getDelay();
+    int getTimesKilled();
+
 
     void hit();
 
