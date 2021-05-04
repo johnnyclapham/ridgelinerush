@@ -31,6 +31,7 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     healthBarInit();
     tileInit();
     updateView(.2);
+    correctPath = "";
 }
 
 void PlayerView::updateView(float time) {
@@ -224,12 +225,18 @@ void PlayerView::drawHealthBar() {
     }
     healthBarOutline.draw(healthBarPosition, window);
     sf::Font font;
-    if(!font.loadFromFile("assets/PKMN RBYGSC.ttf")){
-     //error
-     // new handling: if font fails to load, try alternate
-     // addressing method (for Mac OS)
-     font.loadFromFile("../assets/PKMN RBYGSC.ttf");
+    if (correctPath == "") {
+        if(!font.loadFromFile("assets/PKMN RBYGSC.ttf")){
+            //error
+            // new handling: if font fails to load, try alternate
+            // addressing method (for Mac OS)
+            correctPath = "../assets/PKMN RBYGSC.ttf";
+            // font.loadFromFile("../assets/PKMN RBYGSC.ttf");
+        }
+        else correctPath = "assets/PKMN RBYGSC.ttf";
     }
+    font.loadFromFile(correctPath);
+    
     sf::Text text;
     text.setString(std::to_string(hero.getHealth()));
     text.setFont(font);

@@ -198,7 +198,6 @@ void Hero::powerupSound() {
     std::string path = "assets/sounds/power_up.wav";
     if (!buffer.loadFromFile(path)) {
         path = "../" + path;
-        std::cout << "Error with standard path. Now loading   : " << path << " \n";
     }
     buffer.loadFromFile(path);
     sound.setBuffer(buffer);
