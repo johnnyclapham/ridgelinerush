@@ -74,7 +74,7 @@ ObstaclePicker::ObstaclePicker() {
     ob.storeTile(Tile(ob.getX(), ob.getY() - TILE_SIDE, SQUARE));
     ob.storeTile(Tile(ob.getX() + (2 * TILE_SIDE), ob.getY() - (2 * TILE_SIDE), UPPER_LEFT));
     ob.storeTile(Tile(ob.getX() + (2 * TILE_SIDE), ob.getY() - (3 * TILE_SIDE), SQUARE));
-    ob.storeTile(Tile(ob.getX(), ob.getY() - (4 * TILE_SIDE), SQUARE));
+    ob.storeTile(Tile(ob.getX(), ob.getY() - (4 * TILE_SIDE), LOWER_RIGHT));
     ob.storeTile(Tile(ob.getX() + TILE_SIDE, ob.getY() - (4 * TILE_SIDE), SQUARE));
     obstacleList.push_back(ob);
 }

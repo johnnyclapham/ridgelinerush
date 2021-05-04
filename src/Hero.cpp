@@ -134,7 +134,7 @@ void Hero::jump(){
     if(playerState == ground){
         playerState = airborne;
         floorType = NO_COLLISION;
-        velocityBuffer.y -= 11.5;
+        velocityBuffer.y -= 10.5;
     }
 }
 

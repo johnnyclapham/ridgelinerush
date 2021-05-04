@@ -60,20 +60,20 @@ void DragonAI::update(float time) {
         dragon->shoot();
         attackTimer.restart();
       }
-      
+
 
       break;
 
     case BARRAGE:
       // rise to the top
-      if (rise) { 
-        dragon->setPosition(x, y-0.5*time); 
+      if (rise) {
+        dragon->setPosition(x, y-0.5*time);
         if (dragon->getPosition().y <= 50) {
           specialTimer.restart();
           rise = false;
           hold = true;
           dragon->setDelay(200);
-          dragon->setProjectileSpeed(8);
+          dragon->setProjectileSpeed(1.5);
           dragon->setProjectileAngle(.35);
         }
       }
@@ -95,7 +95,7 @@ void DragonAI::update(float time) {
           resetSpecialCounter();
         }
       }
-      
+
       if (!hold) dragon->setProjectileAngle(calculateAttackAngle());
       // attack
       if (attackTimer.getElapsedTime().asMilliseconds() >= dragon->getDelay()) {

@@ -125,7 +125,7 @@ void Dragon::setProjectileSpeed(float speed) {
 void Dragon::resetShootValues() {
   timer.restart();
   projectileAngle = 0; // base angle (between -1 and 1)
-  projectileSpeed = 4; // base speed constant
+  projectileSpeed = .6; // base speed constant
   projectileDamage = 1; // base damage
   projectileDelay = 2000; // base fire delay, in milliseconds
 }
