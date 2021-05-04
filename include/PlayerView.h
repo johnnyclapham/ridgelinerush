@@ -30,6 +30,7 @@ private:
     void backgroundInit();
     void drawHealthBar();
     void healthBarInit();
+    void tileInit();
 
 
     sf::RenderWindow *window;
@@ -57,6 +58,12 @@ private:
     Sprite bgLayer4;
     Sprite bgLayer5;
     Sprite bgLayer6;
+
+    Sprite innerSquare1;
+    Sprite upperLeftTriangle;
+    Sprite lowerLeftTriangle;
+    Sprite upperRightTriangle;
+    Sprite lowerRightTriangle;
 };
 
 #endif //RIDGELINERUSH_PLAYERVIEW_H

@@ -27,6 +27,7 @@ public:
 private:
     // members //
     sf::Sprite sprite;
+    sf::Texture newTexture;
     float spriteWidth;
     Direction spriteDirection;
     std::string texture;

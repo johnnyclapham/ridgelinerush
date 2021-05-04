@@ -20,6 +20,7 @@ public:
     // inspectors //
     float getX();
     float getY();
+    sf::Vector2<float> getPosition();
     float getShape();
 
     Collision intersectingPoint(sf::Vector2<float> prevPoint, sf::Vector2<float> newPoint);
