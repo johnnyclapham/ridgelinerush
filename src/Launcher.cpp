@@ -21,8 +21,9 @@ Launcher::Launcher(float x, float y, float width, float height) {
 void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
   // move launcher based on hero's position
   sf::Vector2f heroPosition = hero->getPosition();
-  setPosition(heroPosition.x, heroPosition.y + 20);
   setDirection(hero->getDirection());
+  if (launcherDirection == LEFT) setPosition(heroPosition.x, heroPosition.y + 20);
+  else setPosition(heroPosition.x + HERO_WIDTH, heroPosition.y + 20);
 
   int iter = 0;
   // iterate through projectiles for updates
