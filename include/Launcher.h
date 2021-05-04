@@ -5,8 +5,10 @@
 #include "Dragon.h"
 #include "Hero.h"
 #include "Terrain.h"
+#include "SoundPlayer.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class Launcher {
   public:
@@ -20,6 +22,7 @@ class Launcher {
     void updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *hero);
     void updateDragon(float time, Terrain *terrain, Dragon *dragon, Hero *hero);
     void shoot();
+
     // TODO: apply item effect
 
     std::vector<Projectile> projectileList;

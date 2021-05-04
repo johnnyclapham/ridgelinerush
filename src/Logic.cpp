@@ -9,11 +9,13 @@
 #include "Launcher.h"
 #include "Logic.h"
 #include "Controller.h"
+#include "SoundPlayer.h"
 #include <iostream>
 #include <SFML/Window.hpp>
 
 
 Logic::Logic() {
+    soundplayer = SoundPlayer();
     terrain = Terrain();
     controller = Controller(&hero, &launcher);
     hero = Hero();

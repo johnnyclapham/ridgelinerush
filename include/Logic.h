@@ -14,6 +14,7 @@
 #include "Controller.h"
 #include "Settings.h"
 #include "Background.h"
+#include "SoundPlayer.h"
 
 // This defines the main logic class, which serves as a container for all other logic components
 // and queries them as needed. The instance of this class will be a member of the respective views,
@@ -42,6 +43,7 @@ private:
     void updateTerrain();
 
     // members //
+    SoundPlayer soundplayer;
     Terrain terrain;
     Hero hero;
     Launcher launcher;

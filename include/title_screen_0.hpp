@@ -41,6 +41,13 @@ int title_screen_0::Run (sf::RenderWindow &App)
     sf::Clock clock;
     int deltaMS;
 
+    sf::Music music;
+    music.openFromFile("../assets/sounds/menu_theme.wav");
+
+    music.setVolume(15);
+    music.setLoop(true);
+    music.play();
+
 
 		// our game loop
 	  while(App.isOpen())

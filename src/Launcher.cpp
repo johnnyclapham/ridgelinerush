@@ -1,6 +1,8 @@
 #include "Launcher.h"
 #include "Projectile.h"
+#include "SoundPlayer.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 
 Launcher::Launcher() {

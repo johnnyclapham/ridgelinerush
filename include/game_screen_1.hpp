@@ -4,6 +4,7 @@
 #include <iostream>
 #include "cScreen.hpp"
 #include "Settings.h"
+#include <SFML/Audio.hpp>
 
 class game_screen_1 : public cScreen
 {
@@ -25,6 +26,13 @@ int game_screen_1::Run (sf::RenderWindow &App)
 
   sf::Clock clock;
   int deltaMS;
+
+  sf::Music music;
+  music.openFromFile("../assets/sounds/battle_theme.wav");
+
+  music.setVolume(20);
+  music.setLoop(true);
+  music.play();
 
   // start main loop
   while(App.isOpen())
@@ -49,7 +57,9 @@ int game_screen_1::Run (sf::RenderWindow &App)
     deltaMS = clock.getElapsedTime().asMicroseconds();
     gameLogic->update(deltaMS*GAME_TIME_FACTOR);
     // if the hero is dead, go to the lose screen
-    if (gameLogic->getHeroPointer()->healthDepleted()) return 3;
+    if (gameLogic->getHeroPointer()->healthDepleted()) {
+      return 3;
+    }
     clock.restart();
 
     // clear screen and fill with blue
