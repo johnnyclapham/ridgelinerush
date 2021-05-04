@@ -32,6 +32,7 @@ private:
     void healthBarInit();
     void tileInit();
 
+    std::string correctPath;
 
     sf::RenderWindow *window;
     Logic *logic;
