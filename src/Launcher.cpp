@@ -66,7 +66,6 @@ void Launcher::weaponSound() {
   std::string path = "assets/sounds/weapon_fired.wav";
   if (!buffer.loadFromFile(path)) {
       path = "../" + path;
-      std::cout << "Error with standard path. Now loading   : " << path << " \n";
   }
   buffer.loadFromFile(path);
   sound.setBuffer(buffer);
@@ -79,7 +78,6 @@ void Launcher::dragonHit() {
   std::string path = "assets/sounds/dragon_hit.wav";
   if (!dragonHitBuffer.loadFromFile(path)) {
       path = "../" + path;
-      std::cout << "Error with standard path. Now loading   : " << path << " \n";
   }
   dragonHitBuffer.loadFromFile(path);
   dragonHitSound.setBuffer(dragonHitBuffer);

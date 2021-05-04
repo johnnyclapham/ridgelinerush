@@ -65,7 +65,6 @@ void Dragon::fireSound() {
     std::string path = "assets/sounds/dragon_fire.wav";
     if (!buffer.loadFromFile(path)) {
         path = "../" + path;
-        std::cout << "Error with standard path. Now loading   : " << path << " \n";
     }
     buffer.loadFromFile(path);
     sound.setBuffer(buffer);
@@ -78,7 +77,6 @@ void Dragon::heroHit() {
     std::string path = "assets/sounds/dragon_fire.wav";
     if (!heroHitBuffer.loadFromFile(path)) {
         path = "../" + path;
-        std::cout << "Error with standard path. Now loading   : " << path << " \n";
     }
     heroHitBuffer.loadFromFile(path);
     heroHitSound.setBuffer(heroHitBuffer);
