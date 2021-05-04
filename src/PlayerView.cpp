@@ -26,6 +26,7 @@ PlayerView::PlayerView(sf::RenderWindow *window, Logic *logic) {
     powerupHealthSprite = Sprite("assets/powerups/health.png");
     powerupJumpSprite = Sprite("assets/powerups/jump.png");
     powerupSpeedSprite = Sprite("assets/powerups/speed.png");
+    projectileSprite = Sprite("assets/projectile.png");
     backgroundInit();
     healthBarInit();
     updateView(.2);
@@ -150,9 +151,11 @@ void PlayerView::drawProjectiles() {
     for (int i = 0; i < launcher.projectileList.size(); i++) {
         sf::Vector2f position = launcher.projectileList.at(i).getPosition();
         sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(20, launcher.projectileList.at(i).height));
-        toDraw.setFillColor(sf::Color::Yellow);
-        toDraw.setPosition(position.x, position.y);
-        window->draw(toDraw);
+        projectileSprite.draw(position, window);
+
+        // toDraw.setFillColor(sf::Color::Yellow);
+        // toDraw.setPosition(position.x, position.y);
+        // window->draw(toDraw);
     }
 
     for (int i = 0; i < dragon.projectileList.size(); i++) {
