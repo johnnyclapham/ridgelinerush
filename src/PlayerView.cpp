@@ -180,7 +180,7 @@ void PlayerView::drawPowerups(int z1, int z2) {
     // if (reset < 2000) {
     if (hero.getXpos() > 0 && hero.getYpos() > 0) {
         //sf::Vector2<float> position = hero.getPowerupPosition();
-        sf::Vector2<float> position = sf::Vector2<float>(0,400);
+        sf::Vector2<float> position = sf::Vector2<float> (hero.getXpos(), hero.getYpos());
         sf::RectangleShape toDraw = sf::RectangleShape(sf::Vector2f(50, 50));
         int y = hero.getPowerupBuffer();
         if (y == 1) { //damage
