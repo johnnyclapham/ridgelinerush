@@ -13,13 +13,15 @@ Results::Results(float screenWidth, float screenHeight)
     int dragonskilled;
     std::fstream file;
     file.open("../cfg/results.txt", std::ios::in);
+    if (file.fail()) {
+        file.open("cfg/results.txt", std::ios::in);
+    }
     if (file.is_open()) {
         std::string tmp;
         while (getline(file, tmp)) {
             if (tmp.compare(0, 7, "score: ") == 0) { score = std::stoi(tmp.substr(7)); }
             if (tmp.compare(0, 18, "remaining health: ") == 0) { remhealth = std::stoi(tmp.substr(18)); }
             if (tmp.compare(0, 16, "dragons killed: ") == 0) { dragonskilled = std::stoi(tmp.substr(16)); }
-
         }
         file.close();
     }

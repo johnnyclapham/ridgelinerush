@@ -18,7 +18,7 @@ Controller::Controller(Hero *hero, Launcher *launcher) {
 }
 
 void Controller::update(){
-    s.read();
+    //s.read();
     setMvmtUpKey(s.getMvmtUpKey());
     setMvmtLeftKey(s.getMvmtLeftKey());
     setMvmtRightKey(s.getMvmtRightKey());

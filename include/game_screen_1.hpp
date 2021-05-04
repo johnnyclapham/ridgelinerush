@@ -10,6 +10,9 @@
 void write_results(int x, int y, int z) {
     std::fstream file;
     file.open("../cfg/results.txt", std::ios::out);
+    if (file.fail()) {
+        file.open("cfg/results.txt", std::ios::out);
+    }
     file << "RESULTS:\n" << std::endl;
     file << "score: " << x << std::endl;
     file << "remaining health: " << y << std::endl;

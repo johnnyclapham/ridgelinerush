@@ -142,12 +142,12 @@ void DragonAI::switchPattern(AttackPattern newPattern) {
       rise = true;
       hold = false;
       fall = false;
-      dragon->setDelay(500);
+      dragon->setDelay(800);
       dragon->setProjectileAngle(.5);
       std::cout << "Barrage activated" << std::endl;
       break;
     case TRIPLE:
-      dragon->setDelay(400);
+      dragon->setDelay(600);
       specialTimer.restart();
       std::cout << "Triple shot activated" << std::endl;
       break;

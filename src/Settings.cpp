@@ -23,6 +23,9 @@ Settings::Settings(int x) {
 void Settings::write() {
     fstream file;
     file.open("../cfg/settings.txt", ios::out);
+    if (file.fail()) {
+        file.open("cfg/settings.txt", std::ios::in);
+    }
     file << "SETTINGS:\n" << endl;
     file << "volume: " << getVolume() << endl;
     // file << "difficulty: " << getDifficulty() << endl;
@@ -39,6 +42,9 @@ void Settings::write() {
 void Settings::read() {
     fstream file;
     file.open("../cfg/settings.txt", ios::in);
+    if (file.fail()) {
+        file.open("cfg/settings.txt", std::ios::in);
+    }
     if (file.is_open()) {
         string tmp;
         while (getline(file, tmp)) {
