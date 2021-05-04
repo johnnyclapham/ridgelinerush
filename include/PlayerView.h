@@ -44,6 +44,7 @@ private:
     Sprite powerupHealthSprite;
     Sprite powerupJumpSprite;
     Sprite powerupSpeedSprite;
+    Sprite projectileSprite;
 
     int reset;
 
