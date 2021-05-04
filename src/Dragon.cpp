@@ -138,3 +138,5 @@ Hitbox Dragon::getHitbox() {
 bool Dragon::isVisible() {
     return visible;
 }
+
+int Dragon::getTimesKilled() { return timesKilled; }
