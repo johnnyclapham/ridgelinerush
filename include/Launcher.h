@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "Dragon.h"
 #include "Hero.h"
+#include "Settings.h"
 #include "Terrain.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -45,6 +46,7 @@ class Launcher {
     float angle = 0;
     Direction launcherDirection;
     sf::Clock timer;
+    Settings s;
 
     void resetBaseValues();
 };

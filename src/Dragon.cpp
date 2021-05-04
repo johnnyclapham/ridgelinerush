@@ -29,6 +29,7 @@ Dragon::Dragon(Hero *hero, Terrain *terrain) {
     timer = sf::Clock();
     respawnTimer = sf::Clock();
     visible = true;
+    s.read();
 }
 
 Dragon::Dragon(float x, float y, Hero *hero, Terrain *terrain) {
@@ -73,7 +74,7 @@ void Dragon::fireSound() {
     }
     buffer.loadFromFile(bufferPath);
     sound.setBuffer(buffer);
-    sound.setVolume(5);
+    sound.setVolume(s.getVolume() * 2);
     sound.setPitch(.6);
     sound.play();
 }
@@ -88,7 +89,7 @@ void Dragon::heroHit() {
     }
     heroHitBuffer.loadFromFile(heroHitBufferPath);
     heroHitSound.setBuffer(heroHitBuffer);
-    heroHitSound.setVolume(2);
+    heroHitSound.setVolume(s.getVolume() * 4);
     heroHitSound.setPitch(1.1);
     heroHitSound.play();
 }

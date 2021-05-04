@@ -16,6 +16,7 @@ Launcher::Launcher(float x, float y, float width, float height) {
   projectileHeight = height;
   resetBaseValues();
   std::cout << "Launcher initialized, position is " << x_coord << " " << y_coord << std::endl;
+  s.read();
 }
 
 void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
@@ -73,7 +74,7 @@ void Launcher::weaponSound() {
   }
   buffer.loadFromFile(bufferPath);
   sound.setBuffer(buffer);
-  sound.setVolume(10);
+  sound.setVolume(s.getVolume() * 4);
   sound.setPitch(3);
   sound.play();
 }
@@ -88,7 +89,7 @@ void Launcher::dragonHit() {
   }
   dragonHitBuffer.loadFromFile(dragonHitBufferPath);
   dragonHitSound.setBuffer(dragonHitBuffer);
-  dragonHitSound.setVolume(10);
+  dragonHitSound.setVolume(s.getVolume() * 4);
   dragonHitSound.play();
 }
 

@@ -4,6 +4,7 @@
 #include "Logic.h"
 #include "PlayerView.h"
 #include "screens.hpp"
+#include "Settings.h"
 
 // Ridge Line Rush code-base
 // basic window template in SFML
@@ -22,7 +23,8 @@ int main(int argc, char** argv)
   	std::vector<cScreen*> Screens;
   	int screen = 0;
   	int prevScreen = 1;
-
+    Settings s;
+    s.read();
 
 
   	//Screens preparations
@@ -48,7 +50,7 @@ int main(int argc, char** argv)
             std::cout << "Error with standard path. Now loading   : " << path << " \n";
         }
         music.openFromFile(path);
-        music.setVolume(15);
+        music.setVolume(s.getVolume() * 5 + 10);
         music.setLoop(true);
         music.play();
       } else if (prevScreen == 1){
@@ -58,7 +60,7 @@ int main(int argc, char** argv)
             std::cout << "Error with standard path. Now loading   : " << path << " \n";
         }
         music.openFromFile(path);
-        music.setVolume(15);
+        music.setVolume(s.getVolume() * 5 + 10);
         music.setLoop(true);
         music.play();
       }

@@ -29,6 +29,7 @@ Hero::Hero() {
     topRightCollisionPt = position+sf::Vector2<float>(width-20, 20);
     bottomLeftCollisionPt = position+sf::Vector2<float>(20, height);
     bottomRightCollisionPt = position+sf::Vector2<float>(width-20, height);
+    s.read();
 }
 
 Hero::Hero(float x, float y) {
@@ -204,7 +205,7 @@ void Hero::powerupSound() {
     }
     buffer.loadFromFile(bufferPath);
     sound.setBuffer(buffer);
-    sound.setVolume(8);
+    sound.setVolume(s.getVolume() * 4);
     sound.play();
 }
 

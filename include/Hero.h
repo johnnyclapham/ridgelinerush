@@ -9,6 +9,7 @@
 #include "Terrain.h"
 #include "Powerup.h"
 #include "Hitbox.h"
+#include "Settings.h"
 
 
 class Hero
@@ -90,6 +91,7 @@ private:
     Collision floorType;
     state playerState;
     Powerup powerup;
+    Settings s;
 };
 
 #endif // HERO_H

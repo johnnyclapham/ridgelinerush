@@ -9,6 +9,7 @@
 #include "Projectile.h"
 #include "Hitbox.h"
 #include "Hero.h"
+#include "Settings.h"
 
 
 class Dragon
@@ -77,6 +78,8 @@ private:
     sf::Clock timer;
 
     sf::Vector2<float> position;
+
+    Settings s;
 
 
     //state dragonMovementState; // not needed right now
