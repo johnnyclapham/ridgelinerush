@@ -194,7 +194,20 @@ void Hero::walk(Direction direction){
     }
 }
 
+void Hero::powerupSound() {
+    std::string path = "assets/sounds/power_up.wav";
+    if (!buffer.loadFromFile(path)) {
+        path = "../" + path;
+        std::cout << "Error with standard path. Now loading   : " << path << " \n";
+    }
+    buffer.loadFromFile(path);
+    sound.setBuffer(buffer);
+    sound.setVolume(8);
+    sound.play();
+}
+
 void Hero::applyPowerup() {
+    powerupSound();
     switch (powerup.getPowerupType()) {
         case PT::damage_boost:
           std::cout << "Old damage: "<< damage;

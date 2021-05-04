@@ -5,7 +5,6 @@
 #include "Dragon.h"
 #include "Hero.h"
 #include "Terrain.h"
-#include "SoundPlayer.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -20,14 +19,21 @@ class Launcher {
     void setDirection(Direction direction);
     void move(float x_diff, float y_diff);
     void updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *hero);
-    void updateDragon(float time, Terrain *terrain, Dragon *dragon, Hero *hero);
     void shoot();
+    void weaponSound();
+    void dragonHit();
 
     // TODO: apply item effect
 
     std::vector<Projectile> projectileList;
 
   private:
+    sf::SoundBuffer buffer;
+    sf::Sound sound;
+
+    sf::SoundBuffer dragonHitBuffer;
+    sf::Sound dragonHitSound;
+
     float projectileWidth;
     float projectileHeight;
     float x_coord, y_coord;

@@ -28,8 +28,12 @@ int game_screen_1::Run (sf::RenderWindow &App)
   int deltaMS;
 
   sf::Music music;
-  music.openFromFile("../assets/sounds/battle_theme.wav");
-
+  std::string path = "assets/sounds/battle_theme.wav";
+  if (!music.openFromFile(path)) {
+    path = "../" + path;
+    std::cout << "Error with standard path. Now loading   : " << path << " \n";
+  }
+  music.openFromFile(path);
   music.setVolume(20);
   music.setLoop(true);
   music.play();

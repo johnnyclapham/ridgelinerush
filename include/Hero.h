@@ -5,6 +5,7 @@
 #ifndef RIDGELINERUSH_HERO_H
 #define RIDGELINERUSH_HERO_H
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 #include "Terrain.h"
 #include "Powerup.h"
 #include "Hitbox.h"
@@ -59,9 +60,14 @@ public:
     void walk(Direction direction);
     void die();
 
+    void powerupSound();
+
     Hitbox getHitbox();
 private:
     // members //
+    sf::SoundBuffer buffer;
+    sf::Sound sound;
+
     float width;
     float height;
     int health;

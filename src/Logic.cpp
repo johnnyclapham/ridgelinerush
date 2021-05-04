@@ -9,13 +9,11 @@
 #include "Launcher.h"
 #include "Logic.h"
 #include "Controller.h"
-#include "SoundPlayer.h"
 #include <iostream>
 #include <SFML/Window.hpp>
 
 
 Logic::Logic() {
-    soundplayer = SoundPlayer();
     terrain = Terrain();
     controller = Controller(&hero, &launcher);
     hero = Hero();
@@ -31,11 +29,9 @@ Logic::Logic() {
     controller.setAttackKey(settings.getAttackKey());
     controller.setQuitKey(settings.getQuitKey());
 
-    // initialize launchers
+    // initialize launcher
     sf::Vector2f heroPosition = hero.getPosition();
-    // sf::Vector2f dragonPosition = dragon.getPosition();
     launcher = Launcher(heroPosition.x, heroPosition.y, 20, 10);
-    // dragonLauncher = Launcher(dragonPosition.x, dragonPosition.y, 50, 50);
 }
 
 void Logic::update(float time) {
@@ -46,7 +42,6 @@ void Logic::update(float time) {
     dragonAI.update(.5*time);
     // settings.read();
     launcher.updateHero(.5*time, &terrain, &dragon, &hero);
-    dragonLauncher.updateDragon(.5*time, &terrain, &dragon, &hero);
     background.update(.5*time);
 }
 

@@ -42,8 +42,12 @@ int title_screen_0::Run (sf::RenderWindow &App)
     int deltaMS;
 
     sf::Music music;
-    music.openFromFile("../assets/sounds/menu_theme.wav");
-
+    std::string path = "assets/sounds/menu_theme.wav";
+    if (!music.openFromFile(path)) {
+        path = "../" + path;
+        std::cout << "Error with standard path. Now loading   : " << path << " \n";
+    }
+    music.openFromFile(path);
     music.setVolume(15);
     music.setLoop(true);
     music.play();
