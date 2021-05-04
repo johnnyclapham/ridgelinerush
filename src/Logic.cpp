@@ -19,15 +19,7 @@ Logic::Logic() {
     hero = Hero();
     dragon = Dragon(&hero, &terrain);
     dragonAI = DragonAI(&dragon, &hero);
-    settings = Settings(0);
     background = Background();
-
-    controller.setMvmtUpKey(settings.getMvmtUpKey());
-    controller.setMvmtLeftKey(settings.getMvmtLeftKey());
-    controller.setMvmtRightKey(settings.getMvmtRightKey());
-    controller.setMvmtDownKey(settings.getMvmtDownKey());
-    controller.setAttackKey(settings.getAttackKey());
-    controller.setQuitKey(settings.getQuitKey());
 
     // initialize launchers
     sf::Vector2f heroPosition = hero.getPosition();
@@ -42,7 +34,6 @@ void Logic::update(float time) {
     terrain.move(.5*time, .5*time);
     dragon.update(.5*time);
     dragonAI.update(.5*time);
-    // settings.read();
     launcher.updateHero(.5*time, &terrain, &dragon, &hero);
     dragonLauncher.updateDragon(.5*time, &terrain, &dragon, &hero);
     background.update(.5*time);
