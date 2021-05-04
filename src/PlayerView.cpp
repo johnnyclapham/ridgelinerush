@@ -228,8 +228,6 @@ void PlayerView::drawHealthBar() {
      //error
      // new handling: if font fails to load, try alternate
      // addressing method (for Mac OS)
-     std::cout << "failed to load font, trying alternate path \n";
-     std::cout << "now loading   : ../PKMN RBYGSC.ttf \n";
      font.loadFromFile("../assets/PKMN RBYGSC.ttf");
     }
     sf::Text text;

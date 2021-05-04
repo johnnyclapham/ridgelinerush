@@ -49,6 +49,7 @@ int game_screen_1::Run (sf::RenderWindow &App)
       if(Event.type == sf::Event::Closed)
         App.close();
 
+      std::cout << s.keyToStr(s.getQuitKey()) << std::endl;
       if (Event.key.code == s.getQuitKey()){
         std::cout << "title_screen_0 <- game_screen_1\n";
         //return 0 calls the 0 position screen
@@ -77,7 +78,7 @@ int game_screen_1::Run (sf::RenderWindow &App)
     if(position.y>WINDOW_HEIGHT||position.x<=0){
       return 3;
     }
-  
+
 
     // display
     App.display();

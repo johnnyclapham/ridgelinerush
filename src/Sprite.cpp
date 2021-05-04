@@ -23,9 +23,9 @@ Sprite::Sprite(const std::string &spritesheet) {
        // commented out for console spam
        // std::cout << "failed to load: "<<texture<<" \n";
       texture = "../"+texture;
-      std::cout << "Error with standard path. Now loading   : "<<texture<<" \n";
-      newTexture.loadFromFile(texture);
+      //std::cout << "Error with standard path. Now loading   : "<<texture<<" \n";
     }
+    newTexture.loadFromFile(texture);
 }
 
 void Sprite::update(float time){

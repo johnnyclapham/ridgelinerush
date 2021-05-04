@@ -140,16 +140,16 @@ void Hero::jump(){
 
 void Hero::driftLeft(){
     //std::cout << position.x<< std::endl;
-    if(playerState == airborne){
-        velocityBuffer.x -= .1;
+    if(playerState == airborne && velocity.x > -6){
+        velocityBuffer.x -= .02;
     }
     facingDirection = LEFT;
 }
 
 void Hero::driftRight(){
     //std::cout << position.x<< std::endl;
-    if(playerState == airborne){
-        velocityBuffer.x += .1;
+    if(playerState == airborne && velocity.x < 6){
+        velocityBuffer.x += .02;
     }
     facingDirection = RIGHT;
 }
