@@ -25,6 +25,10 @@ void Tile::setPosition(float x, float y) {
     this->y = y;
 }
 
+sf::Vector2<float> Tile::getPosition() {
+    return sf::Vector2<float>(x,y);
+}
+
 float Tile::getX() {
     return x;
 }
