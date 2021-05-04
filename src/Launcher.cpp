@@ -63,11 +63,14 @@ void Launcher::shoot() {
 }
 
 void Launcher::weaponSound() {
-  std::string path = "assets/sounds/weapon_fired.wav";
-  if (!buffer.loadFromFile(path)) {
-      path = "../" + path;
+  if (bufferPath == "") {
+    std::string path = "assets/sounds/weapon_fired.wav";
+    if (!buffer.loadFromFile(path)) {
+        path = "../" + path;
+    }
+    bufferPath = path;
   }
-  buffer.loadFromFile(path);
+  buffer.loadFromFile(bufferPath);
   sound.setBuffer(buffer);
   sound.setVolume(10);
   sound.setPitch(3);
@@ -75,11 +78,14 @@ void Launcher::weaponSound() {
 }
 
 void Launcher::dragonHit() {
-  std::string path = "assets/sounds/dragon_hit.wav";
-  if (!dragonHitBuffer.loadFromFile(path)) {
-      path = "../" + path;
+  if (dragonHitBufferPath == "") {
+    std::string path = "assets/sounds/dragon_hit.wav";
+    if (!dragonHitBuffer.loadFromFile(path)) {
+        path = "../" + path;
+    }
+    dragonHitBufferPath = path;
   }
-  dragonHitBuffer.loadFromFile(path);
+  dragonHitBuffer.loadFromFile(dragonHitBufferPath);
   dragonHitSound.setBuffer(dragonHitBuffer);
   dragonHitSound.setVolume(10);
   dragonHitSound.play();

@@ -195,11 +195,14 @@ void Hero::walk(Direction direction){
 }
 
 void Hero::powerupSound() {
-    std::string path = "assets/sounds/power_up.wav";
-    if (!buffer.loadFromFile(path)) {
-        path = "../" + path;
+    if (bufferPath == "") {
+        std::string path = "assets/sounds/power_up.wav";
+        if (!buffer.loadFromFile(path)) {
+            path = "../" + path;
+        }
+        bufferPath = path;
     }
-    buffer.loadFromFile(path);
+    buffer.loadFromFile(bufferPath);
     sound.setBuffer(buffer);
     sound.setVolume(8);
     sound.play();

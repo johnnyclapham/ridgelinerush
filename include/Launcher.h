@@ -30,9 +30,11 @@ class Launcher {
   private:
     sf::SoundBuffer buffer;
     sf::Sound sound;
+    std::string bufferPath;
 
     sf::SoundBuffer dragonHitBuffer;
     sf::Sound dragonHitSound;
+    std::string dragonHitBufferPath;
 
     float projectileWidth;
     float projectileHeight;

@@ -67,6 +67,7 @@ private:
     // members //
     sf::SoundBuffer buffer;
     sf::Sound sound;
+    std::string bufferPath;
 
     float width;
     float height;

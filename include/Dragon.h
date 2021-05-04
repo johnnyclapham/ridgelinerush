@@ -51,9 +51,11 @@ private:
     // members //
     sf::SoundBuffer buffer;
     sf::Sound sound;
+    std::string bufferPath;
 
     sf::SoundBuffer heroHitBuffer;
     sf::Sound heroHitSound;
+    std::string heroHitBufferPath;
 
     Hero *hero;
     Terrain *terrain;

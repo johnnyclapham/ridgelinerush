@@ -18,9 +18,11 @@ Dragon::Dragon(Hero *hero, Terrain *terrain) {
     //dragonMovementState = up; // not needed right now
     this->hero = hero;
     this->terrain = terrain;
+    bufferPath = "";
+    heroHitBufferPath = "";
     movementIteration = 0;
     timesKilled = 0;
-    health = 5;
+    health = 10;
     height = 250;
     width = 200;
     resetShootValues();
@@ -62,11 +64,14 @@ void Dragon::shoot() {
 }
 
 void Dragon::fireSound() {
-    std::string path = "assets/sounds/dragon_fire.wav";
-    if (!buffer.loadFromFile(path)) {
-        path = "../" + path;
+    if (bufferPath == "") {
+        std::string path = "assets/sounds/dragon_fire.wav";
+        if (!buffer.loadFromFile(path)) {
+            path = "../" + path;
+        }
+        bufferPath = path;
     }
-    buffer.loadFromFile(path);
+    buffer.loadFromFile(bufferPath);
     sound.setBuffer(buffer);
     sound.setVolume(5);
     sound.setPitch(.6);
@@ -74,11 +79,14 @@ void Dragon::fireSound() {
 }
 
 void Dragon::heroHit() {
-    std::string path = "assets/sounds/dragon_fire.wav";
-    if (!heroHitBuffer.loadFromFile(path)) {
-        path = "../" + path;
+    if (heroHitBufferPath == "") {
+        std::string path = "assets/sounds/dragon_fire.wav";
+        if (!heroHitBuffer.loadFromFile(path)) {
+            path = "../" + path;
+        }
+        heroHitBufferPath = path;
     }
-    heroHitBuffer.loadFromFile(path);
+    heroHitBuffer.loadFromFile(heroHitBufferPath);
     heroHitSound.setBuffer(heroHitBuffer);
     heroHitSound.setVolume(2);
     heroHitSound.setPitch(1.1);
@@ -101,7 +109,7 @@ void Dragon::hit() {
         timesKilled++;
         visible = false;
         respawnTimer.restart();
-        health = 5;
+        health = 10;
         setPosition(0, 200);
     }
 }
