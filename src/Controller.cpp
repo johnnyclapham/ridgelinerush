@@ -25,7 +25,6 @@ void Controller::update(){
     setMvmtDownKey(s.getMvmtDownKey());
     setAttackKey(s.getAttackKey());
     setQuitKey(s.getQuitKey());
-    std::cout << s.keyToStr(s.getMvmtUpKey()) << std::endl;
     if (sf::Keyboard::isKeyPressed(mvmt_up))
     {
         (*playerHero).jump();
