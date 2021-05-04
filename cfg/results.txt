@@ -1,6 +1,6 @@
 RESULTS:
 
-score: 9
-remaining health: 10
+score: 4
+remaining health: 8
 dragons killed: 0
 

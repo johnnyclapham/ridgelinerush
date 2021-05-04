@@ -32,10 +32,10 @@ int options_screen_2::Run (sf::RenderWindow &App, sf::Music& music)
     //create sfml text to display score to player
     sf::Text optionsText; //updated during re-rendering
     optionsText.setFont(font); // font is a sf::Font
-    optionsText.setCharacterSize(125);
+    optionsText.setCharacterSize(80);
     optionsText.setFillColor(sf::Color::White);
     optionsText.setStyle(sf::Text::Bold);
-    optionsText.setPosition(70,0);
+    optionsText.setPosition(320,0);
     std::string optionsString = "Options";
     optionsText.setString(optionsString);
     Options options(App.getSize().x, App.getSize().y);
@@ -127,11 +127,12 @@ int options_screen_2::Run (sf::RenderWindow &App, sf::Music& music)
                         break;
                       }
                   }
-	}
-
+                }
+                options.checkSettings();
 			}
             //clear, draw, and display our options screen
             App.clear(sf::Color::Black);
+            options.update();
             options.draw(App, background);
             App.draw(optionsText);
             App.display();

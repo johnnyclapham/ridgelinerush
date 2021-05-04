@@ -1,10 +1,10 @@
 SETTINGS:
 
-volume: 9
-movement up: W
-movement left: A
-movement right: D
-movement down: S
-attack: Spacebar
+volume: 5
+movement up: Z
+movement left: Left
+movement right: Right
+movement down: C
+attack: X
 quit: Escape
 

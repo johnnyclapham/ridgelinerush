@@ -17,13 +17,16 @@ public:
 	Options();
 
 	void draw(sf::RenderWindow &window, Background &background);
+	void update();
 	void MoveUp(); //to move selection up
 	void MoveDown(); //to mover selection down
     int GetPressedItem(); //function to get current selection
+    void checkSettings();
 
 private:
 	int selectedItemIndex;
 	sf::Font font;
+	Settings s;
 	//array of elements for the Options
 	sf::Text options[MAX_NUMBER_OF_OPTIONS_ITEMS];
 
@@ -32,6 +35,11 @@ private:
 
 	Sprite bgLayer1, bgLayer2, bgLayer3, bgLayer4, bgLayer5, bgLayer6;
 	Background background;
+
+    int normalCharSize;
+    int largerCharSize;
+    int topOffset;
+    int leftOffset;
 
 };
 
