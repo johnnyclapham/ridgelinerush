@@ -5,6 +5,7 @@
 #ifndef RIDGELINERUSH_DRAGON_H
 #define RIDGELINERUSH_DRAGON_H
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 #include "Projectile.h"
 #include "Hitbox.h"
 #include "Hero.h"
@@ -35,6 +36,9 @@ public:
 
     void shoot();
 
+    void fireSound();
+    void heroHit();
+
     enum state {up, down};
 
     std::vector<Projectile> projectileList;
@@ -45,6 +49,12 @@ public:
 
 private:
     // members //
+    sf::SoundBuffer buffer;
+    sf::Sound sound;
+
+    sf::SoundBuffer heroHitBuffer;
+    sf::Sound heroHitSound;
+
     Hero *hero;
     Terrain *terrain;
     float width;

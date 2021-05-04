@@ -5,6 +5,7 @@
 #include "Dragon.h"
 #include "Hero.h"
 #include "Terrain.h"
+#include <SFML/Audio.hpp>
 #include <math.h>
 #include <iostream>
 
@@ -43,6 +44,7 @@ void Dragon::update(float time){
         projectileList.at(iter).move();
         if (projectileList.at(iter).handleCollision(terrain, hero->getHitbox()) == HERO){
             hero->modifyHealth(-1*projectileList.at(iter).damage);
+            heroHit();
             if (hero->getHealth() == 0) hero->die();
             projectileList.erase(i);
         } else if (projectileList.at(iter).getPosition().x < 0 || projectileList.at(iter).handleCollision(terrain, hero->getHitbox()) == TERRAIN) {
@@ -56,7 +58,33 @@ void Dragon::update(float time){
 
 void Dragon::shoot() {
     projectileList.emplace_back(Projectile(position.x+160, position.y+110, 1, projectileAngle, projectileSpeed, RIGHT, 50, 50));
+    fireSound();
+}
 
+void Dragon::fireSound() {
+    std::string path = "assets/sounds/dragon_fire.wav";
+    if (!buffer.loadFromFile(path)) {
+        path = "../" + path;
+        std::cout << "Error with standard path. Now loading   : " << path << " \n";
+    }
+    buffer.loadFromFile(path);
+    sound.setBuffer(buffer);
+    sound.setVolume(5);
+    sound.setPitch(.6);
+    sound.play();
+}
+
+void Dragon::heroHit() {
+    std::string path = "assets/sounds/dragon_fire.wav";
+    if (!heroHitBuffer.loadFromFile(path)) {
+        path = "../" + path;
+        std::cout << "Error with standard path. Now loading   : " << path << " \n";
+    }
+    heroHitBuffer.loadFromFile(path);
+    heroHitSound.setBuffer(heroHitBuffer);
+    heroHitSound.setVolume(2);
+    heroHitSound.setPitch(1.1);
+    heroHitSound.play();
 }
 
 void Dragon::setProjectileAngle(float angle) {

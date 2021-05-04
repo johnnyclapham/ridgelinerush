@@ -1,6 +1,7 @@
 #include "Launcher.h"
 #include "Projectile.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 
 Launcher::Launcher() {
@@ -28,7 +29,10 @@ void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *he
   for (auto i = projectileList.begin(); i < projectileList.end(); i++) {
     projectileList.at(iter).move();
     EntityCollision collision = projectileList.at(iter).handleCollision(terrain, dragon->getHitbox());
-    if (collision == DRAGON) dragon->hit();
+    if (collision == DRAGON) {
+      dragonHit();
+      dragon->hit();
+    }
     if (collision != NONE) {
       projectileList.erase(i);
     }
@@ -37,10 +41,6 @@ void Launcher::updateHero(float time, Terrain *terrain, Dragon *dragon, Hero *he
     }
     iter++;
   }
-}
-
-void Launcher::updateDragon(float time, Terrain *terrain, Dragon *dragon, Hero *hero) {
-  // TODO this
 }
 
 void Launcher::setPosition(float x, float y) {
@@ -57,8 +57,34 @@ void Launcher::shoot() {
   if (timer.getElapsedTime().asMilliseconds() >= fire_delay) {
     projectileList.emplace_back(Projectile(x_coord, y_coord, damage, angle, speed, launcherDirection, projectileHeight, projectileWidth));
     std::cout << "Projectile fired" << std::endl;
+    weaponSound();
     timer.restart();
   }
+}
+
+void Launcher::weaponSound() {
+  std::string path = "assets/sounds/weapon_fired.wav";
+  if (!buffer.loadFromFile(path)) {
+      path = "../" + path;
+      std::cout << "Error with standard path. Now loading   : " << path << " \n";
+  }
+  buffer.loadFromFile(path);
+  sound.setBuffer(buffer);
+  sound.setVolume(10);
+  sound.setPitch(3);
+  sound.play();
+}
+
+void Launcher::dragonHit() {
+  std::string path = "assets/sounds/dragon_hit.wav";
+  if (!dragonHitBuffer.loadFromFile(path)) {
+      path = "../" + path;
+      std::cout << "Error with standard path. Now loading   : " << path << " \n";
+  }
+  dragonHitBuffer.loadFromFile(path);
+  dragonHitSound.setBuffer(dragonHitBuffer);
+  dragonHitSound.setVolume(10);
+  dragonHitSound.play();
 }
 
 // reset everything except position
