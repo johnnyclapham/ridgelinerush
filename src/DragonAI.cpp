@@ -20,9 +20,9 @@ DragonAI::DragonAI(Dragon *dragon, Hero *hero) {
 }
 
 void DragonAI::update(float time) {
-  if (!dragon->isVisible()) {
-    normalMovementIteration = 0;
-    return;
+  if (!dragon->isVisible() && pattern != RESPAWN) {
+    switchPattern(RESPAWN);
+    return; // sets the dragon at the proper location for when it becomes visible
   }
 
   float x = dragon->getPosition().x;
@@ -62,6 +62,12 @@ void DragonAI::update(float time) {
       }
 
 
+      break;
+
+    case RESPAWN:
+      if (!dragon->isVisible()) return;
+      else dragon->setPosition(x, y+4*time);
+      if (dragon->getPosition().y >= 200) { switchPattern(NORMAL); }
       break;
 
     case BARRAGE:
@@ -138,6 +144,10 @@ void DragonAI::switchPattern(AttackPattern newPattern) {
       dragon->resetShootValues();
       std::cout << "Returning to normal attack pattern" << std::endl;
       break;
+    case RESPAWN:
+      dragon->setPosition(0, -250);
+      normalMovementIteration = 0;
+      break;
     case BARRAGE:
       rise = true;
       hold = false;
@@ -161,8 +171,8 @@ void DragonAI::resetSpecialCounter() {
 }
 
 AttackPattern DragonAI::selectPattern() {
-  int pattern_options = 3; // INCREMENT THIS IF YOU ADD A NEW PATTERN
-  int pick = rand() % (pattern_options - 1);
+  int pattern_options = 2; // INCREMENT THIS IF YOU ADD A NEW PATTERN
+  int pick = rand() % pattern_options;
 
   switch (pick) {
     case 0:
