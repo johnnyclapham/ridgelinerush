@@ -4,7 +4,7 @@
 #include <iostream>
 #include "cScreen.hpp"
 #include "menu.h"
-#include "background.h"
+#include "Background.h"
 
 class title_screen_0 : public cScreen
 {
