@@ -6,7 +6,7 @@
 
 #define MAX_NUMBER_OF_ITEMS 4 //# of elem. on screen
 //(we have 4 buttons)
-#include "background.h"
+#include "Background.h"
 #include "Sprite.h"
 
 class Menu
