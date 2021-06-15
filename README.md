@@ -12,6 +12,10 @@ John Svoboda
 
 Moses Alexander
 
+# Game demo:
+
+https://www.youtube.com/watch?v=qr5TzYzKBxo
+
 # File Structure, Set-up, compilation of code, generation of executable:
 
 1. Initial state: you can see the file structure. We `cd` into the manually created debug directory
